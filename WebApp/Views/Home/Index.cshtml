@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<script>
+    function success() {
+        location.href = "/List";
+    }
+</script>
+
+@using (Ajax.BeginForm("Index", "Home", new AjaxOptions { HttpMethod = "POST", OnSuccess = "success" }))
+{
+    UID：<input type="text" id="UID" name="UID" /><br/>
+    PWD：<input type="text" id="PWD" name="PWD" /><br />
+    ROL：<input type="text" id="ROL" name="ROL" /><br />
+    <input type="submit" name="login" id="login" value="登陆" />
+}  

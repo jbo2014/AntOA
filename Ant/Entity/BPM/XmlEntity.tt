@@ -1,0 +1,97 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.xml" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Data" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Xml.Linq" #>
+
+<#@include file="$(ProjectDir)\Entity\Manager.ttinclude"#> 
+<# var manager = Manager.Create(Host, GenerationEnvironment); #>
+
+<# manager.StartHeader(); #>
+using System;
+using System.Collections.Generic;
+
+namespace Ant.Entity.Bpm
+{   
+<# manager.EndBlock(); #>
+ 
+<#        
+    string connectionString= "Data Source=(LocalDB)\\v11.0;Initial Catalog=Ant;Integrated Security=True;MultipleActiveResultSets=True";        
+    SqlConnection conn = new SqlConnection(connectionString);
+    conn.Open();
+    
+    string selectQuery ="SET FMTONLY ON; select * from @tableName; SET FMTONLY OFF;";
+    SqlCommand command = new SqlCommand(selectQuery,conn);
+    SqlDataAdapter ad = new SqlDataAdapter(command);
+    System.Data.DataSet ds = new DataSet(); 
+    System.Data.DataTable schema = conn.GetSchema("Tables");
+
+	XmlTextReader reader = new XmlTextReader(@"xxx.bpmx");
+	while(reader.Read())
+	{
+		if(reader.NodeType == XmlNodeType.Element)
+        { 
+            if(reader.Name == IpAddress)
+            {
+                Console.WriteLine(reader.ReadElementString().Trim());
+            }
+            if (reader.Name == Netmask)
+            {
+                Console.WriteLine(reader.ReadElementString().Trim());
+            }
+            if (reader.Name == Gateway)
+            {
+                Console.WriteLine(reader.ReadElementString().Trim());
+            }
+        }
+	}
+
+    foreach(System.Data.DataRow row in schema.Rows)
+    {    
+        ds.Tables.Clear();
+        string tb_name = row["TABLE_NAME"].ToString();        
+        command.CommandText = selectQuery.Replace("@tableName",row["TABLE_NAME"].ToString());
+        ad.FillSchema(ds,SchemaType.Mapped,tb_name);  
+
+		//类名处理
+		string class_name = string.Empty;
+		if (tb_name.StartsWith("Sys"))
+			class_name = tb_name.Remove(0,3);
+		else if (tb_name.StartsWith("Wf"))
+			class_name = tb_name.Remove(0,2);
+		class_name.Remove(class_name.Length-1,1);
+				
+        manager.StartNewFile(class_name+".cs");
+#>
+    /// <summary>
+    /// 实体-<#=tb_name#> 
+    /// </summary>  
+	[Table("<#= tb_name #>")]
+	public class <#= class_name #>
+    {    
+        <#
+        PushIndent("          ");
+        foreach (DataColumn dc in ds.Tables[0].Columns) 
+        {
+			WriteLine("public " + dc.DataType.Name + (dc.AllowDBNull && dc.DataType.Name.ToLower() != "byte[]" ? "? ": " ") + dc.ColumnName + " { get; set; }");
+        }
+        PopIndent();
+        #>
+    } 
+<#
+        manager.EndBlock();    
+    }            
+    conn.Close();  
+#>
+
+
+
+<# manager.StartFooter(); #>
+}
+<# manager.EndBlock(); #>
+
+<# manager.Process(true); #>

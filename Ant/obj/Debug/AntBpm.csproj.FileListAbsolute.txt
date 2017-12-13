@@ -1,0 +1,13 @@
+E:\GitHubs\Ant\Ant\bin\Debug\Ant.dll
+E:\GitHubs\Ant\Ant\bin\Debug\Ant.pdb
+E:\GitHubs\Ant\Ant\obj\Debug\Ant.dll
+E:\GitHubs\Ant\Ant\obj\Debug\Ant.pdb
+E:\GitHubs\Ant\Ant\obj\Debug\Ant.csprojResolveAssemblyReference.cache
+E:\GitHubs\Ant\Ant\bin\Debug\CacheManager.Core.dll
+E:\GitHubs\Ant\Ant\bin\Debug\CacheManager.Web.dll
+E:\GitHubs\Ant\Ant\bin\Debug\Dapper.dll
+E:\GitHubs\Ant\Ant\bin\Debug\Data.dll
+E:\GitHubs\Ant\Ant\bin\Debug\Dapper.pdb
+E:\GitHubs\Ant\Ant\bin\Debug\Data.pdb
+E:\GitHubs\Ant\Ant\bin\Debug\CacheManager.Core.xml
+E:\GitHubs\Ant\Ant\bin\Debug\CacheManager.Web.xml
