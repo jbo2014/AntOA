@@ -1,7 +1,0 @@
-E:\GitHubs\Ant\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
-E:\GitHubs\Ant\Data\bin\Debug\Data.dll
-E:\GitHubs\Ant\Data\bin\Debug\Data.pdb
-E:\GitHubs\Ant\Data\bin\Debug\Dapper.dll
-E:\GitHubs\Ant\Data\bin\Debug\Dapper.pdb
-E:\GitHubs\Ant\Data\obj\Debug\Data.dll
-E:\GitHubs\Ant\Data\obj\Debug\Data.pdb

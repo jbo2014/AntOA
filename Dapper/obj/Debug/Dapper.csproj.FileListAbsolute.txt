@@ -1,4 +1,0 @@
-E:\GitHubs\Ant\Dapper\bin\Debug\Dapper.dll
-E:\GitHubs\Ant\Dapper\bin\Debug\Dapper.pdb
-E:\GitHubs\Ant\Dapper\obj\Debug\Dapper.dll
-E:\GitHubs\Ant\Dapper\obj\Debug\Dapper.pdb
