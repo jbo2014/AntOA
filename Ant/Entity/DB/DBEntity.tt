@@ -19,7 +19,8 @@ namespace Ant.Entity.DB
 <# manager.EndBlock(); #>
  
 <#        
-    string connectionString= "Data Source=(LocalDB)\\v11.0;Initial Catalog=Ant;Integrated Security=True;MultipleActiveResultSets=True";        
+    //string connectionString= "Data Source=(LocalDB)\\v11.0;Initial Catalog=Ant;Integrated Security=True;MultipleActiveResultSets=True";
+	string connectionString= "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=Ant;Integrated Security=True;MultipleActiveResultSets=True"; 
     SqlConnection conn = new SqlConnection(connectionString);
     conn.Open();
     

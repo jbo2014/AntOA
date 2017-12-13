@@ -7,13 +7,14 @@
 
 
 流程列表：
-@foreach (var p in ViewBag.Processes)
+@{ List<Model.WfProcess> processes = ViewBag.Processes; }
+@foreach (Model.WfProcess p in processes)
 {
-    <li>@p</li>
+    <li><a href="/Home/Handle/@p.ProcessGuid">@p.ProcessName</a></li>
 }
 
 任务列表：
-@foreach (var t in ViewBag.Tasks)
+@*@foreach (var t in ViewBag.Tasks)
 {
     <li>@t</li>
-}
+}*@

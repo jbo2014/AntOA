@@ -17,6 +17,6 @@ namespace Ant.Entity.BPM
         /// <summary>
         /// Elements中的某个Element的ID
         /// </summary>
-        public string? element;
+        public string element;
     }
 }

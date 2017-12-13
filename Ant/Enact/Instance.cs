@@ -14,7 +14,7 @@ namespace Ant.Enact
     {
         public Instance NewInstance(Process process) 
         {
-
+            return new Instance();
         }
     }
 }

@@ -29,14 +29,5 @@ namespace Ant.Parse
             this.xmlDoc = XElement.Load(xmlStream);
         }
         #endregion
-
-        public FlowObject GotoByObject(string objID)
-        {
-            IEnumerable<XElement> elementCollection = xmlDoc.Elements("objects");
-        }
-        public FlowObject GotoBySequence(string seqID)
-        {
-
-        }
     }
 }

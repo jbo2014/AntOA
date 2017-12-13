@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ant.Entity.BPM
 {
-    class ZPage
+    public class ZPage
     {
     }
 }

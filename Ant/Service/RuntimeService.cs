@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ant.Entity.BPM;
 
 namespace Ant.Service
 {
@@ -14,6 +15,9 @@ namespace Ant.Service
         /// <summary>
         /// 发起一个新流程
         /// </summary>
-        public StartInstance(){}
+        public ZProcess StartInstance(string processId)
+        {
+            return new ZProcess();
+        }
     }
 }

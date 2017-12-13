@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Ant;
 using Ant.Service;
+using Model;
 
 namespace WebApp.Controllers
 {
@@ -27,7 +28,8 @@ namespace WebApp.Controllers
             Session["uid"] = form["uid"];
             Session["pwd"] = form["pwd"];
             Session["rol"] = form["rol"];
-            return View("List");
+            Response.Redirect("/Home/List");
+            return View();
         }
 
         /// <summary>
@@ -37,14 +39,15 @@ namespace WebApp.Controllers
         public ActionResult List()
         {
             // 流程定义列表
-            ProcessService process = ant.GetProcessService();
-            List<Process> processes = process.ProcessDefList(Session["rol"]);
+            ProcessService process = AntApi.GetProcessService();
+            List<WfProcess> processes = process.GetProcessList();
             ViewBag.Processes = processes;
 
-            // 任务列表
-            TaskService task = ant.GetTaskService();
-            List<Task> tasks = task.TaskListAssignee(Session["uid"]);
-            ViewBag.Tasks = tasks;
+            //// 任务列表
+            //TaskService task = ant.GetTaskService();
+            //List<Task> tasks = task.TaskListAssignee(Session["uid"]);
+            //ViewBag.Tasks = tasks;
+            return View();
         }
 
         /// <summary>
@@ -54,11 +57,12 @@ namespace WebApp.Controllers
         /// <returns></returns>
         public ActionResult Handle(bool isNew, string id) 
         {
-            RuntimeService runtime = ant.GetRuntimeService();
-            if(isNew)
-                runtime.CreateInstance(id);
-            else
-                runtime.OpenInstance(id);
+            //RuntimeService runtime = ant.GetRuntimeService();
+            //if(isNew)
+            //    runtime.CreateInstance(id);
+            //else
+            //    runtime.OpenInstance(id);
+            return View();
         }
 
         /// <summary>
@@ -68,16 +72,17 @@ namespace WebApp.Controllers
         [HttpPost]
         public ActionResult Handle(FormCollection form)
         {
-            RuntimeService runtime = ant.RuntimeService();
-            
-            //发起流程
-            runtime.Start(form["InstanceId"]);
-            
-            //正常转交下一步
-            runtime.GoNext();
+            //RuntimeService runtime = ant.RuntimeService();
 
-            //回退上一步
-            runtime.GoBack();
+            ////发起流程
+            //runtime.Start(form["InstanceId"]);
+
+            ////正常转交下一步
+            //runtime.GoNext();
+
+            ////回退上一步
+            //runtime.GoBack();
+            return new JsonResult();
         }
     }
 }

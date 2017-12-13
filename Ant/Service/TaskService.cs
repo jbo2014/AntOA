@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ant.Service
 {
-    class TaskService
+    public class TaskService
     {
     }
 }
