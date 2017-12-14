@@ -1,0 +1,32 @@
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using {space}.Mapping;
+   
+namespace {space}
+{{
+    /// <summary>
+    /// 文件说明: Sql Server连接文件
+    /// 作    者: 王俊波
+    /// 生成日期: {date}
+    /// 特别说明：本文件由代码生成工具自动生成，请勿轻易修改！
+    /// </summary>
+    public class {connStrName} : DbContext
+    {{
+       static {connStrName}()
+       {{
+           Database.SetInitializer<{connStrName}>(null);
+       }}
+       
+       public {connStrName}()
+           : base("Name={connStrName}")
+       {{
+       }}
+       
+       {entityStr}
+       
+       protected override void OnModelCreating(DbModelBuilder modelBuilder)
+       {{
+           {mapStr}
+       }}
+    }}
+}} 

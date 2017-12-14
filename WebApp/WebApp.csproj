@@ -171,10 +171,6 @@
       <Project>{5fbc1e25-ed31-4966-99d2-5697a6f64d75}</Project>
       <Name>Ant</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{5fa36881-74ed-4890-ad07-d329bc5dda42}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

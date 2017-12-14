@@ -1,3 +1,8 @@
 packages
 bin
 obj
+Web.Debug.config
+Web.Release.config
+Web.config
+AntOA_log.ldf
+AntOA.mdf

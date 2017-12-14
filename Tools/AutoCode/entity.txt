@@ -1,0 +1,27 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace {space}
+{{
+    /// <summary>
+    /// 文件说明: {classDescription}信息实体
+    /// 作    者: 王俊波
+    /// 生成日期: {date}
+    /// 特别说明：本文件由代码生成工具自动生成，请勿轻易修改！
+    /// </summary>
+    [Serializable]
+    public partial class {className}
+    {{
+        public {className}()
+        {{
+            {structFuncStr}
+        }}
+
+        {propertyStr} 
+        
+        {refStr}
+    }}
+}}
