@@ -21,7 +21,7 @@ namespace Ant.Service
         /// <returns></returns>
         public List<WfProcess> GetProcessList()
         {
-            List<WfProcess> processes = db.WfProcess.Where(o=>o.Status==1).ToList();
+            List<WfProcess> processes = db.WfProcesses.Where(o=>o.Status==1).ToList();
             return processes;
         }
         #endregion

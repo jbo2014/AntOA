@@ -23,5 +23,6 @@ namespace {space}
         {propertyStr} 
         
         {refStr}
+        {foreignStr}
     }}
 }}

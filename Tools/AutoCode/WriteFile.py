@@ -63,18 +63,26 @@ class WriteFile:
         className = columns[0]['TABLE_NAME'].split('.')[-1]
         classDescription = bytes.decode(columns[0]['TABLE_Description'])
 
+        # 列属性声明
         propertyStr = ''
+        colType = None
+        foreignStr = ''
         for column in columns:
+            colType = self.ConvertType(column['COLUMN_TYPE'])
             if(column['Is_PrimaryKey'].upper()=='YES'):
                 propertyStr = propertyStr+'\r\t\t[Key]'
             elif(column['COLUMN_Description'] != '' and column['COLUMN_Description'] is not None):
-                propertyStr = propertyStr+'\r\t\t[DisplayName("'+bytes.decode(column['COLUMN_Description'])+'")]'
-            if(column['IS_NULLABLE'].upper()=='YES'):
-                propertyStr = propertyStr+'\r\t\tpublic Nullable<'+ self.ConvertType(column['COLUMN_TYPE']) +'> '+column['COLUMN_NAME'] +' { get; set; }'
+                propertyStr = propertyStr+'\r\t\t[DisplayName("'+bytes.decode(column['COLUMN_Description']).replace('\r','').replace('\n','')+'")]'
+            if(column['IS_NULLABLE'].upper()=='YES' and colType.lower() != 'string' and colType != 'byte[]'):
+                propertyStr = propertyStr+'\r\t\tpublic Nullable<'+ colType +'> '+column['COLUMN_NAME'] +' { get; set; }'
             else:
-                propertyStr = propertyStr+'\r\t\tpublic '+ self.ConvertType(column['COLUMN_TYPE']) +' '+ column['COLUMN_NAME'] +' { get; set; }'
+                propertyStr = propertyStr+'\r\t\tpublic '+ colType +' '+ column['COLUMN_NAME'] +' { get; set; }'
+            if(column['Is_Foreignkeys'].upper()=='YES'):
+                foreignStr = foreignStr+'\r\t\tpublic virtual '+column['Foreign_Table']+' '+column['COLUMN_NAME']+'_FK { get; set; }'
 
+        # 构造函数中的变量初始化
         structFuncStr = ''
+        # 关联表的引用
         refStr = ''
         tableName = None
         for row in rows:
@@ -96,7 +104,8 @@ class WriteFile:
             "className" : className, 
             "structFuncStr" : structFuncStr, 
             "propertyStr" : propertyStr, 
-            "refStr" : refStr
+            "refStr" : refStr,
+            "foreignStr" : foreignStr
             })
 
         file = open(self.csdir+'/'+className + '.cs', 'w')

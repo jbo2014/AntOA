@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4a9a3b9a89e84475b9d09afcc519a99a" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.SysDepartment" Width="1.5" PointX="0.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SysDeptUser" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SysRole" Width="1.5" PointX="0.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SysRoleUser" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SysUser" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WfDelegate" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WfInstance" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WfNode" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WfProcess" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WfRepository" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WfSerialNum" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WfTask" Width="1.5" PointX="9.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WfTransition" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WfVar" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK__SysDeptUs__DeptG__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__SysDeptUs__UserG__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__SysRoleUs__RoleG__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__SysRoleUs__UserG__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__WfInstanc__RepoG__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__WfNode__Instance__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__WfTask__Instance__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__WfTransit__Insta__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__WfVar__InstanceG__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__WfTask__NodeGuid__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__WfProcess__Proce__35BCFE0A" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
