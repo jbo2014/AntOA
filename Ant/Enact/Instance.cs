@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Ant.Entity.DB;
+using Model;
 
 namespace Ant.Enact
 {
@@ -12,7 +12,7 @@ namespace Ant.Enact
     /// </summary>
     class Instance
     {
-        public Instance NewInstance(Process process) 
+        public Instance NewInstance(WfProcess process) 
         {
             return new Instance();
         }

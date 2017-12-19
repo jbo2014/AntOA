@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ant", "Ant\Ant.csproj", "{C2B7C00D-7B55-4EAE-820D-2E87C18797FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{1E15DE1B-C518-4105-AC00-120C29C88C7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{83E3C832-5AD9-4FDF-B830-315FEC635321}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{69043957-8531-4087-A1AB-FEBE85E6D5FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,10 @@ Global
 		{1E15DE1B-C518-4105-AC00-120C29C88C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E15DE1B-C518-4105-AC00-120C29C88C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E15DE1B-C518-4105-AC00-120C29C88C7A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{83E3C832-5AD9-4FDF-B830-315FEC635321}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{83E3C832-5AD9-4FDF-B830-315FEC635321}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{83E3C832-5AD9-4FDF-B830-315FEC635321}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{83E3C832-5AD9-4FDF-B830-315FEC635321}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69043957-8531-4087-A1AB-FEBE85E6D5FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69043957-8531-4087-A1AB-FEBE85E6D5FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69043957-8531-4087-A1AB-FEBE85E6D5FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69043957-8531-4087-A1AB-FEBE85E6D5FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

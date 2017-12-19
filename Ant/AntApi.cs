@@ -12,72 +12,164 @@ namespace Ant
     /// </summary>
     public class AntApi
     {
+
+        #region 属性
         private static IEnactService _enactor;
         private static RuntimeService _runtimeService;
         private static ProcessService _processService;
         private static TaskService _taskService;
-
+        private static AuthService _authService;
         private static readonly object syn = new object();
 
-        #region 属性
-        public static IEnactService GetEnactor()
+
+        //public static IEnactService GetEnactor()
+        //{
+        //    if (_enactor == null)
+        //    {
+        //        lock (syn)
+        //        {
+        //            if (_enactor == null)
+        //            {
+        //                _enactor = new EnactService();
+        //            }
+        //        }
+        //    }
+        //    return _enactor;
+        //}
+
+        //public static RuntimeService GetRuntimeService()
+        //{
+        //    if (_runtimeService == null)
+        //    {
+        //        lock (syn)
+        //        {
+        //            if (_runtimeService == null)
+        //            {
+        //                _runtimeService = new RuntimeService();
+        //            }
+        //        }
+        //    }
+        //    return _runtimeService;
+        //}
+
+        //public static ProcessService GetProcessService()
+        //{
+        //    if (_processService == null)
+        //    {
+        //        lock (syn)
+        //        {
+        //            if (_processService == null)
+        //            {
+        //                _processService = new ProcessService();
+        //            }
+        //        }
+        //    }
+        //    return _processService;
+        //}
+
+        //public static TaskService GetTaskService()
+        //{
+        //    if (_taskService == null)
+        //    {
+        //        lock (syn)
+        //        {
+        //            if (_taskService == null)
+        //            {
+        //                _taskService = new TaskService();
+        //            }
+        //        }
+        //    }
+        //    return _taskService;
+        //}
+
+        public static IEnactService Enactor
         {
-            if (_enactor == null)
+            get
             {
-                lock (syn)
+                if (_enactor == null)
                 {
-                    if (_enactor == null)
+                    lock (syn)
                     {
-                        _enactor = new EnactService();
+                        if (_enactor == null)
+                        {
+                            _enactor = new EnactService();
+                        }
                     }
                 }
+                return _enactor;
             }
-            return _enactor;
         }
 
-        public static RuntimeService GetRuntimeService()
+        public static RuntimeService Runtime
         {
-            if (_runtimeService == null)
+            get
             {
-                lock (syn)
+                if (_runtimeService == null)
                 {
-                    if (_runtimeService == null)
+                    lock (syn)
                     {
-                        _runtimeService = new RuntimeService();
+                        if (_runtimeService == null)
+                        {
+                            _runtimeService = new RuntimeService();
+                        }
                     }
                 }
+                return _runtimeService;
             }
-            return _runtimeService;
         }
 
-        public static ProcessService GetProcessService()
+        public static ProcessService Process
         {
-            if (_processService == null)
+            get
             {
-                lock (syn)
+                if (_processService == null)
                 {
-                    if (_processService == null)
+                    lock (syn)
                     {
-                        _processService = new ProcessService();
+                        if (_processService == null)
+                        {
+                            _processService = new ProcessService();
+                        }
                     }
                 }
+                return _processService;
             }
-            return _processService;
         }
 
-        public static TaskService GetTaskService()
+        public static TaskService Tasker
         {
-            if (_taskService == null)
+            get
             {
-                lock (syn)
+                if (_taskService == null)
                 {
-                    if (_taskService == null)
+                    lock (syn)
                     {
-                        _taskService = new TaskService();
+                        if (_taskService == null)
+                        {
+                            _taskService = new TaskService();
+                        }
                     }
                 }
+                return _taskService;
             }
-            return _taskService;
+        }
+
+        public static AuthService Auth
+        {
+            get
+            {
+                if (_authService == null)
+                {
+                    lock (syn)
+                    {
+                        if (_authService == null)
+                        {
+                            _authService = new AuthService();
+                        }
+                    }
+                }
+                return _authService;
+            }
         }
         #endregion
 

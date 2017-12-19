@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Ant;
+using Ant.Utility;
 using Ant.Service;
 using Model;
 
@@ -23,11 +24,11 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
+
         public ActionResult Index(FormCollection form) 
         {
-            Session["uid"] = form["uid"];
-            Session["pwd"] = form["pwd"];
-            Session["rol"] = form["rol"];
+            AntApi.Auth.CurrentUser.LoginID = form["uid"];
+            AntApi.Auth.CurrentUser.Role.Add(form["rol"]);
             Response.Redirect("/Home/List");
             return View();
         }
@@ -39,7 +40,7 @@ namespace WebApp.Controllers
         public ActionResult List()
         {
             // 流程定义列表
-            ProcessService process = AntApi.GetProcessService();
+            ProcessService process = AntApi.Process;
             List<WfProcess> processes = process.GetProcessList();
             ViewBag.Processes = processes;
 
@@ -57,11 +58,15 @@ namespace WebApp.Controllers
         /// <returns></returns>
         public ActionResult Handle(bool isNew, string id) 
         {
-            //RuntimeService runtime = ant.GetRuntimeService();
-            //if(isNew)
-            //    runtime.CreateInstance(id);
-            //else
-            //    runtime.OpenInstance(id);
+            RuntimeService runtime = AntApi.Runtime;
+            if (isNew)
+            {
+                runtime.StartInstanceByXml(@"E:/GitHubs/AntOA/WebApp/Bpmx/xxx.bpmx");
+            }
+            else
+            {
+                runtime.OpenInstance(new Guid(id));
+            }
             return View();
         }
 

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Model;
 using Ant.Enact;
-using Ant.Entity.DB;
 using Ant.Service;
 
 namespace Ant.Enact
@@ -16,7 +16,7 @@ namespace Ant.Enact
     {
         #region 属性定义
         Instance enactInstance;
-        Process enactProcess;
+        WfProcess enactProcess;
         #endregion
 
 

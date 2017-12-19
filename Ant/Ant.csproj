@@ -31,9 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -52,44 +54,17 @@
     <Compile Include="Enact\IEnactService.cs" />
     <Compile Include="Enact\Instance.cs" />
     <Compile Include="Enact\Transfer.cs" />
-    <Compile Include="Entity\BPM\XmlEntity.cs" />
-    <Compile Include="Entity\BPM\XmlEntity1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>XmlEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\BPM\ZElement.cs" />
-    <Compile Include="Entity\BPM\ZFlow.cs" />
-    <Compile Include="Entity\BPM\ZGateway.cs" />
-    <Compile Include="Entity\BPM\ZPackage.cs" />
-    <Compile Include="Entity\BPM\ZPage.cs" />
-    <Compile Include="Entity\BPM\ZParam.cs" />
-    <Compile Include="Entity\BPM\ZProcess.cs" />
-    <Compile Include="Entity\BPM\ZSequence.cs" />
-    <Compile Include="Entity\BPM\ZStep.cs" />
-    <Compile Include="Entity\Config.cs" />
-    <Compile Include="Entity\DB\DBEntity.cs" />
-    <Compile Include="Entity\DB\DBEntity1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\DB\Delegate.cs" />
-    <Compile Include="Entity\DB\Department.cs" />
-    <Compile Include="Entity\DB\DeptUser.cs" />
-    <Compile Include="Entity\DB\Instance.cs" />
-    <Compile Include="Entity\DB\Node.cs" />
-    <Compile Include="Entity\DB\Process.cs" />
-    <Compile Include="Entity\DB\ProcessDepot.cs" />
-    <Compile Include="Entity\DB\Role.cs" />
-    <Compile Include="Entity\DB\RoleUser.cs" />
-    <Compile Include="Entity\DB\SerialNum.cs" />
-    <Compile Include="Entity\DB\Table.cs" />
-    <Compile Include="Entity\DB\Task.cs" />
-    <Compile Include="Entity\DB\Transition.cs" />
-    <Compile Include="Entity\DB\User.cs" />
-    <Compile Include="Entity\DB\Var.cs" />
-    <Compile Include="Entity\Manager.cs" />
+    <Compile Include="Entity\Exchange\User.cs" />
+    <Compile Include="Service\AuthService.cs" />
+    <Compile Include="Entity\Xpdl\ZElement.cs" />
+    <Compile Include="Entity\Xpdl\ZFlow.cs" />
+    <Compile Include="Entity\Xpdl\ZGateway.cs" />
+    <Compile Include="Entity\Xpdl\ZPackage.cs" />
+    <Compile Include="Entity\Xpdl\ZPage.cs" />
+    <Compile Include="Entity\Xpdl\ZParam.cs" />
+    <Compile Include="Entity\Xpdl\ZProcess.cs" />
+    <Compile Include="Entity\Xpdl\ZSequence.cs" />
+    <Compile Include="Entity\Xpdl\ZStep.cs" />
     <Compile Include="Parse\Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\BaseService.cs" />
@@ -100,18 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Entity\BPM\XmlEntity.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>XmlEntity1.cs</LastGenOutput>
-    </None>
-    <None Include="Entity\BPM\xx.bpmx" />
-    <None Include="Entity\BPM\xxx.bpmx" />
-    <None Include="Entity\DB\DBEntity.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DBEntity1.cs</LastGenOutput>
-    </None>
-    <None Include="Entity\Manager.ttinclude" />
-    <None Include="packages.config" />
+    <None Include="Entity\Xpdl\xx.bpmx" />
+    <None Include="Entity\Xpdl\xxx.bpmx" />
+    <None Include="Entity\Xpdl\Manager.ttinclude" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
@@ -121,6 +87,9 @@
       <Project>{1e15de1b-c518-4105-ac00-120c29c88c7a}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

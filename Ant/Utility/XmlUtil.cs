@@ -34,10 +34,31 @@ namespace Ant.Utility
             }
             catch (Exception e)
             {
-
                 return null;
             }
         }
+
+        /// <summary>
+        /// 反序列化<泛型>
+        /// </summary>
+        /// <param name="xml">XML字符串</param>
+        /// <returns></returns>
+        public static T Deserialize<T>(string xml)
+        {
+            try
+            {
+                using (StringReader sr = new StringReader(xml))
+                {
+                    XmlSerializer xmldes = new XmlSerializer(typeof(T));
+                    return (T)xmldes.Deserialize(sr);
+                }
+            }
+            catch (Exception e)
+            {
+                return default(T);
+            }
+        }
+
         /// <summary>
         /// 反序列化
         /// </summary>
@@ -81,6 +102,40 @@ namespace Ant.Utility
             return str;
         }
 
+        #endregion
+
+        #region 扩展方法
+        public static void SaveToXml(string filePath, object sourceObj, Type type, string xmlRootName)
+        {
+            if (!string.IsNullOrWhiteSpace(filePath) && sourceObj != null)
+            {
+                type = type != null ? type : sourceObj.GetType();
+
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    System.Xml.Serialization.XmlSerializer xmlSerializer = string.IsNullOrWhiteSpace(xmlRootName) ?
+                        new System.Xml.Serialization.XmlSerializer(type) :
+                        new System.Xml.Serialization.XmlSerializer(type, new XmlRootAttribute(xmlRootName));
+                    xmlSerializer.Serialize(writer, sourceObj);
+                }
+            }
+        }
+
+        public static object LoadFromXml(string filePath, Type type)
+        {
+            object result = null;
+
+            if (File.Exists(filePath))
+            {
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    System.Xml.Serialization.XmlSerializer xmlSerializer = new System.Xml.Serialization.XmlSerializer(type);
+                    result = xmlSerializer.Deserialize(reader);
+                }
+            }
+
+            return result;
+        }
         #endregion
     }
 }

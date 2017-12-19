@@ -10,7 +10,11 @@
 @{ List<Model.WfProcess> processes = ViewBag.Processes; }
 @foreach (Model.WfProcess p in processes)
 {
-    <li><a href="/Home/Handle/@p.ProcessGuid">@p.ProcessName</a></li>
+    <li>
+        @*<input type="hidden" value="1" class="IsNew"/>
+        <input type="hidden" value="@p.ProcessGuid" class="ID"/>*@
+        <a href="/Home/Handle?isNew=true&id=@p.ProcessGuid" class="create">@p.ProcessName</a>
+    </li>
 }
 
 任务列表：
@@ -18,3 +22,20 @@
 {
     <li>@t</li>
 }*@
+
+
+
+<script>
+    $(document).ready(function () {
+//        $(".create").click(function () {
+//            $.ajax({
+//                type: "POST",
+//                url: "some.php",
+//                data: {"isNew": this.prev(".IsNew"), "id": this.prev(".ID")}
+//                success: function (msg) {
+//                    alert("Data Saved: " + msg);
+//                }
+//            });
+//        });
+    });
+</script>
