@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<workflow>
+    <package>
+        <title>请假申请</title>
+        <author>admin</author>
+        <codetype>CS</codetype>
+        <loglevel>2</loglevel>
+        <startobject>startevent_0001</startobject>
+        <version></version>
+        <created></created>
+        <release></release><!--0未发布，1已发布-->
+        <!--<isbpmn2></isbpmn2>--><!--是否bpmn2格式显示，0否，1是-->
+    </package>
+    <process>
+        <sequences>
+            <sequence id="sequence_0001" source="startevent_0001" target="usertask_0001" />
+            <sequence id="sequence_0002" source="usertask_0001" target="usertask_0002" />
+            <sequence id="sequence_0003" source="usertask_0002" target="ExclusiveGateway_0001" />
+            <sequence id="sequence_0004" source="ExclusiveGateway_0001" target="usertask_0003" />
+            <sequence id="sequence_0005" source="ExclusiveGateway_0001" target="usertask_0004" />
+            <sequence id="sequence_0006" source="usertask_0003" target="ExclusiveGateway_0002" />
+            <sequence id="sequence_0007" source="usertask_0004" target="ExclusiveGateway_0002" />
+            <sequence id="sequence_0008" source="ExclusiveGateway_0002" target="endevent_0001" />
+        </sequences>
+        <objects>
+            <startevent id="startevent_0001">
+                <sequence>
+                    <outgoing>sequence_0001</outgoing>
+                </sequence>
+            </startevent>
+            <endevent id="endevent_0001">
+                <sequence>
+                    <incoming>sequence_007</incoming>
+                </sequence>
+            </endevent>
+            <usertask id="usertask_0001">
+                <id>0008</id>
+                <title>申请人填写入境申请表单</title>
+                <Type>TaskActivity</Type>
+                <Withdrawable>yes</Withdrawable>
+                <ExecutorMode>Orignator</ExecutorMode>
+                <ExecutorModeName>工作流启动者</ExecutorModeName>
+                <SuperaddEnabled>no</SuperaddEnabled>
+                <MailApprovalEnabled>no</MailApprovalEnabled>
+                <SendEmailNotification>no</SendEmailNotification>
+                <ApprovalMode>Last</ApprovalMode>
+                <AutoCompleteResult>YesButton</AutoCompleteResult>
+                <TaskPage>0042</TaskPage>
+                <sequence>
+                    <incoming>sequence_0001</incoming>
+                    <outgoing>sequence_0002</outgoing>
+                </sequence>
+            </usertask>
+            <usertask id="usertask_0002" title="">
+                <id>0031</id>
+                <title>部门经理审批</title>
+                <Type>TaskActivity</Type>
+                <Executor>CPECC\suxinhou</Executor>
+                <MultiExecutorMode>Parallel</MultiExecutorMode>
+                <TaskPage>0051</TaskPage>
+                <Level>0</Level>
+                <Withdrawable>yes</Withdrawable>
+                <MailApprovalEnabled>no</MailApprovalEnabled>
+                <ApprovalMode>Last</ApprovalMode>
+                <AutoCompleteResult>YesButton</AutoCompleteResult>
+                <ESS>yes</ESS>
+                <TaskTitle>'请审批：'+&amp;标题</TaskTitle>
+                <sequence>
+                    <incoming>sequence_0002</incoming>
+                    <outgoing>sequence_0003</outgoing>
+                </sequence>
+            </usertask>
+            <usertask id="usertask_0003" title="主管领导审批">
+                <sequence>
+                    <incoming>sequence_0003</incoming>
+                    <outgoing>sequence_0005</outgoing>
+                </sequence>
+            </usertask>
+            <usertask id="usertask_0004" title="总经理审批">
+                <sequence>
+                    <incoming>sequence_0003</incoming>
+                    <outgoing>sequence_0005</outgoing>
+                </sequence>
+            </usertask>
+            <gateway id="ExclusiveGateway_0001">
+                <type>ExclusiveGateway</type>
+                <sequence>
+                    <incoming>sequence_0003</incoming>
+                    <outgoing>sequence_0004</outgoing>
+                    <outgoing>sequence_0005</outgoing>
+                </sequence>
+            </gateway>
+            <gateway id="ExclusiveGateway_0002">
+                <type>ExclusiveGateway</type>
+                <MergePattern>MultipleMerge</MergePattern>
+                <SplitPattern>MultipleChoice</SplitPattern>
+                <sequence>
+                    <incoming>sequence_0006</incoming>
+                    <incoming>sequence_0007</incoming>
+                    <outgoing>sequence_0008</outgoing>
+                </sequence>
+            </gateway>
+        </objects>
+        <pages> <!--表单页面-->
+          <page>
+            <name></name>
+            <type></type>
+            <url></url>
+            <content></content>
+          </page>
+        </pages> <!--表单页面-->
+        <params> <!--流程变量定义-->
+            <param>
+                <name></name>
+                <type></type>
+                <isArray></isArray>
+                <descript></descript>
+                <default></default>
+            </param>
+        </params> <!--流程变量定义-->
+    </process>
+    <drawing>
+        <shape></shape>     <!--节点图形-->
+        <edge></edge>       <!--连线-->
+    </drawing>    
+</workflow>
