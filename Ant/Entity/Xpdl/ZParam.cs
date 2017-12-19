@@ -13,19 +13,19 @@ namespace Ant.Entity.Xpdl
         [XmlElement("Name")]
         public string Name { get; set; }
 
-        [XmlRoot("Type")]
+        [XmlElement("Type")]
         public string Type { get; set; }
 
-        [XmlRoot("IsArray")]
+        [XmlElement("IsArray")]
         public bool IsArray { get; set; }
 
         /// <summary>
         /// 参数组的名字
         /// </summary>
-        [XmlRoot("GroupName", IsNullable = true)]
+        [XmlElement("GroupName", IsNullable = true)]
         public string GroupName { get; set; }
 
-        [XmlRoot("Value", IsNullable = true)]
+        [XmlElement("Value", IsNullable = true)]
         public string Value { get; set; }
     }
 }

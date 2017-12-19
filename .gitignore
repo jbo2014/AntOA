@@ -6,3 +6,6 @@ Web.Release.config
 Web.config
 AntOA_log.ldf
 AntOA.mdf
+UpgradeLog.htm
+Backup
+.vs

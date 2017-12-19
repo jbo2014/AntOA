@@ -50,7 +50,7 @@ namespace Ant.Service
             instance.StartTime = DateTime.Now;
             db.WfInstances.Add(instance);
 
-            process.
+            //process.
         }
 
         public ZProcess OpenInstance(Guid instanceId) 
