@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ant.Entity.Xpdl;
 
 namespace Ant.Enact
 {
     /// <summary>
     /// 用于流程的流转操作
     /// </summary>
-    class Transfer
+    internal class Exchanger
     {
         /// <summary>
         /// 按照流程图正常流转至下一个节点
         /// </summary>
-        public void GoNext(){}
+        public void GoNext(ZProcess process, ZStep step)
+        {
+            process.Flows.Sequences.Where(o=>o.Source==step.ID).ToList();
+        }
 
         /// <summary>
         /// 回退到上一个节点
@@ -32,7 +36,7 @@ namespace Ant.Enact
         public void JumpNext() { }
 
         /// <summary>
-        /// 撤回：已经转交出去的任务，只要下一节点没有处理即可
+        /// 撤回：已经转交出去的任务，只要下一节点没有处理即可撤回
         /// </summary>
         public void Withdraw() { }
     }

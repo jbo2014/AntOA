@@ -17,7 +17,7 @@ namespace Ant.Service
         /// <summary>
         /// 发起一个新流程
         /// </summary>
-        public ZProcess StartInstance(Guid processId)
+        public ZProcess StartInstanceByID(Guid processId)
         {
             SQLDB db = new SQLDB();
             WfProcess wProcess = db.WfProcesss.Where(o => o.ProcessGuid == processId).FirstOrDefault();
@@ -37,7 +37,7 @@ namespace Ant.Service
             return zProcess;
         }
 
-        public void InitInstance(ZProcess process) 
+        private void InitInstance(ZProcess process) 
         {
             WfRepository repo = db.WfRepositorys.Where(o=>o.ProcessGuid==process.ProcessID && o.Version==process.Version).FirstOrDefault();
 
@@ -49,8 +49,6 @@ namespace Ant.Service
             instance.Originator = AntApi.Auth.CurrentUser.LoginID;
             instance.StartTime = DateTime.Now;
             db.WfInstances.Add(instance);
-
-            //process.
         }
 
         public ZProcess OpenInstance(Guid instanceId) 

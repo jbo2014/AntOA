@@ -53,8 +53,8 @@
     <Compile Include="Enact\EnactService.cs" />
     <Compile Include="Enact\IEnactService.cs" />
     <Compile Include="Enact\Instance.cs" />
-    <Compile Include="Enact\Transfer.cs" />
-    <Compile Include="Entity\Exchange\User.cs" />
+    <Compile Include="Enact\Exchanger.cs" />
+    <Compile Include="Entity\Esse\User.cs" />
     <Compile Include="Service\AuthService.cs" />
     <Compile Include="Entity\Xpdl\ZElement.cs" />
     <Compile Include="Entity\Xpdl\ZFlow.cs" />

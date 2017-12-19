@@ -10,13 +10,11 @@ using Ant.Service;
 namespace Ant.Enact
 {
     /// <summary>
-    /// 工作机流
+    /// 工作机
     /// </summary>
     public class EnactService : IEnactService
     {
         #region 属性定义
-        Instance enactInstance;
-        WfProcess enactProcess;
         #endregion
 
 
@@ -24,7 +22,7 @@ namespace Ant.Enact
         //#region 解释过程定义
         //#endregion
 
-        //#region 控制过程实例-创建、激活、挂起、终止等
+        #region 控制过程实例-创建、激活、挂起、终止等
         ///// <summary>
         ///// 创建新的流程实例
         ///// </summary>
@@ -88,6 +86,8 @@ namespace Ant.Enact
 
         //#region 控制、管理、审查功能
         //#endregion
-        //#endregion
+        #endregion
+
+
     }
 }

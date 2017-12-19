@@ -14,7 +14,7 @@
   <!--是否bpmn2格式显示，0否，1是-->
   <Flows>
     <Sequences>
-        <!--<Sequence>
+        <Sequence>
             <ID>sequence_0001</ID>
             <Source>event_0001</Source>
             <Target>step_0001</Target>
@@ -23,7 +23,7 @@
             <ID>sequence_0002</ID>
             <Source>step_0001</Source>
             <Target>ExclusiveGateway_0001</Target>
-        </Sequence>-->
+        </Sequence>
         <Sequence>
             <ID>sequence_0004</ID>
             <Title>no</Title>
@@ -38,7 +38,7 @@
             <Source>ExclusiveGateway_0001</Source>
             <Target>step_0002</Target>
         </Sequence>
-        <!--<Sequence>
+        <Sequence>
             <ID>sequence_0006</ID>
             <Source>step_0002</Source>
             <Target>ExclusiveGateway_0002</Target>
@@ -52,17 +52,17 @@
             <ID>sequence_0008</ID>
             <Source>ExclusiveGateway_0002</Source>
             <Target>event_0002</Target>
-        </Sequence>-->
+        </Sequence>
     </Sequences>
     <Steps>
         <Step>
             <ID>event_0001</ID>
-            <Type>Event</Type>
+            <Type>StartEvent</Type>
             <Element>0001</Element>
         </Step>
         <Step>
             <ID>event_0002</ID>
-            <Type>Event</Type>
+            <Type>EndEvent</Type>
             <Element>endevent_0001</Element>
         </Step>
         <Step>
