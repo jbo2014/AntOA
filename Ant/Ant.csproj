@@ -37,6 +37,10 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.12\lib\net40\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -48,40 +52,57 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Action\IAction.cs" />
+    <Compile Include="Action\NoneAction.cs" />
+    <Compile Include="Action\TimerAction.cs" />
     <Compile Include="AntApi.cs" />
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Enact\EnactService.cs" />
-    <Compile Include="Enact\IEnactService.cs" />
-    <Compile Include="Enact\Instance.cs" />
-    <Compile Include="Enact\Exchanger.cs" />
+    <Compile Include="Enact\Event.cs" />
+    <Compile Include="Enact\FlowObject.cs" />
+    <Compile Include="Enact\Gateway.cs" />
+    <Compile Include="Enact\Transfer.cs" />
+    <Compile Include="Enact\Token.cs" />
+    <Compile Include="Entity\Bpmx\ZElement.cs" />
+    <Compile Include="Entity\Bpmx\ZStartEvent.cs" />
+    <Compile Include="Entity\Esse\ActionResult.cs" />
     <Compile Include="Entity\Esse\User.cs" />
     <Compile Include="Service\AuthService.cs" />
-    <Compile Include="Entity\Xpdl\ZElement.cs" />
-    <Compile Include="Entity\Xpdl\ZFlow.cs" />
-    <Compile Include="Entity\Xpdl\ZGateway.cs" />
-    <Compile Include="Entity\Xpdl\ZPackage.cs" />
-    <Compile Include="Entity\Xpdl\ZPage.cs" />
-    <Compile Include="Entity\Xpdl\ZParam.cs" />
-    <Compile Include="Entity\Xpdl\ZProcess.cs" />
-    <Compile Include="Entity\Xpdl\ZSequence.cs" />
-    <Compile Include="Entity\Xpdl\ZStep.cs" />
+    <Compile Include="Entity\Bpmx\ZBlock.cs" />
+    <Compile Include="Entity\Bpmx\ZFlow.cs" />
+    <Compile Include="Entity\Bpmx\ZGateway.cs" />
+    <Compile Include="Entity\Bpmx\ZPackage.cs" />
+    <Compile Include="Entity\Bpmx\ZPage.cs" />
+    <Compile Include="Entity\Bpmx\ZParam.cs" />
+    <Compile Include="Entity\Bpmx\ZProcess.cs" />
+    <Compile Include="Entity\Bpmx\ZSequence.cs" />
+    <Compile Include="Entity\Bpmx\ZStep.cs" />
     <Compile Include="Parse\Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\BaseService.cs" />
     <Compile Include="Service\ProcessService.cs" />
     <Compile Include="Service\RuntimeService.cs" />
     <Compile Include="Service\TaskService.cs" />
+    <Compile Include="Utility\StreamUtil.cs" />
     <Compile Include="Utility\XmlUtil.cs" />
+    <Compile Include="Enact\Exchange.cs" />
+    <Compile Include="Enact\Xpdl\Sequence.cs" />
+    <Compile Include="Enact\Xpdl\StartEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Entity\Xpdl\xx.bpmx" />
-    <None Include="Entity\Xpdl\xxx.bpmx" />
-    <None Include="Entity\Xpdl\Manager.ttinclude" />
+    <None Include="Entity\Bpmx\xx.bpmx" />
+    <None Include="Entity\Bpmx\xxx.bpmx" />
+    <None Include="Entity\Bpmx\Manager.ttinclude" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{1e15de1b-c518-4105-ac00-120c29c88c7a}</Project>

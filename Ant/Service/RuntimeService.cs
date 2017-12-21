@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
-using Ant.Entity.Xpdl;
+using System.IO;
+using Ant.Entity.Bpmx;
 using Ant.Utility;
+using Ant.Enact;
 
 namespace Ant.Service
 {
@@ -14,21 +16,28 @@ namespace Ant.Service
     /// </summary>
     public class RuntimeService : BaseService
     {
+        EnactService enact;
+
         /// <summary>
         /// 发起一个新流程
         /// </summary>
-        public ZProcess StartInstanceByID(Guid processId)
+        /// <param name="processID">流程定义ID</param>
+        /// <param name="workID">业务ID</param>
+        /// <param name="backID">子流程返回的栈点ID，非子流程可忽略</param>
+        /// <returns></returns>
+        public void NewInstanceByID(Guid processID, Guid workID, string backID=null)
         {
-            SQLDB db = new SQLDB();
-            WfProcess wProcess = db.WfProcesss.Where(o => o.ProcessGuid == processId).FirstOrDefault();
+            WfProcess wProcess = db.WfProcesss.Where(o => o.ProcessGuid == processID).FirstOrDefault();
             ZProcess zProcess = new ZProcess();
             WfRepository repo = null;
+
+            
             if (wProcess != null)
             {
                 repo = db.WfRepositorys.Where(o => (o.ProcessGuid == wProcess.ProcessGuid) && (o.Version == wProcess.MasterVer)).FirstOrDefault();
-                zProcess = XmlUtil.Deserialize<ZProcess>(repo.BpmContent);
+
+                enact.Start(StreamUtil.StreamFromString(repo.BpmContent));
             }
-            return zProcess;
         }
 
         public ZProcess StartInstanceByXml(string xmlPath)
@@ -37,9 +46,19 @@ namespace Ant.Service
             return zProcess;
         }
 
-        private void InitInstance(ZProcess process) 
+        public ZProcess OpenInstance(Guid instanceId) 
         {
-            WfRepository repo = db.WfRepositorys.Where(o=>o.ProcessGuid==process.ProcessID && o.Version==process.Version).FirstOrDefault();
+            return new ZProcess();
+        }
+
+        #region Pravite
+        /// <summary>
+        /// 初始化流程实例
+        /// </summary>
+        /// <param name="process"></param>
+        private void InitInstance(ZProcess process)
+        {
+            WfRepository repo = db.WfRepositorys.Where(o => o.ProcessGuid == process.ProcessID && o.Version == process.Version).FirstOrDefault();
 
             WfInstance instance = new WfInstance();
             instance.InstanceGuid = Guid.NewGuid();
@@ -50,10 +69,6 @@ namespace Ant.Service
             instance.StartTime = DateTime.Now;
             db.WfInstances.Add(instance);
         }
-
-        public ZProcess OpenInstance(Guid instanceId) 
-        {
-            return new ZProcess();
-        }
+        #endregion
     }
 }

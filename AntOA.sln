@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 10
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ant", "Ant\Ant.csproj", "{C2B7C00D-7B55-4EAE-820D-2E87C18797FF}"

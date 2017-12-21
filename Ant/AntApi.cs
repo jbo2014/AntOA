@@ -14,7 +14,7 @@ namespace Ant
     {
 
         #region 属性
-        private static IEnactService _enactor;
+        private static EnactService _enactor;
         private static RuntimeService _runtimeService;
         private static ProcessService _processService;
         private static TaskService _taskService;
@@ -82,7 +82,7 @@ namespace Ant
         //    return _taskService;
         //}
 
-        public static IEnactService Enactor
+        public static EnactService Enactor
         {
             get
             {

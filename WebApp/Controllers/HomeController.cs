@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 using Ant;
 using Ant.Utility;
 using Ant.Service;
@@ -20,6 +21,10 @@ namespace WebApp.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
+            //Ant.Parse.Parser parser = new Ant.Parse.Parser();
+            //FileStream stream = new FileStream(@"E:/GitHubs/AntOA/WebApp/Bpmx/xxxx.bpmx", FileMode.Open, FileAccess.Read, FileShare.Read);
+            //parser.FindRightNode(stream, "sequence_0004");
+            //stream.Close();
             return View();
         }
 

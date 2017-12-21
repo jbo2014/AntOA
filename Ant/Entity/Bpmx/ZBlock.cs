@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Ant.Entity.Xpdl
+namespace Ant.Entity.Bpmx
 {
-    [XmlRoot("Element")]
-    public class ZElement
+    [XmlRoot("Atomies")]
+    public class ZBlock
     {
         [XmlElement("ID")]
         public string ID { get; set; }

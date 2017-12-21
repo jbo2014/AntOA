@@ -162,6 +162,7 @@
     <None Include="Bpmx\xxx.bpmx" />
     <Content Include="Views\Home\Handle.cshtml" />
     <Content Include="Views\Home\List.cshtml" />
+    <None Include="Bpmx\xxxx.bpmx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

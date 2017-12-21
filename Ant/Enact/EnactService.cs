@@ -3,52 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using Model;
 using Ant.Enact;
 using Ant.Service;
+using Ant.Parse;
 
 namespace Ant.Enact
 {
     /// <summary>
     /// 工作机
     /// </summary>
-    public class EnactService : IEnactService
+    public class EnactService
     {
         #region 属性定义
         #endregion
 
 
-        //#region 功能定义
+        #region 功能定义
         //#region 解释过程定义
         //#endregion
 
         #region 控制过程实例-创建、激活、挂起、终止等
-        ///// <summary>
-        ///// 创建新的流程实例
-        ///// </summary>
-        ///// <returns></returns>
-        //public Process NewIntance(Guid ProcessGuid)
-        //{
-        //    BpmProcess process = new BpmProcess();
-        //    return process.LoadProcess(ProcessGuid);
-        //}
-
-        ///// <summary>
-        ///// 初始化流程实例
-        ///// </summary>
-        ////public Instance Initiate()
-        ////{
+        /// <summary>
+        /// 启动/激活流程实例
+        /// </summary>
+        public void Start(Stream processXml) 
+        {
+            Exchange exc = new Xpdl.StartEvent();
             
-        ////    return new Instance();
-        ////}
-
-        ///// <summary>
-        ///// 启动/激活流程实例
-        ///// </summary>
-        ////public UserTask Start() 
-        ////{
-        ////    return new UserTask();
-        ////}
+            Xpdl.StartEvent ss = new Xpdl.StartEvent();
+            
+        }
 
         ///// <summary>
         ///// 挂起流程
@@ -67,7 +53,7 @@ namespace Ant.Enact
         ///// 终止流程
         ///// </summary>
         //public void Terminate() { }
-        //#endregion
+        #endregion
 
         //#region 为过程中的活动导航，可能要包含顺序或平行的操作，最后时间期限、对工作流相关数据进行解释
         //#endregion

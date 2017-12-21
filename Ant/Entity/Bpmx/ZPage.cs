@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Ant.Entity.Xpdl
+namespace Ant.Entity.Bpmx
 {
     [XmlRoot("Page")]
     public class ZPage

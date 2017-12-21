@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ant.Element
+namespace Ant.Common
 {
     /// <summary>
     /// 流程定义文件的状态
@@ -47,6 +47,15 @@ namespace Ant.Element
 
         [Description("终止")]
         Terminated = 5
+    }
+
+    public enum ActionResult
+    {
+        [Description("执行失败")]
+        Failed = 0,
+
+        [Description("执行成功")]
+        Success = 1
     }
 
 }

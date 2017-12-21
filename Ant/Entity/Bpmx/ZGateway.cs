@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ant.Entity.Xpdl
+namespace Ant.Entity.Bpmx
 {
-    public class ZGateway : ZElement
+    public class ZGateway : ZBlock
     {
         /// <summary>
         /// 聚合模式
-        /// 排他exclusive/并行parallel/包含inclusive/基于事件event
+        /// 排他exclusive(XOR)/并行parallel(AND)/包含inclusive(OR)/基于事件event(EVE)
         /// </summary>
         public string JoinPattern;  
 
@@ -21,7 +21,7 @@ namespace Ant.Entity.Xpdl
 
         /// <summary>
         /// 分支模式
-        /// 排他exclusive/并行parallel/包含inclusive/基于事件event
+        /// 排他exclusive(XOR)/并行parallel(AND)/包含inclusive(OR)/基于事件event(EVE)
         /// </summary>
         public string ForkPattern;
 

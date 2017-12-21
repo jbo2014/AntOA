@@ -14,139 +14,112 @@
   <!--是否bpmn2格式显示，0否，1是-->
   <Flows>
     <Sequences>
-        <Sequence>
-            <ID>sequence_0001</ID>
+        <Sequence ID="sequence_0001">
             <Source>event_0001</Source>
             <Target>step_0001</Target>
         </Sequence>
-        <Sequence>
-            <ID>sequence_0002</ID>
+        <Sequence ID="sequence_0002">
             <Source>step_0001</Source>
             <Target>ExclusiveGateway_0001</Target>
         </Sequence>
-        <Sequence>
-            <ID>sequence_0004</ID>
-            <Title>no</Title>
+        <Sequence ID="sequence_0004" name="no">  
             <Express>&amp;NeedExpend==1</Express>
             <Source>ExclusiveGateway_0001</Source>
             <Target>step_0003</Target>
         </Sequence>
-        <Sequence>
-            <ID>sequence_0005</ID>
-            <Title>no</Title>
+        <Sequence ID="sequence_0005" name="no">  
             <Express>&amp;NeedExpend==0</Express>
             <Source>ExclusiveGateway_0001</Source>
             <Target>step_0002</Target>
         </Sequence>
-        <Sequence>
-            <ID>sequence_0006</ID>
+        <Sequence ID="sequence_0006">            
             <Source>step_0002</Source>
             <Target>ExclusiveGateway_0002</Target>
         </Sequence>
-        <Sequence>
-            <ID>sequence_0007</ID>
+        <Sequence ID="sequence_0007">            
             <Source>step_0003</Source>
             <Target>ExclusiveGateway_0002</Target>
         </Sequence>
-        <Sequence>
-            <ID>sequence_0008</ID>
+        <Sequence ID="sequence_0008">            
             <Source>ExclusiveGateway_0002</Source>
             <Target>event_0002</Target>
         </Sequence>
     </Sequences>
     <Steps>
-        <Step>
-            <ID>event_0001</ID>
+        <Step ID="event_0001">            
             <Type>StartEvent</Type>
-            <Element>0001</Element>
+            <Block>0001</Block>
         </Step>
-        <Step>
-            <ID>event_0002</ID>
+        <Step ID="event_0002">            
             <Type>EndEvent</Type>
-            <Element>endevent_0001</Element>
+            <Block>endevent_0001</Block>
         </Step>
-        <Step>
-            <ID>step_0001</ID>
-            <Title>申请休假</Title>
+        <Step ID="step_0001" name="申请休假">            
+            
             <Type>UserTask</Type>
-            <Element>0008</Element>
+            <Block>0008</Block>
         </Step>
-        <Step>
-            <ID>step_0002</ID>
-            <Title>总经理审批</Title>
+        <Step ID="step_0002" name="总经理审批">            
+            
             <Type>UserTask</Type>
-            <Element>0003</Element>
+            <Block>0003</Block>
         </Step>
-        <Step>
-            <ID>step_0003</ID>
-            <Title>部门经理审批</Title>
+        <Step ID="step_0003" name="部门经理审批">
+            
             <Type>UserTask</Type>
-            <Element>0002</Element>
+            <Block>0002</Block>
         </Step>
-        <Step>
-            <ID>step_0004</ID>
-            <Title>通知申请人</Title>
+        <Step ID="step_0004" name="通知申请人">            
+            
             <Type>UserTask</Type>
-            <Element>0004</Element>
+            <Block>0004</Block>
         </Step>
-        <Step>
-            <ID>ExclusiveGateway_0001</ID>
-            <Title>部门经理及以上级别？</Title>
+        <Step ID="ExclusiveGateway_0001" name="部门经理及以上级别？">            
+            
             <Type>ExclusiveGateway</Type>
-            <Element>0006</Element>
+            <Block>0006</Block>
         </Step>
-        <Step>
-            <ID>ExclusiveGateway_0002</ID>
+        <Step ID="ExclusiveGateway_0002">            
             <Type>ExclusiveGateway</Type>
-            <Element>0007</Element>
+            <Block>0007</Block>
         </Step>
     </Steps>
   </Flows>    
   <!--流程图-->
   <Blocks>
-    <StartEvent>
-        <ID>0001</ID>
-    </StartEvent>
-    <EndEvent>
-        <ID>endevent_0001</ID>
-    </EndEvent>
-    <UserTask>
-        <ID>0008</ID>
-        <Title>申请人填写入境申请表单</Title>
+    <StartEvent ID="0001" />
+    <EndEvent ID="endevent_0001"/>
+    <UserTask ID="0008" name="申请人填写入境申请表单">
+        
+        
         <TaskTitle>'请填写：'+&amp;Title</TaskTitle>
         <TaskPage>0041</TaskPage>
     </UserTask>
-    <UserTask>
-        <ID>0002</ID>
-        <Title>部门经理审批</Title>
+      <UserTask ID="0002" name="部门经理审批">
+        
+        
         <TaskTitle>'请审批：'+&amp;Title</TaskTitle>
         <TaskPage>0042</TaskPage>
-    </UserTask>
-    <UserTask>
-        <ID>0003</ID>
-        <Title>总经理审批</Title>
+      </UserTask>
+      <UserTask ID="0003" name="总经理审批">
+        
+        
         <TaskTitle>'请审批：'+&amp;Title</TaskTitle>
         <TaskPage>0043</TaskPage>
     </UserTask>
-    <UserTask>
-        <ID>0004</ID>
-        <Title>申请人确认</Title>
+      <UserTask ID="0004" name="申请人确认">
+        
+        
         <TaskTitle>'请确认：'+&amp;Title</TaskTitle>
         <TaskPage>0044</TaskPage>
     </UserTask>
-    <ExclusiveGateway>
-        <ID>0006</ID>
-    </ExclusiveGateway>
-    <ExclusiveGateway>
-        <ID>0007</ID>
-    </ExclusiveGateway>
+      <ExclusiveGateway ID="0006"/>
+      <ExclusiveGateway ID="0007" />
   </Blocks>
   <!--活动/事件-->
   <Pages>
     <!--表单页面-->
-    <Page>
-      <Id>1</Id>
-      <Title>2</Title>
+      <Page ID="1" name="2">
       <Type>3</Type>
       <Url>4</Url>
       <Fields>5</Fields>
@@ -159,15 +132,13 @@
   <!--表单页面-->
   <Params>
     <!--流程变量定义-->
-    <Param>
-        <Name>&amp;NeedExpend</Name>
+      <Param name="&amp;NeedExpend">
         <Type>string</Type>
         <IsArray>1</IsArray>
         <Value>0</Value>
         <GroupName>0</GroupName>
-    </Param>
-    <Param>
-        <Name>&amp;Title</Name>
+        </Param>
+      <Param name="&amp;Title">
         <Type>string</Type>
         <IsArray>0</IsArray>
         <Value>请审批</Value>

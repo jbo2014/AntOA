@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Ant.Entity.Xpdl
+namespace Ant.Entity.Bpmx
 {
     [XmlRoot("Process")]
     public class ZProcess
@@ -34,8 +34,8 @@ namespace Ant.Entity.Xpdl
         [XmlElement("Flows")]
         public ZFlow Flows { get; set; }
 
-        [XmlElement("Elements")]
-        public ZElement Elements { get; set; }
+        [XmlElement("Blocks")]
+        public ZBlock Blocks { get; set; }
 
         [XmlArrayAttribute("Pages"), XmlArrayItem("Page")]
         public List<ZPage> Pages { get; set; }
