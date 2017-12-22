@@ -21,10 +21,13 @@ namespace WebApp.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            //Ant.Parse.Parser parser = new Ant.Parse.Parser();
-            //FileStream stream = new FileStream(@"E:/GitHubs/AntOA/WebApp/Bpmx/xxxx.bpmx", FileMode.Open, FileAccess.Read, FileShare.Read);
+            //Ant.Parse.FlowObjParser parser = new Ant.Parse.FlowObjParser();
+            FileStream stream = new FileStream(@"E:/GitHubs/AntOA/WebApp/Bpmx/xxxx.bpmx", FileMode.Open, FileAccess.Read, FileShare.Read);
             //parser.FindRightNode(stream, "sequence_0004");
-            //stream.Close();
+            //parser.FindStartNode(stream);
+
+            AntApi.Enactor.Start(stream);
+            stream.Close();
             return View();
         }
 
@@ -64,14 +67,14 @@ namespace WebApp.Controllers
         public ActionResult Handle(bool isNew, string id) 
         {
             RuntimeService runtime = AntApi.Runtime;
-            if (isNew)
-            {
-                runtime.StartInstanceByXml(@"E:/GitHubs/AntOA/WebApp/Bpmx/xxx.bpmx");
-            }
-            else
-            {
-                runtime.OpenInstance(new Guid(id));
-            }
+            //if (isNew)
+            //{
+            //    runtime.StartInstanceByXml(@"E:/GitHubs/AntOA/WebApp/Bpmx/xxx.bpmx");
+            //}
+            //else
+            //{
+            //    runtime.OpenInstance(new Guid(id));
+            //}
             return View();
         }
 

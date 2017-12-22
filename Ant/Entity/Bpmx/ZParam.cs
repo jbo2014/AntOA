@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace Ant.Entity.Bpmx
 {
     [XmlRoot("Param")]
-    public class ZParam
+    internal class ZParam
     {
         [XmlElement("Name")]
         public string Name { get; set; }

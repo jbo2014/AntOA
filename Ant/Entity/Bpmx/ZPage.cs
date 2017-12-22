@@ -8,13 +8,13 @@ using System.Xml.Serialization;
 namespace Ant.Entity.Bpmx
 {
     [XmlRoot("Page")]
-    public class ZPage
+    internal class ZPage
     {
-        [XmlElement("Page")]
+        [XmlElement("ID")]
         public string ID { get; set; }
 
-        [XmlElement("Title")]
-        public string Title { get; set; }
+        [XmlElement("Name")]
+        public string Name { get; set; }
 
         [XmlElement("Type")]
         public string Type { get; set; }

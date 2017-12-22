@@ -40,35 +40,35 @@ namespace Ant.Service
             }
         }
 
-        public ZProcess StartInstanceByXml(string xmlPath)
-        {
-            ZProcess zProcess = (ZProcess)XmlUtil.LoadFromXml(xmlPath, typeof(ZProcess));
-            return zProcess;
-        }
+        //public ZProcess StartInstanceByXml(string xmlPath)
+        //{
+        //    ZProcess zProcess = (ZProcess)XmlUtil.LoadFromXml(xmlPath, typeof(ZProcess));
+        //    return zProcess;
+        //}
 
-        public ZProcess OpenInstance(Guid instanceId) 
-        {
-            return new ZProcess();
-        }
+        //public ZProcess OpenInstance(Guid instanceId) 
+        //{
+        //    return new ZProcess();
+        //}
 
         #region Pravite
         /// <summary>
         /// 初始化流程实例
         /// </summary>
         /// <param name="process"></param>
-        private void InitInstance(ZProcess process)
-        {
-            WfRepository repo = db.WfRepositorys.Where(o => o.ProcessGuid == process.ProcessID && o.Version == process.Version).FirstOrDefault();
+        //private void InitInstance(ZProcess process)
+        //{
+        //    WfRepository repo = db.WfRepositorys.Where(o => o.ProcessGuid == process.ProcessID && o.Version == process.Version).FirstOrDefault();
 
-            WfInstance instance = new WfInstance();
-            instance.InstanceGuid = Guid.NewGuid();
-            instance.RepoGuid = repo.RepoGuid;
-            //instance.InstanceTitle = "";
-            instance.InstanceStatus = 0;
-            instance.Originator = AntApi.Auth.CurrentUser.LoginID;
-            instance.StartTime = DateTime.Now;
-            db.WfInstances.Add(instance);
-        }
+        //    WfInstance instance = new WfInstance();
+        //    instance.InstanceGuid = Guid.NewGuid();
+        //    instance.RepoGuid = repo.RepoGuid;
+        //    //instance.InstanceTitle = "";
+        //    instance.InstanceStatus = 0;
+        //    instance.Originator = AntApi.Auth.CurrentUser.LoginID;
+        //    instance.StartTime = DateTime.Now;
+        //    db.WfInstances.Add(instance);
+        //}
         #endregion
     }
 }

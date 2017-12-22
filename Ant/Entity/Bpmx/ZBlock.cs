@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace Ant.Entity.Bpmx
 {
     [XmlRoot("Atomies")]
-    public class ZBlock
+    internal class ZBlock
     {
         [XmlElement("ID")]
         public string ID { get; set; }

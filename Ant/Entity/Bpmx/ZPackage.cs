@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ant.Entity.Bpmx
 {
-    class ZPackage
+    internal class ZPackage
     {
     }
 }

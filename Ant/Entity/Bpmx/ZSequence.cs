@@ -4,20 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Ant.Enact;
 
 namespace Ant.Entity.Bpmx
 {
     [XmlRoot("Sequence")]
     public class ZSequence
     {
-        [XmlElement("ID")]
+        [XmlIgnore]
+        public Exchange Exchange
+        {
+            get
+            {
+                return new Sequence();
+            }
+            set
+            {
+                this.Exchange = value;
+            }
+        }
+
+        [XmlAttribute("ID")]
         public string ID { get; set; }
 
         /// <summary>
         /// 连线上的标题
         /// </summary>
-        [XmlElement("Title", IsNullable = true)]
-        public string Title { get; set; }
+        [XmlAttribute("Name")]
+        public string Name { get; set; }
 
         /// <summary>
         /// 连接线的起始节点

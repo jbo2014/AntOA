@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NLog;
+using Ant.Entity.Esse;
 
 namespace Ant.Enact
 {

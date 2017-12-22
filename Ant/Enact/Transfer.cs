@@ -16,18 +16,19 @@ namespace Ant.Enact
     internal class Transfer
     {
         Exchange exchange = null;
+        FlowObjParser parser = new FlowObjParser();
 
         #region 流程实例级别操作
         /// <summary>
         /// 启动流程
         /// </summary>
-        public void Start(Stream processXml, Parser parser) 
+        public void Start(Stream xml)
         {
-            List<ZStartEvent> starters = parser.FindStartNode(processXml);
-            foreach (ZStartEvent starter in starters) 
+            List<ZStartEvent> starters = parser.FindStartNode(xml);
+            foreach (ZStartEvent starter in starters)
             {
                 exchange = starter.Exchange;
-                exchange.Enter(starter);
+                exchange.Execute(starter);
             }
         }
 

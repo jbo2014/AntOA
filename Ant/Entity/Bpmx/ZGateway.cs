@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ant.Entity.Bpmx
 {
-    public class ZGateway : ZBlock
+    internal class ZGateway : ZBlock
     {
         /// <summary>
         /// 聚合模式

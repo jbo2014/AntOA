@@ -49,13 +49,19 @@ namespace Ant.Common
         Terminated = 5
     }
 
-    public enum ActionResult
+    public enum ResultEnum
     {
-        [Description("执行失败")]
-        Failed = 0,
+        [Description("未执行")]
+        NoExe = 0,
 
         [Description("执行成功")]
-        Success = 1
+        Success = 1,
+
+        [Description("执行失败")]
+        Fail = 2,
+
+        [Description("执行异常")]
+        Error = 3
     }
 
 }

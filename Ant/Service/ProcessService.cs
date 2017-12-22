@@ -22,10 +22,10 @@ namespace Ant.Service
         /// </summary>
         /// <param name="process"></param>
         /// <returns></returns>
-        public WfProcess ProcessDeploy(ZProcess process)
-        {
-            return new WfProcess();
-        }
+        //public WfProcess ProcessDeploy(ZProcess process)
+        //{
+        //    return new WfProcess();
+        //}
 
         /// <summary>
         /// 获取流程定义列表

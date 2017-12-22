@@ -22,12 +22,12 @@
             <Source>step_0001</Source>
             <Target>ExclusiveGateway_0001</Target>
         </Sequence>
-        <Sequence ID="sequence_0004" name="no">  
+        <Sequence ID="sequence_0004" Name="no">  
             <Express>&amp;NeedExpend==1</Express>
             <Source>ExclusiveGateway_0001</Source>
             <Target>step_0003</Target>
         </Sequence>
-        <Sequence ID="sequence_0005" name="no">  
+        <Sequence ID="sequence_0005" Name="no">  
             <Express>&amp;NeedExpend==0</Express>
             <Source>ExclusiveGateway_0001</Source>
             <Target>step_0002</Target>
@@ -54,27 +54,27 @@
             <Type>EndEvent</Type>
             <Block>endevent_0001</Block>
         </Step>
-        <Step ID="step_0001" name="申请休假">            
+        <Step ID="step_0001" Name="申请休假">            
             
             <Type>UserTask</Type>
             <Block>0008</Block>
         </Step>
-        <Step ID="step_0002" name="总经理审批">            
+        <Step ID="step_0002" Name="总经理审批">            
             
             <Type>UserTask</Type>
             <Block>0003</Block>
         </Step>
-        <Step ID="step_0003" name="部门经理审批">
+        <Step ID="step_0003" Name="部门经理审批">
             
             <Type>UserTask</Type>
             <Block>0002</Block>
         </Step>
-        <Step ID="step_0004" name="通知申请人">            
+        <Step ID="step_0004" Name="通知申请人">            
             
             <Type>UserTask</Type>
             <Block>0004</Block>
         </Step>
-        <Step ID="ExclusiveGateway_0001" name="部门经理及以上级别？">            
+        <Step ID="ExclusiveGateway_0001" Name="部门经理及以上级别？">            
             
             <Type>ExclusiveGateway</Type>
             <Block>0006</Block>
@@ -89,25 +89,23 @@
   <Blocks>
     <StartEvent ID="0001" />
     <EndEvent ID="endevent_0001"/>
-    <UserTask ID="0008" name="申请人填写入境申请表单">
+    <UserTask ID="0008" Name="申请人填写入境申请表单">
         
         
         <TaskTitle>'请填写：'+&amp;Title</TaskTitle>
         <TaskPage>0041</TaskPage>
     </UserTask>
-      <UserTask ID="0002" name="部门经理审批">
-        
-        
+      <UserTask ID="0002" Name="部门经理审批">
         <TaskTitle>'请审批：'+&amp;Title</TaskTitle>
         <TaskPage>0042</TaskPage>
       </UserTask>
-      <UserTask ID="0003" name="总经理审批">
+      <UserTask ID="0003" Name="总经理审批">
         
         
         <TaskTitle>'请审批：'+&amp;Title</TaskTitle>
         <TaskPage>0043</TaskPage>
     </UserTask>
-      <UserTask ID="0004" name="申请人确认">
+      <UserTask ID="0004" Name="申请人确认">
         
         
         <TaskTitle>'请确认：'+&amp;Title</TaskTitle>
@@ -119,7 +117,7 @@
   <!--活动/事件-->
   <Pages>
     <!--表单页面-->
-      <Page ID="1" name="2">
+      <Page ID="1" Name="2">
       <Type>3</Type>
       <Url>4</Url>
       <Fields>5</Fields>
@@ -132,13 +130,13 @@
   <!--表单页面-->
   <Params>
     <!--流程变量定义-->
-      <Param name="&amp;NeedExpend">
+      <Param Name="&amp;NeedExpend">
         <Type>string</Type>
         <IsArray>1</IsArray>
         <Value>0</Value>
         <GroupName>0</GroupName>
         </Param>
-      <Param name="&amp;Title">
+      <Param Name="&amp;Title">
         <Type>string</Type>
         <IsArray>0</IsArray>
         <Value>请审批</Value>

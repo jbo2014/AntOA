@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace Ant.Entity.Bpmx
 {
     [XmlRoot("Step")]
-    public class ZStep
+    internal class ZStep
     {
         [XmlElement("ID")]
         public string ID { get; set; }

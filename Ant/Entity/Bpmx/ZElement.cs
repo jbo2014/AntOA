@@ -6,8 +6,9 @@ using Ant.Enact;
 
 namespace Ant.Entity.Bpmx
 {
-    internal interface ZElement
+    public interface ZElement
     {
+        string ID { get; set; }
         Exchange Exchange { get; set; }
     }
 }

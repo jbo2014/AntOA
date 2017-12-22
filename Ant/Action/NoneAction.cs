@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Ant.Common;
 
 namespace Ant.Action
 {
@@ -9,7 +10,7 @@ namespace Ant.Action
     {
         public NoneAction() 
         {
-            this.Result.Code = 1;
+            this.Result.Code = ResultEnum.Success;
             this.Result.Message = "";
         }
     }
