@@ -6,7 +6,7 @@ using Ant.Entity.Esse;
 
 namespace Ant.Action
 {
-    internal class IAction
+    public class IAction
     {
         /// <summary>
         /// 行为定义

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ant.Parse
 {
-    internal interface Parser
+    public interface Parser
     {
         bool ExeExpression(params object[] args);
     }

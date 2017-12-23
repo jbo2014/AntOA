@@ -13,7 +13,7 @@ using Ant.Entity.Bpmx;
 
 namespace Ant.Parse
 {
-    internal class FlowObjParser
+    public class FlowObjParser
     {
         private XElement xmlDoc;
 
@@ -41,13 +41,14 @@ namespace Ant.Parse
         /// <param name="processXml"></param>
         /// <param name="sequenceID">连接线的ID</param>
         /// <returns></returns>
-        public object FindRightNode(Stream processXml, string sequenceID) 
+        public object FindRightNode1(Stream processXml, string sequenceID) 
         {
             string nextObjStr = string.Empty;       // 下一步Block字符串
             string nextStepID = string.Empty;       // 下一步节点ID
             string nextBlockID = string.Empty;      // 下一步BlockID
             string nextBlockType = null;
             bool skip = false;
+            StreamUtil.Restore(ref processXml);
             using (XmlReader reader = XmlReader.Create(processXml)) 
             {
                 reader.ReadToFollowing("Flows");
@@ -104,6 +105,100 @@ namespace Ant.Parse
             return XmlUtil.Deserialize(Type.GetType("Ant.Entity.Bpmx.Z" + nextBlockType), nextObjStr);
         }
 
+        public object FindRight(Stream processXml, bool findLine, string id) 
+        {
+            object right = new object();
+            if (findLine)
+                right = FindRightLines(processXml, id);
+            else
+                right = FindRightNode(processXml, id);
+            return right;
+        }
+
+        /// <summary>
+        /// 在流程定义图中，节点的后续连线
+        /// </summary>
+        /// <param name="processXml"></param>
+        /// <param name="sequenceID">连接线的ID</param>
+        /// <returns></returns>
+        public List<ZSequence> FindRightLines(Stream processXml, string stepID)
+        {
+            string rightLine = string.Empty;
+            List<ZSequence> lines = new List<ZSequence>();
+            bool skip = false;
+            StreamUtil.Restore(ref processXml);
+            using (XmlReader reader = XmlReader.Create(processXml))
+            {
+                reader.ReadToFollowing("Sequences");
+                while (reader.Read() && !skip)
+                {
+                    if (reader.MoveToContent() == XmlNodeType.Element)
+                    {
+                        if (reader.Name.ToUpper() == "SEQUENCE")
+                        {
+                            if (reader.GetAttribute("Source") == stepID)
+                            {
+                                rightLine = reader.GetAttribute("Target");
+                                lines.Add(XmlUtil.Deserialize<ZSequence>(reader.ReadOuterXml()));
+                            }
+                        }
+                        else
+                            break;
+                    }
+                }
+            }
+
+            return lines;
+        }
+
+        /// <summary>
+        /// 在流程定义图中，连线的Target节点
+        /// </summary>
+        /// <param name="processXml"></param>
+        /// <param name="sequenceID">连接线的ID</param>
+        /// <returns></returns>
+        public object FindRightNode(Stream processXml, string sequenceID)
+        {
+            string nextObjStr = string.Empty;       // 下一步Block字符串
+            string nextStepID = string.Empty;       // 下一步节点ID
+            string nextBlockType = null;
+            bool skip = false;
+            StreamUtil.Restore(ref processXml);
+            using (XmlReader reader = XmlReader.Create(processXml))
+            {
+                reader.ReadToFollowing("Sequences");
+                while (reader.Read() && !skip)
+                {
+                    if (reader.MoveToContent() == XmlNodeType.Element)
+                    {
+                        if (reader.Name.ToUpper() == "SEQUENCE")
+                        {
+                            if (reader.GetAttribute("ID") == sequenceID)
+                            {
+                                nextStepID = reader.GetAttribute("Target");
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                reader.ReadToFollowing("Steps");
+                while (reader.Read())
+                {
+                    if (reader.MoveToContent() == XmlNodeType.Element && reader.GetAttribute("ID") == nextStepID)
+                    {
+                        nextBlockType = reader.Name;
+                        nextObjStr = reader.ReadOuterXml();
+                        break;
+                    }
+                    reader.Skip();
+                }
+            }
+
+            Type type = Type.GetType("Ant.Entity.Bpmx.Z" + nextBlockType);
+            return XmlUtil.Deserialize(type, nextObjStr);
+        }
+
         /// <summary>
         /// 获取流程定义中的所有开始节点
         /// </summary>
@@ -111,20 +206,24 @@ namespace Ant.Parse
         /// <returns></returns>
         public List<ZStartEvent> FindStartNode(Stream processXml)
         {
-            StringBuilder startObjs = new StringBuilder();
+            List<ZStartEvent> starters = new List<ZStartEvent>();
+            StreamUtil.Restore(ref processXml);
             using (XmlReader reader = XmlReader.Create(processXml))
             {
-                reader.ReadToFollowing("Blocks");
+                reader.ReadToFollowing("Steps");
                 while (reader.Read())
                 {
                     if (reader.MoveToContent() == XmlNodeType.Element && reader.Name.ToUpper() == "STARTEVENT")
                     {
-                        startObjs.Append(reader.ReadOuterXml());
+                        starters.Add(XmlUtil.Deserialize(typeof(ZStartEvent), reader.ReadOuterXml()) as ZStartEvent);
                     }
-                    reader.Skip();
+                    else
+                    {
+                        reader.Skip();
+                    }
                 }
             }
-            return XmlUtil.Deserialize(typeof(List<ZStartEvent>), startObjs.ToString()) as List<ZStartEvent>;
+            return starters;
         }
         #endregion
     }

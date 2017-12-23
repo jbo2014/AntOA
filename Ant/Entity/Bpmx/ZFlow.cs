@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace Ant.Entity.Bpmx
 {
     [XmlRoot("Flow")]
-    internal class ZFlow
+    public class ZFlow
     {
         [XmlArray("Sequences"), XmlArrayItem("Sequence")]
         public List<ZSequence> Sequences { get; set; }

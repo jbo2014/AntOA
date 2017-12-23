@@ -10,23 +10,23 @@ using Ant.Common;
 
 namespace Ant.Enact.Event
 {
-    internal class StartEvent : Exchange
+    public class StartEvent : Exchange
     {
-        public ZStartEvent element = null;
-
         #region 继承重写的方法
-        public void Execute(StartEvent starter) 
+        public override void Execute(Context context) 
         {
+            Context = context;
+            ZStartEvent starter = Context.Element as ZStartEvent;
             Catching(starter);
-            SendToken();
+            SendToken(Context);
         }
 
         /// <summary>
         /// 重写发送事件
         /// </summary>
-        public void SendToken() 
+        public override void SendToken(Context context) 
         {
-            LinkNext(this.element.ID, this.Token);
+            FindNextLines(context.Element.ID, context.Token);
         }
         #endregion
 
@@ -34,7 +34,7 @@ namespace Ant.Enact.Event
         /// <summary>
         /// 捕获事件
         /// </summary>
-        private void Catching(StartEvent starter)
+        private void Catching(ZStartEvent element)
         {
             string elementType = string.Empty;
             if (string.IsNullOrEmpty(element.Type))
@@ -42,7 +42,7 @@ namespace Ant.Enact.Event
             else
                 elementType = element.Type;
             element = new ZStartEvent();
-            Type type = Type.GetType(elementType + "Action");
+            Type type = Type.GetType(typeof(IAction).Namespace + "." + elementType + "Action");
             IAction act = System.Activator.CreateInstance(type) as IAction;
             act.Define = element.Define;
             act.Fire();
@@ -54,15 +54,15 @@ namespace Ant.Enact.Event
 
         private void DestroyToken()
         {
-            this.Token = null;
+            Context.Token = null;
         }
         
         private void CreateToken() 
         {
-            this.Token = new Token();
-            this.Token.InstanceID = Guid.NewGuid();
-            this.Token.ElementID = this.element.ID;
-            this.Token.Status = 1;
+            Context.Token = new Token();
+            Context.Token.InstanceID = Guid.NewGuid();
+            Context.Token.ElementID = Context.Element.ID;
+            Context.Token.Status = 1;
         }
         #endregion
     }

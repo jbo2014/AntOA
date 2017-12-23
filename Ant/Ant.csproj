@@ -58,9 +58,11 @@
     <Compile Include="AntApi.cs" />
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Enact\Activity\UserTask.cs" />
+    <Compile Include="Enact\DoToken.cs" />
     <Compile Include="Enact\EnactService.cs" />
     <Compile Include="Enact\FlowObject.cs" />
     <Compile Include="Enact\Gateway\Gateway.cs" />
+    <Compile Include="Enact\LinkNext.cs" />
     <Compile Include="Enact\Transfer.cs" />
     <Compile Include="Entity\Esse\Token.cs" />
     <Compile Include="Entity\Bpmx\ZElement.cs" />

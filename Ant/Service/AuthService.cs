@@ -12,6 +12,12 @@ namespace Ant.Service
         private User _currentUser;
 
         public User CurrentUser { get; set; }
+
+        public AuthService() 
+        {
+            if(CurrentUser == null)
+                CurrentUser = new User();
+        }
         #endregion
     }
 }

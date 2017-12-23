@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace Ant.Entity.Bpmx
 {
     [XmlRoot("Process")]
-    internal class ZProcess
+    public class ZProcess
     {
         [XmlElement("ProcessID")]
         public Guid ProcessID { get; set; }

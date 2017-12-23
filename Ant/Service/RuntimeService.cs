@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Model;
 using System.IO;
+using Model;
 using Ant.Entity.Bpmx;
 using Ant.Utility;
 using Ant.Enact;
@@ -16,7 +16,7 @@ namespace Ant.Service
     /// </summary>
     public class RuntimeService : BaseService
     {
-        EnactService enact;
+        EnactService enact = new EnactService();
 
         /// <summary>
         /// 发起一个新流程

@@ -10,8 +10,9 @@ using Ant.Enact.Activity;
 namespace Ant.Entity.Bpmx
 {
     [XmlRoot("UserTask")]
-    internal class ZUserTask:ZElement
+    public class ZUserTask : ZElement
     {
+        [XmlIgnore]
         public Exchange Exchange
         {
             get

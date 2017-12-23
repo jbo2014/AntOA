@@ -22,12 +22,12 @@ namespace WebApp.Controllers
         public ActionResult Index()
         {
             //Ant.Parse.FlowObjParser parser = new Ant.Parse.FlowObjParser();
-            FileStream stream = new FileStream(@"E:/GitHubs/AntOA/WebApp/Bpmx/xxxx.bpmx", FileMode.Open, FileAccess.Read, FileShare.Read);
-            //parser.FindRightNode(stream, "sequence_0004");
-            //parser.FindStartNode(stream);
+            //FileStream stream = new FileStream(@"E:/GitHubs/AntOA/WebApp/Bpmx/xxxx.bpmx", FileMode.Open, FileAccess.Read, FileShare.Read);
+            ////parser.FindRightNode(stream, "sequence_0004");
+            ////parser.FindStartNode(stream);
 
-            AntApi.Enactor.Start(stream);
-            stream.Close();
+            //AntApi.Enactor.Start(stream);
+            //stream.Close();
             return View();
         }
 
@@ -36,6 +36,7 @@ namespace WebApp.Controllers
         public ActionResult Index(FormCollection form) 
         {
             AntApi.Auth.CurrentUser.LoginID = form["uid"];
+            AntApi.Auth.CurrentUser.Role = new List<string>();
             AntApi.Auth.CurrentUser.Role.Add(form["rol"]);
             Response.Redirect("/Home/List");
             return View();
@@ -67,14 +68,14 @@ namespace WebApp.Controllers
         public ActionResult Handle(bool isNew, string id) 
         {
             RuntimeService runtime = AntApi.Runtime;
-            //if (isNew)
-            //{
-            //    runtime.StartInstanceByXml(@"E:/GitHubs/AntOA/WebApp/Bpmx/xxx.bpmx");
-            //}
-            //else
-            //{
-            //    runtime.OpenInstance(new Guid(id));
-            //}
+            if (isNew)
+            {
+                runtime.NewInstanceByID(new Guid(id), Guid.Empty, null);
+            }
+            else
+            {
+                //runtime.OpenInstance(new Guid(id));
+            }
             return View();
         }
 

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Process>
+    <ProcessID>A7F1FF45-0711-492C-AE29-9854FC048DB5</ProcessID>
+    <Title>请假申请</Title>
+    <Author>admin</Author>
+    <CodeType>CS</CodeType>
+    <!--<loglevel>2</loglevel>-->
+    <!--<Startobject>Startevent_0001</Startobject>-->
+    <Version>1</Version>
+    <Created>2017-12-19T14:48:00</Created>
+    <Release>1</Release>
+    <!--0未发布，1已发布-->
+    <!--<Isbpmn2></Isbpmn2>-->
+    <!--是否bpmn2格式显示，0否，1是-->
+    <!--流程图元素-->
+    <Flows>
+        <Sequences>
+            <Sequence ID="sequence_0001" Source="0001" Target="0008" />
+            <Sequence ID="sequence_0002" Source="0008" Target="0006" />
+            <Sequence ID="sequence_0004" Name="no" Source="0006" Target="0002">
+                <Express>&amp;IsLeader==1</Express>
+            </Sequence>
+            <Sequence ID="sequence_0005" Name="no" Source="0006" Target="0003">
+                <Express>&amp;IsLeader==0</Express>
+            </Sequence>
+            <Sequence ID="sequence_0006" Source="0002" Target="0007" />
+            <Sequence ID="sequence_0007" Source="0003" Target="0007" />
+            <Sequence ID="sequence_0008" Source="0007" Target="0009" />
+        </Sequences>
+        <Steps>
+            <StartEvent ID="0001" />
+            <StartEvent ID="0005">
+                <type>Timer</type>
+                <Define>20171224</Define>
+            </StartEvent>
+            <EndEvent ID="0009"/>
+            <UserTask ID="0008" Name="申请人填写入境申请表单">
+                <TaskTitle>'请填写：'+&amp;Title</TaskTitle>
+                <TaskPage>0041</TaskPage>
+            </UserTask>
+            <UserTask ID="0002" Name="部门经理审批">
+                <TaskTitle>'请审批：'+&amp;Title</TaskTitle>
+                <TaskPage>0042</TaskPage>
+            </UserTask>
+            <UserTask ID="0003" Name="总经理审批">
+                <TaskTitle>'请审批：'+&amp;Title</TaskTitle>
+                <TaskPage>0043</TaskPage>
+            </UserTask>
+            <UserTask ID="0004" Name="申请人确认">
+                <TaskTitle>'请确认：'+&amp;Title</TaskTitle>
+                <TaskPage>0044</TaskPage>
+            </UserTask>
+            <ExclusiveGateway ID="0006"/>
+            <ExclusiveGateway ID="0007" />
+        </Steps>
+        <Graph></Graph>
+    </Flows>
+    <!--活动/事件-->
+    <Pages>
+        <!--表单页面-->
+        <Page ID="1" Name="2">
+            <Type>3</Type>
+            <Url>4</Url>
+            <Fields>5</Fields>
+            <Content>6</Content>
+            <OnCreate>7</OnCreate>
+            <OnSubmit>8</OnSubmit>
+            <Methods>9</Methods>
+        </Page>
+    </Pages>
+    <!--表单页面-->
+    <Params>
+        <!--流程变量定义-->
+        <Param Name="&amp;IsLeader">
+            <Type>string</Type>
+            <IsArray>1</IsArray>
+            <Value>0</Value>
+            <GroupName>0</GroupName>
+        </Param>
+        <Param Name="&amp;Title">
+            <Type>string</Type>
+            <IsArray>0</IsArray>
+            <Value>请审批</Value>
+            <GroupName>0</GroupName>
+        </Param>
+    </Params>
+    <!--流程变量定义-->
+</Process>

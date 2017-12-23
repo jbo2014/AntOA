@@ -6,12 +6,11 @@ using Ant.Common;
 
 namespace Ant.Action
 {
-    internal class NoneAction : IAction
+    public class NoneAction : IAction
     {
         public NoneAction() 
         {
-            this.Result.Code = ResultEnum.Success;
-            this.Result.Message = "";
+            this.Result = new Entity.Esse.ActionResult() { Code = ResultEnum.Success, Message = "" };
         }
     }
 }

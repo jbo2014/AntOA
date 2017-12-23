@@ -7,7 +7,7 @@ using Ant.Entity.Esse;
 
 namespace Ant.Enact
 {
-    internal interface FlowObject
+    public interface FlowObject
     {
         List<Token> Tokens { get;set; }
 

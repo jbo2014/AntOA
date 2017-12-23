@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.IO;
 using Ant.Entity.Bpmx;
+using Ant.Entity.Esse;
 using Ant.Parse;
 
 namespace Ant.Enact
@@ -13,7 +14,7 @@ namespace Ant.Enact
     /// <summary>
     /// 用于流程的流转操作
     /// </summary>
-    internal class Transfer
+    public class Transfer
     {
         Exchange exchange = null;
         FlowObjParser parser = new FlowObjParser();
@@ -24,11 +25,18 @@ namespace Ant.Enact
         /// </summary>
         public void Start(Stream xml)
         {
+            Context context = null;
+            Stream temp = xml;
             List<ZStartEvent> starters = parser.FindStartNode(xml);
             foreach (ZStartEvent starter in starters)
             {
+                context = new Context();
+                context.ProcessXml = temp;
+                context.Token = null;
+                context.Element = starter;
+
                 exchange = starter.Exchange;
-                exchange.Execute(starter);
+                exchange.Execute(context);
             }
         }
 

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ant.Entity.Esse
 {
-    internal class Token
+    public class Token
     {
         public Guid InstanceID;
         public string TokenID;

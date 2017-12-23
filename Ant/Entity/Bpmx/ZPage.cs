@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace Ant.Entity.Bpmx
 {
     [XmlRoot("Page")]
-    internal class ZPage
+    public class ZPage
     {
         [XmlElement("ID")]
         public string ID { get; set; }

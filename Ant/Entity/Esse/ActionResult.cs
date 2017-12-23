@@ -6,7 +6,7 @@ using Ant.Common;
 
 namespace Ant.Entity.Esse
 {
-    internal class ActionResult
+    public class ActionResult
     {
         public ResultEnum Code { get; set; }
 

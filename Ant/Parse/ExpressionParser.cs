@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ant.Parse
 {
-    internal class ExpressionParser
+    public class ExpressionParser
     {
         public bool ExeExpression(string expression) 
         {

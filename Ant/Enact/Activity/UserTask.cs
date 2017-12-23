@@ -8,21 +8,19 @@ using Ant.Entity.Esse;
 
 namespace Ant.Enact.Activity
 {
-    internal class UserTask : Exchange
+    public class UserTask : Exchange
     {
-        public ZUserTask element;
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="xml"></param>
         /// <param name="token"></param>
         /// <param name="element"></param>
-        public void TakeToken(Stream xml, Token token, ZUserTask element)
+        public void TakeToken(Context context)
         {
-            this.Token = token;
-            this.element = element;
-            Execute();
+            Context.Token = context.Token;
+            Context.Element = context.Element;
+            Execute(Context);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Model;
 using Ant.Enact;
 using Ant.Service;
 
@@ -19,6 +20,7 @@ namespace Ant
         private static ProcessService _processService;
         private static TaskService _taskService;
         private static AuthService _authService;
+        private static SQLDB _db;
         private static readonly object syn = new object();
 
 
@@ -169,6 +171,24 @@ namespace Ant
                     }
                 }
                 return _authService;
+            }
+        }
+
+        public static SQLDB DB
+        {
+            get
+            {
+                if (_db == null)
+                {
+                    lock (syn)
+                    {
+                        if (_db == null)
+                        {
+                            _db = new SQLDB();
+                        }
+                    }
+                }
+                return _db;
             }
         }
         #endregion

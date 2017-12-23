@@ -9,7 +9,7 @@ using Ant.Enact;
 namespace Ant.Entity.Bpmx
 {
     [XmlRoot("Sequence")]
-    public class ZSequence
+    public class ZSequence : ZElement
     {
         [XmlIgnore]
         public Exchange Exchange

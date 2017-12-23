@@ -14,35 +14,44 @@ namespace Ant.Enact
     {
         //public Token token = null;
         public bool exeExpress = false;
-        public ZSequence element = new ZSequence();
         public ExpressionParser eParser = new ExpressionParser();
         
         /// <summary>
         /// 获取Token
         /// </summary>
         /// <param name="token"></param>
-        public void TakeToken(Stream xml, Token token, ZSequence element) 
+        public override void TakeToken(Context context) 
         {
-            this.Token = token;
-            this.element = element;
-            Execute(this.element);
+            Context = context;
+            Execute(Context);
         }
 
         /// <summary>
         /// 执行条件表达式
         /// </summary>
         /// <param name="args"></param>
-        public void Execute(ZSequence sequence) 
+        public override void Execute(Context context) 
         {
+            ZSequence sequence = context.Element as ZSequence;
+
             bool result = this.eParser.ExeExpression(sequence.Express);
             if (!exeExpress || (exeExpress && result))
-                this.SendToken(); 
+                this.SendToken(context);
+            else
+                DestroyToken(context.Token);
+        }
+
+        public void DestroyToken(Token token)
+        {
+            DoToken.DestroyToken(token);
         }
 
         // 向后传递Token，多实例节点先合并所有实例节点，然后根据后面的连线分发1至多个Token
-        public void SendToken()
+        public override void SendToken(Context context)
         {
-            this.LinkNext(this.element.ID, this.Token);
+            ZElement element = this.FlowObjParser.FindRightNode(Context.ProcessXml, context.Element.ID) as ZElement;
+            Exchange exchange = element.Exchange;
+            exchange.TakeToken(context);
         }
     }
 }
