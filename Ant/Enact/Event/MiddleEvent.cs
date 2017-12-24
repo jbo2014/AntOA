@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Ant.Enact.Gateway
+namespace Ant.Enact.Event
 {
-    class Gateway
+    class MiddleEvent
     {
     }
 }

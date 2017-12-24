@@ -56,16 +56,40 @@
     <Compile Include="Action\NoneAction.cs" />
     <Compile Include="Action\TimerAction.cs" />
     <Compile Include="AntApi.cs" />
+    <Compile Include="Common\Const.cs" />
     <Compile Include="Common\Enums.cs" />
+    <Compile Include="Enact\Activity\CallActivity.cs" />
+    <Compile Include="Enact\Activity\MailTask.cs" />
+    <Compile Include="Enact\Activity\ManualTask.cs" />
+    <Compile Include="Enact\Activity\RuleTask.cs" />
+    <Compile Include="Enact\Activity\ScriptTask.cs" />
+    <Compile Include="Enact\Activity\SubProcess.cs" />
     <Compile Include="Enact\Activity\UserTask.cs" />
+    <Compile Include="Enact\Activity\ServiceTask.cs" />
+    <Compile Include="Enact\Event\BoundaryEvent.cs" />
+    <Compile Include="Enact\Event\MiddleEvent.cs" />
+    <Compile Include="Enact\Gateway\EventGateway.cs" />
+    <Compile Include="Enact\Gateway\InclusiveGateway.cs" />
+    <Compile Include="Enact\Gateway\ParallelGateway.cs" />
+    <Compile Include="Enact\Operate\Nexter.cs" />
+    <Compile Include="Enact\Operate\Starter.cs" />
+    <Compile Include="Enact\Operate\Terminate.cs" />
     <Compile Include="Enact\DoToken.cs" />
     <Compile Include="Enact\EnactService.cs" />
     <Compile Include="Enact\Event\EndEvent.cs" />
-    <Compile Include="Enact\FlowObject.cs" />
-    <Compile Include="Enact\Gateway\Gateway.cs" />
+    <Compile Include="Enact\Gateway\ExclusiveGateway.cs" />
     <Compile Include="Enact\LinkNext.cs" />
+    <Compile Include="Enact\Pattern\AddSign.cs" />
+    <Compile Include="Enact\Pattern\CounterSign.cs" />
+    <Compile Include="Enact\Operate\JumpStep.cs" />
+    <Compile Include="Enact\Pattern\LoopCounter.cs" />
+    <Compile Include="Enact\Pattern\Merge.cs" />
+    <Compile Include="Enact\Operate\RollBack.cs" />
+    <Compile Include="Enact\Pattern\Serial.cs" />
+    <Compile Include="Enact\Pattern\Split.cs" />
     <Compile Include="Enact\Transfer.cs" />
     <Compile Include="Entity\Bpmx\ZEndEvent.cs" />
+    <Compile Include="Entity\Bpmx\ZInclusiveGateway.cs" />
     <Compile Include="Entity\Esse\Token.cs" />
     <Compile Include="Entity\Bpmx\ZElement.cs" />
     <Compile Include="Entity\Bpmx\ZStartEvent.cs" />
@@ -73,12 +97,13 @@
     <Compile Include="Entity\Esse\ActionResult.cs" />
     <Compile Include="Entity\Esse\BpmContext.cs" />
     <Compile Include="Entity\Esse\User.cs" />
+    <Compile Include="Entity\Bpmx\ZExclusiveGateway.cs" />
     <Compile Include="Parse\ExpressionParser.cs" />
     <Compile Include="Parse\Parser.cs" />
     <Compile Include="Service\AuthService.cs" />
     <Compile Include="Entity\Bpmx\ZBlock.cs" />
     <Compile Include="Entity\Bpmx\ZFlow.cs" />
-    <Compile Include="Entity\Bpmx\ZGateway.cs" />
+    <Compile Include="Entity\Bpmx\ZParallelGateway.cs" />
     <Compile Include="Entity\Bpmx\ZPackage.cs" />
     <Compile Include="Entity\Bpmx\ZPage.cs" />
     <Compile Include="Entity\Bpmx\ZParam.cs" />
@@ -88,6 +113,7 @@
     <Compile Include="Parse\FlowObjParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\BaseService.cs" />
+    <Compile Include="Service\FormService.cs" />
     <Compile Include="Service\ProcessService.cs" />
     <Compile Include="Service\RuntimeService.cs" />
     <Compile Include="Service\TaskService.cs" />
@@ -99,8 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Entity\Bpmx\xx.bpmx" />
-    <None Include="Entity\Bpmx\xxx.bpmx" />
     <None Include="Entity\Bpmx\Manager.ttinclude" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -110,7 +134,9 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Invoke\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{1e15de1b-c518-4105-ac00-120c29c88c7a}</Project>

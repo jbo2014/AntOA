@@ -22,15 +22,12 @@ namespace Ant.Enact
         }
 
         /// <summary>
-        /// 挂起Token
+        /// 挂起Token，转变成等待状态
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
         public void SuspendToken(Token token)
-        {
-            DestroyTokens(tokens);
-
-            return new List<Token>();
+        {            
         }
 
         /// <summary>

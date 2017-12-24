@@ -10,7 +10,6 @@ namespace Ant.Entity.Esse
         public Guid InstanceID;
         public string TokenID;
         public string ElementID;
-        //public int Count;
-        public int Status;  //0：挂起，1：激活
+        public int Status;  //0：挂起（等待），1：激活，2：销毁
     }
 }

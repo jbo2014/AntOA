@@ -18,17 +18,7 @@ namespace Ant.Enact
         public FlowObjParser fParser = new FlowObjParser();
         public static Logger logger = LogManager.GetCurrentClassLogger();
         public LinkNext next = new LinkNext();
-        //public ZElement Element { get; set; }
-        //public Stream ProcessXml { get; set; }
-        //public Token Token { get; set; }
         public BpmContext Context { get; set; }
-
-        //public Exchange() {}
-        //public Exchange(Stream processXml, ZElement element)
-        //{
-        //    this.ProcessXml = processXml;
-        //    this.Element = element;
-        //}
 
         #region 流程转换
         // 获取Token，如果节点是多实例的则分发成多个Token

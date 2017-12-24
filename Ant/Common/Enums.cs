@@ -64,4 +64,38 @@ namespace Ant.Common
         Error = 3
     }
 
+    /// <summary>
+    /// 流程决策模式：用于会签节点
+    /// </summary>
+    public enum DecisionEnum
+    {
+        //主办人模式：以主办人的办理情况为准
+        [Description("主办人模式")]
+        Sponsor = 1,
+
+        //投票模式：根据设置的比例通过
+        [Description("投票模式")]
+        Vote = 2,
+
+        //一票通过：投票模式的变种，一票通过及往下流转
+        [Description("一票通过")]
+        OnePass = 3,
+
+        //一票否决：投票模式的变种，一票不通过及中断（完全不通过）
+        [Description("一票否决")]
+        OneVeto = 4
+    }
+
+    /// <summary>
+    /// 会签流转模式
+    /// </summary>
+    public enum SignRunEnum
+    {
+        [Description("并行")]
+        Parallel = 0,
+
+        [Description("串行")]
+        Serial = 1
+    }
+
 }

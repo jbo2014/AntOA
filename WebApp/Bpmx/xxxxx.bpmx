@@ -37,18 +37,30 @@
             <UserTask ID="0008" Name="申请人填写入境申请表单">
                 <TaskTitle>'请填写：'+&amp;Title</TaskTitle>
                 <TaskPage>0041</TaskPage>
+                <Candidates>
+                  <Department>All</Department>
+                </Candidates>
             </UserTask>
             <UserTask ID="0002" Name="部门经理审批">
                 <TaskTitle>'请审批：'+&amp;Title</TaskTitle>
                 <TaskPage>0042</TaskPage>
+                <Candidates>
+                  <Role>Manager</Role>
+                </Candidates>
             </UserTask>
             <UserTask ID="0003" Name="总经理审批">
                 <TaskTitle>'请审批：'+&amp;Title</TaskTitle>
                 <TaskPage>0043</TaskPage>
+                <Candidates>
+                  <Member>Leader</Member>
+                </Candidates>
             </UserTask>
             <UserTask ID="0004" Name="申请人确认">
                 <TaskTitle>'请确认：'+&amp;Title</TaskTitle>
                 <TaskPage>0044</TaskPage>
+                <Candidates>
+                  <Expression>&amp;Originator</Expression>
+                </Candidates>
             </UserTask>
             <ExclusiveGateway ID="0006"/>
             <ExclusiveGateway ID="0007" />
@@ -61,7 +73,9 @@
         <Page ID="1" Name="2">
             <Type>3</Type>
             <Url>4</Url>
-            <Fields>5</Fields>
+            <Fields>
+              <Field></Field>
+            </Fields>
             <Content>6</Content>
             <OnCreate>7</OnCreate>
             <OnSubmit>8</OnSubmit>
