@@ -8,6 +8,7 @@ using Model;
 using Ant.Enact;
 using Ant.Service;
 using Ant.Parse;
+using Ant.Entity.Esse;
 
 namespace Ant.Enact
 {
@@ -17,8 +18,7 @@ namespace Ant.Enact
     public class EnactService
     {
         #region 属性定义
-        public Stream processXml;
-        public Guid InstanceID { get; set; }
+        public BpmContext Context { get; set; }
         #endregion
 
 
@@ -30,12 +30,10 @@ namespace Ant.Enact
         /// <summary>
         /// 启动/激活流程实例
         /// </summary>
-        public void Start(Stream xml) 
+        public void Start(BpmContext context) 
         {
-            //Exchange exc = new Xpdl.StartEvent();
-            //Xpdl.StartEvent ss = new Xpdl.StartEvent();
             Transfer transfer = new Transfer();
-            transfer.Start(xml);
+            transfer.Start(context);
         }
 
         ///// <summary>

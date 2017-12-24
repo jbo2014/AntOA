@@ -14,13 +14,15 @@
 
 @using (Ajax.BeginForm("Handle", "Home", new AjaxOptions { HttpMethod = "POST", OnSuccess = "success" }))
 {
-    申请人姓名：<input type="text" id="step1" name="step1" /><br />
-    部门经理意见：<input type="text" id="step2" name="step2" /><br />
-    财务部经理意见：<input type="text" id="step3" name="step3" /><br />
-    主管领导：<input type="text" id="step4" name="step4" /><br />
-    申请人接收：<input type="text" id="step5" name="step5" /><br />
+    <div>
+        申请人姓名：<input type="text" id="step1" name="step1" /><br />
+        部门经理意见：<input type="text" id="step2" name="step2" /><br />
+        财务部经理意见：<input type="text" id="step3" name="step3" /><br />
+        主管领导：<input type="text" id="step4" name="step4" /><br />
+        申请人接收：<input type="text" id="step5" name="step5" /><br />
 
-    <input type="button" name="New" id="New" value="新建" />
-    <input type="button" name="Go" id="Go" value="转交" />
-    <input type="button" name="Back" id="Back" value="回退" />
+        <input type="button" name="New" id="New" value="新建" />
+        <input type="button" name="Go" id="Go" value="转交" />
+        <input type="button" name="Back" id="Back" value="回退" />
+    </div>
 }

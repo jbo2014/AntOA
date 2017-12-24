@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Model;
 using Ant.Entity.Bpmx;
+using Ant.Entity.Esse;
 using Ant.Utility;
 using Ant.Enact;
 
@@ -18,6 +19,7 @@ namespace Ant.Service
     {
         EnactService enact = new EnactService();
 
+        # region 运行时方法
         /// <summary>
         /// 发起一个新流程
         /// </summary>
@@ -30,45 +32,57 @@ namespace Ant.Service
             WfProcess wProcess = db.WfProcesss.Where(o => o.ProcessGuid == processID).FirstOrDefault();
             ZProcess zProcess = new ZProcess();
             WfRepository repo = null;
-
+            WfInstance instance = new WfInstance();
             
             if (wProcess != null)
             {
                 repo = db.WfRepositorys.Where(o => (o.ProcessGuid == wProcess.ProcessGuid) && (o.Version == wProcess.MasterVer)).FirstOrDefault();
 
-                enact.Start(StreamUtil.StreamFromString(repo.BpmContent));
+                instance.InstanceGuid = Guid.NewGuid();
+                instance.RepoGuid = repo.RepoGuid;
+                //instance.InstanceTitle = "";
+                instance.InstanceStatus = 0;
+                instance.Originator = AntApi.Auth.CurrentUser.LoginID;
+                instance.StartTime = DateTime.Now;
+                db.WfInstances.Add(instance);
+
+                Context.InstanceID = instance.InstanceGuid;
+                Context.ProcessXml = StreamUtil.StreamFromString(repo.BpmContent);
+
+                enact.Start(Context);
             }
         }
 
-        //public ZProcess StartInstanceByXml(string xmlPath)
-        //{
-        //    ZProcess zProcess = (ZProcess)XmlUtil.LoadFromXml(xmlPath, typeof(ZProcess));
-        //    return zProcess;
-        //}
+        /// <summary>
+        /// 给变量赋值
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        public void SetValue(string name, string value) 
+        {
+            WfVar var = new WfVar();
+            var.ParamGuid = Guid.NewGuid();
+            var.InstanceGuid = Context.InstanceID;
+            var.ParamName = name;
+            var.Value = value;
+            db.WfVars.Add(var);
+        }
 
-        //public ZProcess OpenInstance(Guid instanceId) 
-        //{
-        //    return new ZProcess();
-        //}
+        /// <summary>
+        /// 取变量值
+        /// </summary>
+        /// <param name="name"></param>
+        public string GetValue(string name)
+        {
+            WfVar var = db.WfVars.Where(o => o.InstanceGuid == Context.InstanceID && o.ParamName == name).FirstOrDefault();
+            string value = var.Value;
+            return value;
+        }
+        #endregion
 
         #region Pravite
-        /// <summary>
-        /// 初始化流程实例
-        /// </summary>
-        /// <param name="process"></param>
-        //private void InitInstance(ZProcess process)
-        //{
-        //    WfRepository repo = db.WfRepositorys.Where(o => o.ProcessGuid == process.ProcessID && o.Version == process.Version).FirstOrDefault();
 
-        //    WfInstance instance = new WfInstance();
-        //    instance.InstanceGuid = Guid.NewGuid();
-        //    instance.RepoGuid = repo.RepoGuid;
-        //    //instance.InstanceTitle = "";
-        //    instance.InstanceStatus = 0;
-        //    instance.Originator = AntApi.Auth.CurrentUser.LoginID;
-        //    instance.StartTime = DateTime.Now;
-        //    db.WfInstances.Add(instance);
-        //}
+
         #endregion
     }
 }

@@ -23,16 +23,11 @@ namespace Ant.Enact
         /// <summary>
         /// 启动流程
         /// </summary>
-        public void Start(Stream xml)
+        public void Start(BpmContext context)
         {
-            Context context = null;
-            Stream temp = xml;
-            List<ZStartEvent> starters = parser.FindStartNode(xml);
+            List<ZStartEvent> starters = parser.FindStartNode(context.ProcessXml);
             foreach (ZStartEvent starter in starters)
             {
-                context = new Context();
-                context.ProcessXml = temp;
-                context.Token = null;
                 context.Element = starter;
 
                 exchange = starter.Exchange;

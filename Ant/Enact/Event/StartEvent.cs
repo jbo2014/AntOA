@@ -13,20 +13,22 @@ namespace Ant.Enact.Event
     public class StartEvent : Exchange
     {
         #region 继承重写的方法
-        public override void Execute(Context context) 
+        public override void Execute(BpmContext context) 
         {
             Context = context;
             ZStartEvent starter = Context.Element as ZStartEvent;
             Catching(starter);
             SendToken(Context);
+
+            logger.Info("执行" + Context.Element.ID);
         }
 
         /// <summary>
         /// 重写发送事件
         /// </summary>
-        public override void SendToken(Context context) 
+        public override void SendToken(BpmContext context) 
         {
-            FindNextLines(context.Element.ID, context.Token);
+            next.FindNextLines(context, false);
         }
         #endregion
 

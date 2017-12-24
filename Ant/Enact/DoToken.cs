@@ -22,6 +22,18 @@ namespace Ant.Enact
         }
 
         /// <summary>
+        /// 挂起Token
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public void SuspendToken(Token token)
+        {
+            DestroyTokens(tokens);
+
+            return new List<Token>();
+        }
+
+        /// <summary>
         /// 分裂/合并 原来的Token为num个Token
         /// </summary>
         /// <param name="token"></param>

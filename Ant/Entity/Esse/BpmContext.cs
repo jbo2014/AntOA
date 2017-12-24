@@ -7,10 +7,15 @@ using Ant.Entity.Bpmx;
 
 namespace Ant.Entity.Esse
 {
-    public class Context
+    public class BpmContext
     {
         /// <summary>
-        /// 当前流程定义的流
+        /// 当前流程实例的GuID
+        /// </summary>
+        public Guid InstanceID;
+
+        /// <summary>
+        /// 当前流程定义文件的流
         /// </summary>
         public Stream ProcessXml;
 

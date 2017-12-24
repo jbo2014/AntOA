@@ -8,36 +8,43 @@ using Ant.Parse;
 
 namespace Ant.Enact
 {
+    /// <summary>
+    /// 两个元素间的连接处理
+    /// </summary>
     public class LinkNext
     {
         public FlowObjParser parser = new FlowObjParser();
         /// <summary>
-        /// 寻找节点右端所有连接线,重新赋值Context
+        /// 节点寻找右端所有连接线,重新赋值Context
         /// </summary>
         /// <param name="iContext"></param>
         /// <param name="exeExpress"></param>
-        public void FindNextLines(Context iContext, bool exeExpress = false)
+        public void FindNextLines(BpmContext context, bool exeExpress = false)
         {
-            List<ZSequence> lines = parser.FindRightLines(iContext.ProcessXml, iContext.Element.ID) as List<ZSequence>;
+            List<ZSequence> lines = parser.FindRightLines(context.ProcessXml, context.Element.ID) as List<ZSequence>;
             foreach (ZSequence line in lines)
             {
                 Exchange exchange = line.Exchange;
-                Context context = new Context();
-                context.Element = line;
-                context.Token = iContext.Token;
-                context.ProcessXml = iContext.ProcessXml;
-                exchange.TakeToken(context);
+                BpmContext iContext = new BpmContext();
+                iContext.Element = line;
+                iContext.Token = context.Token;
+                iContext.ProcessXml = context.ProcessXml;
+                exchange.TakeToken(iContext);
             }
         }
 
         /// <summary>
-        /// 寻找连线右端节点,重新赋值Context
+        /// 连线寻找右端节点,重新赋值Context
         /// </summary>
         /// <param name="context"></param>
-        public void FindNextNode(Context context)
+        public void FindNextNode(BpmContext context)
         {
             ZElement element = parser.FindRightNode(context.ProcessXml, context.Element.ID) as ZElement;
             Exchange exchange = element.Exchange;
+            BpmContext iContext = new BpmContext();
+            iContext.Element = element;
+            iContext.Token = context.Token;
+            iContext.ProcessXml = context.ProcessXml;
             exchange.TakeToken(context);
         }
     }
