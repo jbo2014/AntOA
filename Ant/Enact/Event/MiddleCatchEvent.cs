@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ant.Enact.Event
 {
-    class MiddleEvent
+    class MiddleCatchEvent
     {
     }
 }

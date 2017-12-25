@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomInitializer.cs" />
     <Compile Include="Mapping\SysDepartmentMap.cs" />
     <Compile Include="Mapping\SysDeptUserMap.cs" />
     <Compile Include="Mapping\SysRoleMap.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="WfVar.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -53,10 +53,10 @@ namespace WebApp.Controllers
             List<WfProcess> processes = process.GetProcessList();
             ViewBag.Processes = processes;
 
-            //// 任务列表
-            //TaskService task = ant.GetTaskService();
-            //List<Task> tasks = task.TaskListAssignee(Session["uid"]);
-            //ViewBag.Tasks = tasks;
+            // 任务列表
+            TaskService task = AntApi.Tasker;
+            List<WfTask> tasks = task.TaskListAssignee(AntApi.Auth.CurrentUser.LoginID);
+            ViewBag.Tasks = tasks;
             return View();
         }
 

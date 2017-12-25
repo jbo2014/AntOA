@@ -18,7 +18,7 @@ namespace Ant.Enact.Event
             Context = context;
             ZStartEvent starter = Context.Element as ZStartEvent;
             Catching(starter);
-            SendToken(Context);
+            Leave(Context);
 
             logger.Info("执行" + Context.Element.ID);
         }
@@ -26,7 +26,7 @@ namespace Ant.Enact.Event
         /// <summary>
         /// 重写发送事件
         /// </summary>
-        public override void SendToken(BpmContext context) 
+        public override void Leave(BpmContext context) 
         {
             next.FindNextLines(context, false);
         }
@@ -64,7 +64,7 @@ namespace Ant.Enact.Event
             Context.Token = new Token();
             Context.Token.InstanceID = Guid.NewGuid();
             Context.Token.ElementID = Context.Element.ID;
-            Context.Token.Status = 1;
+            Context.Token.Status = TokenStatus.Actived;
         }
         #endregion
     }

@@ -98,4 +98,19 @@ namespace Ant.Common
         Serial = 1
     }
 
+    /// <summary>
+    /// 会签流转模式
+    /// </summary>
+    public enum TokenStatus
+    {
+        [Description("等待中")]
+        Waiting = 0,
+
+        [Description("已激活")]
+        Actived = 1,
+
+        [Description("已消耗")]
+        WorkOut = 2
+    }
+
 }

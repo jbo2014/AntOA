@@ -53,6 +53,19 @@ namespace Ant.Service
             }
         }
 
+        public void OpenTask
+
+        /// <summary>
+        /// 提交表单，转交下一步
+        /// </summary>
+        /// <param name="InstanceGuid"></param>
+        /// <param name="TaskGuid"></param>
+        public void Next(Guid InstanceGuid, Guid TaskGuid) 
+        {
+            AntApi.Former.Submit();
+            AntApi.Enactor.Next(InstanceGuid, TaskGuid);
+        }
+
         /// <summary>
         /// 给变量赋值
         /// </summary>

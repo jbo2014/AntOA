@@ -17,25 +17,35 @@ namespace Ant.Enact.Activity
         /// <param name="xml"></param>
         /// <param name="token"></param>
         /// <param name="element"></param>
-        public override void TakeToken(BpmContext context)
+        public override void Enter(BpmContext context)
         {
             Context = context;
-            Execute(Context);
 
-            logger.Info("获取Token" + Context.Element.ID);
-
-        }
-
-        public override void Execute(BpmContext context)
-        {
             WfTask task = new WfTask();
             ZUserTask userTask = context.Element as ZUserTask;
 
             task.TaskGuid = Guid.NewGuid();
             task.InstanceGuid = context.InstanceID;
-            task.NodeGuid = userTask.ID;
+            task.NodeID = context.Element.ID;
             task.TaskTitle = userTask.TaskTitle;
             AntApi.DB.WfTasks.Add(task);
+        }
+
+        /// <summary>
+        /// 创建任务
+        /// </summary>
+        /// <param name="context"></param>
+        public override void Execute(BpmContext context)
+        {
+        }
+
+        /// <summary>
+        /// 离开该节点
+        /// </summary>
+        /// <param name="context"></param>
+        public override void Leave(BpmContext context)
+        {
+            next.FindNextLines(context, false);
         }
     }
 }

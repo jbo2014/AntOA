@@ -14,14 +14,15 @@ namespace Model
     /// </summary>
     public class SQLDB : DbContext
     {
-       static SQLDB()
-       {
-           Database.SetInitializer<SQLDB>(null);
-       }
+       //static SQLDB()
+       //{
+       //    Database.SetInitializer<SQLDB>(null);
+       //}
 
        public SQLDB()
            : base("Name=SQLDB")
        {
+           Database.SetInitializer<SQLDB>(new CustomInitializer());
        }
        
        public DbSet<SysDepartment> SysDepartments { get; set; }

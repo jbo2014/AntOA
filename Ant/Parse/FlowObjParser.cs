@@ -123,7 +123,6 @@ namespace Ant.Parse
         /// <returns></returns>
         public List<ZSequence> FindRightLines(Stream processXml, string stepID)
         {
-            string rightLine = string.Empty;
             List<ZSequence> lines = new List<ZSequence>();
             bool skip = false;
             StreamUtil.Restore(ref processXml);
@@ -138,7 +137,85 @@ namespace Ant.Parse
                         {
                             if (reader.GetAttribute("Source") == stepID)
                             {
-                                rightLine = reader.GetAttribute("Target");
+                                lines.Add(XmlUtil.Deserialize<ZSequence>(reader.ReadOuterXml()));
+                            }
+                        }
+                        else
+                            break;
+                    }
+                }
+            }
+
+            return lines;
+        }
+
+        /// <summary>
+        /// 在流程定义图中，获取节点的 输入 或 输出 连线
+        /// </summary>
+        /// <param name="processXml"></param>
+        /// <param name="sequenceID">连接线的ID</param>
+        /// <param name="side">想要获取流出连线： false进入连线，true流出连线</param>
+        /// <returns></returns>
+        public List<ZSequence> FindOneSideLines(Stream processXml, string stepID, bool side)
+        {
+            string rightLine = string.Empty;
+            List<ZSequence> lines = new List<ZSequence>();
+            bool skip = false;
+            StreamUtil.Restore(ref processXml);
+            string known = string.Empty;    
+            if (side)
+                known = "Source";
+            else
+                known = "Target";
+
+            using (XmlReader reader = XmlReader.Create(processXml))
+            {
+                reader.ReadToFollowing("Sequences");
+                while (reader.Read() && !skip)
+                {
+                    if (reader.MoveToContent() == XmlNodeType.Element)
+                    {
+                        if (reader.Name.ToUpper() == "SEQUENCE")
+                        {
+                            if (reader.GetAttribute(known) == stepID)
+                            {
+                                lines.Add(XmlUtil.Deserialize<ZSequence>(reader.ReadOuterXml()));
+                            }
+                        }
+                        else
+                            break;
+                    }
+                }
+            }
+
+            return lines;
+        }
+
+        /// <summary>
+        /// 在流程定义图中，获取节点的 输入 和 输出 连线
+        /// </summary>
+        /// <param name="processXml"></param>
+        /// <param name="sequenceID">连接线的ID</param>
+        /// <param name="side">想要获取流出连线： false进入连线，true流出连线</param>
+        /// <returns></returns>
+        public List<ZSequence> FindAllSidesLines(Stream processXml, string stepID)
+        {
+            string rightLine = string.Empty;
+            List<ZSequence> lines = new List<ZSequence>();
+            bool skip = false;
+            StreamUtil.Restore(ref processXml);
+            string known = string.Empty;
+            using (XmlReader reader = XmlReader.Create(processXml))
+            {
+                reader.ReadToFollowing("Sequences");
+                while (reader.Read() && !skip)
+                {
+                    if (reader.MoveToContent() == XmlNodeType.Element)
+                    {
+                        if (reader.Name.ToUpper() == "SEQUENCE")
+                        {
+                            if (reader.GetAttribute("Source") == stepID || reader.GetAttribute("Target") == stepID)
+                            {
                                 lines.Add(XmlUtil.Deserialize<ZSequence>(reader.ReadOuterXml()));
                             }
                         }

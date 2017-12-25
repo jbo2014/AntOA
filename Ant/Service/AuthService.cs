@@ -6,6 +6,9 @@ using Ant.Entity.Esse;
 
 namespace Ant.Service
 {
+    /// <summary>
+    /// 管理（创建，更新，删除，查询...）群组和用户
+    /// </summary>
     public class AuthService
     {
         #region 属性

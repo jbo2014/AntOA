@@ -67,7 +67,8 @@
     <Compile Include="Enact\Activity\UserTask.cs" />
     <Compile Include="Enact\Activity\ServiceTask.cs" />
     <Compile Include="Enact\Event\BoundaryEvent.cs" />
-    <Compile Include="Enact\Event\MiddleEvent.cs" />
+    <Compile Include="Enact\Event\MiddleCatchEvent.cs" />
+    <Compile Include="Enact\Event\MiddleThrowEvent.cs" />
     <Compile Include="Enact\Gateway\EventGateway.cs" />
     <Compile Include="Enact\Gateway\InclusiveGateway.cs" />
     <Compile Include="Enact\Gateway\ParallelGateway.cs" />

@@ -20,6 +20,7 @@ namespace Ant
         private static ProcessService _processService;
         private static TaskService _taskService;
         private static AuthService _authService;
+        private static FormService _formService;
         private static SQLDB _db;
         private static readonly object syn = new object();
 
@@ -171,6 +172,24 @@ namespace Ant
                     }
                 }
                 return _authService;
+            }
+        }
+
+        public static FormService Former
+        {
+            get
+            {
+                if (_formService == null)
+                {
+                    lock (syn)
+                    {
+                        if (_formService == null)
+                        {
+                            _formService = new FormService();
+                        }
+                    }
+                }
+                return _formService;
             }
         }
 

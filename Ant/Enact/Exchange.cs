@@ -16,27 +16,26 @@ namespace Ant.Enact
     public class Exchange
     {
         public FlowObjParser fParser = new FlowObjParser();
+        public ExpressionParser eParser = new ExpressionParser();
         public static Logger logger = LogManager.GetCurrentClassLogger();
         public LinkNext next = new LinkNext();
         public BpmContext Context { get; set; }
 
         #region 流程转换
         // 获取Token，如果节点是多实例的则分发成多个Token
-        public virtual void TakeToken(BpmContext context) { this.Execute(Context); }
-
-        //public virtual void TakeToken(params object[] args);
-
-        // 进入节点
-        //public virtual void Enter(params object[] args) { this.Execute(); }
+        public virtual void Enter(BpmContext context) 
+        { 
+            Context = context; Execute(Context); 
+        }
 
         // 执行节点内容
-        public virtual void Execute(BpmContext context) { this.SendToken(Context); }
-
-        // 离开节点
-        //public virtual void Leave(params object[] args) { this.SendToken(); }
+        public virtual void Execute(BpmContext context) 
+        {
+            Leave(Context); 
+        }
 
         // 向后传递Token，多实例节点先合并所有实例节点，然后根据后面的连线分发1至多个Token
-        public virtual void SendToken(BpmContext context) { }
+        public virtual void Leave(BpmContext context) {  }
         #endregion
 
         #region 中间状态转变
@@ -46,8 +45,8 @@ namespace Ant.Enact
         /// </summary>
         public virtual void WaiteHandle(BpmContext context) 
         {
-            
-        }
 
+        }
+        #endregion
     }
 }

@@ -12,14 +12,14 @@ namespace Ant.Enact.Pattern
     class CounterSign
     {
         /// <summary>
-        /// 决策模式
+        /// 通过的比例，满足及可往下继续流转
         /// </summary>
-        public DecisionEnum Decision { get; set; }
+        public float ratio { get; set; }
 
         /// <summary>
         /// 是否等待：
         /// 已可以确定结果的情况下，还有人未表决，是否需要继续等待其他人表决完再转交下一步
         /// </summary>
-        public bool NeedWait { get; set; }
+        public bool needWait { get; set; }
     }
 }

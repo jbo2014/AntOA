@@ -43,21 +43,21 @@
             </UserTask>
             <UserTask ID="0002" Name="部门经理审批">
                 <TaskTitle>'请审批：'+&amp;Title</TaskTitle>
-                <TaskPage>0042</TaskPage>
+                <TaskPage>0041</TaskPage>
                 <Candidates>
                   <Role>Manager</Role>
                 </Candidates>
             </UserTask>
             <UserTask ID="0003" Name="总经理审批">
                 <TaskTitle>'请审批：'+&amp;Title</TaskTitle>
-                <TaskPage>0043</TaskPage>
+                <TaskPage>0041</TaskPage>
                 <Candidates>
                   <Member>Leader</Member>
                 </Candidates>
             </UserTask>
             <UserTask ID="0004" Name="申请人确认">
                 <TaskTitle>'请确认：'+&amp;Title</TaskTitle>
-                <TaskPage>0044</TaskPage>
+                <TaskPage>0041</TaskPage>
                 <Candidates>
                   <Expression>&amp;Originator</Expression>
                 </Candidates>
@@ -70,7 +70,7 @@
     <!--活动/事件-->
     <Pages>
         <!--表单页面-->
-        <Page ID="1" Name="2">
+        <Page ID="0041" Name="2">
             <Type>3</Type>
             <Url>4</Url>
             <Fields>

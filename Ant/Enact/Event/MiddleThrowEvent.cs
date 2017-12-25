@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Ant.Enact.Pattern
+namespace Ant.Enact.Event
 {
     /// <summary>
-    /// 分裂模式
+    /// 中间抛出事件
     /// </summary>
-    public class Split
+    class MiddleThrowEvent
     {
-
     }
 }

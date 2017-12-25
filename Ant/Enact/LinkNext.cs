@@ -5,6 +5,7 @@ using System.Text;
 using Ant.Entity.Bpmx;
 using Ant.Entity.Esse;
 using Ant.Parse;
+using Ant.Common;
 
 namespace Ant.Enact
 {
@@ -22,30 +23,23 @@ namespace Ant.Enact
         public void FindNextLines(BpmContext context, bool exeExpress = false)
         {
             List<ZSequence> lines = parser.FindRightLines(context.ProcessXml, context.Element.ID) as List<ZSequence>;
+            Token token = null;
             foreach (ZSequence line in lines)
             {
                 Exchange exchange = line.Exchange;
                 BpmContext iContext = new BpmContext();
-                iContext.Element = line;
-                iContext.Token = context.Token;
-                iContext.ProcessXml = context.ProcessXml;
-                exchange.TakeToken(iContext);
-            }
-        }
+                
+                token = new Token();
+                token.InstanceID = context.InstanceID;
+                token.TokenID = Guid.NewGuid();
+                token.ElementID = context.Element.ID;
+                token.Status = TokenStatus.Waiting;
 
-        /// <summary>
-        /// 连线寻找右端节点,重新赋值Context
-        /// </summary>
-        /// <param name="context"></param>
-        public void FindNextNode(BpmContext context)
-        {
-            ZElement element = parser.FindRightNode(context.ProcessXml, context.Element.ID) as ZElement;
-            Exchange exchange = element.Exchange;
-            BpmContext iContext = new BpmContext();
-            iContext.Element = element;
-            iContext.Token = context.Token;
-            iContext.ProcessXml = context.ProcessXml;
-            exchange.TakeToken(context);
+                iContext.Element = line;
+                iContext.Token = token;
+                iContext.ProcessXml = context.ProcessXml;
+                exchange.Enter(iContext);
+            }
         }
     }
 }

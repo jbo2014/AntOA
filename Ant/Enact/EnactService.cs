@@ -9,6 +9,9 @@ using Ant.Enact;
 using Ant.Service;
 using Ant.Parse;
 using Ant.Entity.Esse;
+using Ant.Enact.Operate;
+using Ant.Utility;
+using Ant.Enact.Activity;
 
 namespace Ant.Enact
 {
@@ -34,6 +37,19 @@ namespace Ant.Enact
         {
             Transfer transfer = new Transfer();
             transfer.Start(context);
+        }
+
+        public void Next(Guid InstanceGuid, Guid TaskGuid) 
+        {
+            WfInstance instance = AntApi.DB.WfInstances.Where(o => o.InstanceGuid == InstanceGuid).FirstOrDefault();
+            WfRepository repo = AntApi.DB.WfRepositorys.Where(o => o.RepoGuid == instance.RepoGuid).FirstOrDefault()
+
+            BpmContext context = new BpmContext();
+            context.InstanceID = InstanceGuid;
+            context.ProcessXml = StreamUtil.StreamFromString(repo.BpmContent);
+
+            UserTask task = new UserTask();
+            task.Leave(context);
         }
 
         ///// <summary>
