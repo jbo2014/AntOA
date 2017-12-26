@@ -9,7 +9,7 @@ namespace Model
     /// <summary>
     /// 文件说明: 信息实体
     /// 作    者: WJB
-    /// 生成日期: 2017年12月18日
+    /// 生成日期: 2017年12月26日
     /// 生成模板: CTSR.Template.Model.MVC_Model_01 版
     /// 特别说明：本文件由代码生成工具自动生成，请勿轻易修改！
     /// </summary>
@@ -33,7 +33,7 @@ namespace Model
         [DisplayName("流程实例名称")]
         public string InstanceTitle { get; set; }
  
-        [DisplayName("流程状态")]
+        [DisplayName("流程状态：0.初始化1.新建2.运行3.挂起4.结束")]
         public byte InstanceStatus { get; set; }
  
         [DisplayName("流程当前任务")]

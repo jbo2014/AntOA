@@ -15,14 +15,26 @@
 @using (Ajax.BeginForm("Handle", "Home", new AjaxOptions { HttpMethod = "POST", OnSuccess = "success" }))
 {
     <div>
-        申请人姓名：<input type="text" id="step1" name="step1" /><br />
-        部门经理意见：<input type="text" id="step2" name="step2" /><br />
-        财务部经理意见：<input type="text" id="step3" name="step3" /><br />
-        主管领导：<input type="text" id="step4" name="step4" /><br />
-        申请人接收：<input type="text" id="step5" name="step5" /><br />
+        申请人姓名：<input type="text" id="0008" name="0008" /><br />
+        部门经理意见：<input type="text" id="0002" name="0002" /><br />
+        总经理意见：<input type="text" id="0003" name="0003" /><br />
+        @*主管领导：<input type="text" id="step4" name="step4" /><br />*@
+        申请人接收：<input type="text" id="0004" name="0004" /><br />
 
         <input type="button" name="New" id="New" value="新建" />
         <input type="button" name="Go" id="Go" value="转交" />
         <input type="button" name="Back" id="Back" value="回退" />
+        <input type="hidden" name="step" id="step" value="@ViewBag.Step">
+        <input type="hidden" name="InstanceGuid" id="InstanceGuid" value="@ViewBag.InstanceGuid">
+        <input type="hidden" name="TaskGuid" id="TaskGuid" value="@ViewBag.TaskGuid">
     </div>
+    
+    
+    <script>
+        $(document).ready(function () {
+            var v = $("#step").val();
+            $(":text").attr("readonly", "readonly");
+            $("#" + v).attr("readonly", "");
+        });
+    </script>
 }

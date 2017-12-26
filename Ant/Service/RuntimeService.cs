@@ -27,33 +27,35 @@ namespace Ant.Service
         /// <param name="workID">业务ID</param>
         /// <param name="backID">子流程返回的栈点ID，非子流程可忽略</param>
         /// <returns></returns>
-        public void NewInstanceByID(Guid processID, Guid workID, string backID=null)
+        public Guid NewInstanceByID(Guid processID, Guid workID, string backID=null)
         {
             WfProcess wProcess = db.WfProcesss.Where(o => o.ProcessGuid == processID).FirstOrDefault();
             ZProcess zProcess = new ZProcess();
             WfRepository repo = null;
             WfInstance instance = new WfInstance();
+            Guid InstanceGuid = Guid.NewGuid();
             
             if (wProcess != null)
             {
                 repo = db.WfRepositorys.Where(o => (o.ProcessGuid == wProcess.ProcessGuid) && (o.Version == wProcess.MasterVer)).FirstOrDefault();
 
-                instance.InstanceGuid = Guid.NewGuid();
+                instance.InstanceGuid = InstanceGuid;
                 instance.RepoGuid = repo.RepoGuid;
                 //instance.InstanceTitle = "";
                 instance.InstanceStatus = 0;
                 instance.Originator = AntApi.Auth.CurrentUser.LoginID;
                 instance.StartTime = DateTime.Now;
                 db.WfInstances.Add(instance);
+                db.SaveChanges();
 
                 Context.InstanceID = instance.InstanceGuid;
                 Context.ProcessXml = StreamUtil.StreamFromString(repo.BpmContent);
 
                 enact.Start(Context);
             }
+            return InstanceGuid;
         }
 
-        public void OpenTask
 
         /// <summary>
         /// 提交表单，转交下一步
@@ -62,7 +64,6 @@ namespace Ant.Service
         /// <param name="TaskGuid"></param>
         public void Next(Guid InstanceGuid, Guid TaskGuid) 
         {
-            AntApi.Former.Submit();
             AntApi.Enactor.Next(InstanceGuid, TaskGuid);
         }
 
@@ -79,6 +80,7 @@ namespace Ant.Service
             var.ParamName = name;
             var.Value = value;
             db.WfVars.Add(var);
+            db.SaveChanges();
         }
 
         /// <summary>

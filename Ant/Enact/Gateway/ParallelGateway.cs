@@ -83,7 +83,7 @@ namespace Ant.Enact.Gateway
             iContext.Element = outSequence;
             iContext.Token = context.Token;
             iContext.ProcessXml = context.ProcessXml;
-            exchange.TakeToken(iContext);
+            exchange.Enter(iContext);
         }
         #endregion
     }

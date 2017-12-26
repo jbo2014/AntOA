@@ -6,7 +6,7 @@ namespace Model.Mapping
     /// <summary>
     /// 文件说明: 信息实体映射
     /// 作    者: WJB
-    /// 生成日期: 2017年12月18日
+    /// 生成日期: 2017年12月26日
     /// 生成模板: CTSR.Template.Model.MVC_Model_01 版
     /// 修改说明：
     /// </summary>
@@ -20,6 +20,9 @@ namespace Model.Mapping
         //属性
         
         this.Property(t => t.InstanceTitle)
+            .HasMaxLength(100);
+        
+        this.Property(t => t.Originator)
             .HasMaxLength(100);
         
         //表与列的对应

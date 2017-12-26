@@ -42,7 +42,7 @@ namespace Ant.Enact
         public void Next(Guid InstanceGuid, Guid TaskGuid) 
         {
             WfInstance instance = AntApi.DB.WfInstances.Where(o => o.InstanceGuid == InstanceGuid).FirstOrDefault();
-            WfRepository repo = AntApi.DB.WfRepositorys.Where(o => o.RepoGuid == instance.RepoGuid).FirstOrDefault()
+            WfRepository repo = AntApi.DB.WfRepositorys.Where(o => o.RepoGuid == instance.RepoGuid).FirstOrDefault();
 
             BpmContext context = new BpmContext();
             context.InstanceID = InstanceGuid;

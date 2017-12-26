@@ -17,11 +17,25 @@
     </li>
 }
 
+<br/><br/>
+
 任务列表：
 @*@foreach (var t in ViewBag.Tasks)
 {
     <li>@t</li>
 }*@
+@{ List<Model.WfTask> tasks = ViewBag.Tasks; }
+@if (tasks!=null && tasks.Count() > 0)
+{
+    foreach (Model.WfTask t in tasks)
+    {
+        <li>
+            @*<input type="hidden" value="1" class="IsNew"/>
+            <input type="hidden" value="@p.ProcessGuid" class="ID"/>*@
+            <a href="/Home/Handle?isNew=false&id=@t.TaskGuid" class="open">@t.TaskTitle</a>
+        </li>
+    }
+}
 
 
 

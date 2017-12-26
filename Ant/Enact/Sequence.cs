@@ -7,10 +7,11 @@ using Ant.Enact;
 using Ant.Entity.Bpmx;
 using Ant.Entity.Esse;
 using Ant.Parse;
+using Ant.Common;
 
 namespace Ant.Enact
 {
-    public class Sequence
+    public class Sequence : Exchange
     {
         //@ToDo：以后添加默认连线，网关所有分支执行不正确时可以使用
 
@@ -18,12 +19,13 @@ namespace Ant.Enact
         private bool exeExpress = false;
         private ExpressionParser eParser = new ExpressionParser();
         private FlowObjParser fParser = new FlowObjParser();
-        
+
+
         /// <summary>
         /// 获取Token
         /// </summary>
         /// <param name="token"></param>
-        public override void TakeToken(BpmContext context) 
+        public override void Enter(BpmContext context) 
         {
             Context = context;
             Execute(Context);
@@ -40,7 +42,7 @@ namespace Ant.Enact
             bool result = this.eParser.GetResult<bool>(sequence.Express);
             if (!exeExpress || (exeExpress && result))
             {
-                SendToken(context);
+                Leave(context);
                 return true;
             }
             else
@@ -57,7 +59,7 @@ namespace Ant.Enact
         }
 
         // 向后传递Token，多实例节点先合并所有实例节点，然后根据后面的连线分发1至多个Token
-        public override void SendToken(BpmContext context)
+        public void Leave(BpmContext context)
         {
             ZElement element = fParser.FindRightNode(context.ProcessXml, context.Element.ID) as ZElement;
             Exchange exchange = element.Exchange;

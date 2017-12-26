@@ -118,6 +118,7 @@
     <Compile Include="Service\ProcessService.cs" />
     <Compile Include="Service\RuntimeService.cs" />
     <Compile Include="Service\TaskService.cs" />
+    <Compile Include="Utility\LambdaUtil.cs" />
     <Compile Include="Utility\StreamUtil.cs" />
     <Compile Include="Utility\XmlUtil.cs" />
     <Compile Include="Enact\Exchange.cs" />

@@ -55,7 +55,7 @@ namespace WebApp.Controllers
 
             // 任务列表
             TaskService task = AntApi.Tasker;
-            List<WfTask> tasks = task.TaskListAssignee(AntApi.Auth.CurrentUser.LoginID);
+            List<WfTask> tasks = task.GetTaskListByUser(AntApi.Auth.CurrentUser.LoginID);
             ViewBag.Tasks = tasks;
             return View();
         }
@@ -68,14 +68,23 @@ namespace WebApp.Controllers
         public ActionResult Handle(bool isNew, string id) 
         {
             RuntimeService runtime = AntApi.Runtime;
+            TaskService tasker = AntApi.Tasker;
             if (isNew)
             {
-                runtime.NewInstanceByID(new Guid(id), Guid.Empty, null);
+                Guid InstanceGuid = runtime.NewInstanceByID(new Guid(id), Guid.Empty, null);
+                ViewBag.Step = "0008";
+                ViewBag.InstanceGuid = InstanceGuid;
+                WfTask task = tasker.GetTaskByInstance(InstanceGuid);
+                ViewBag.TaskGuid = task.TaskGuid;
             }
-            else
+            else 
             {
-                //runtime.OpenInstance(new Guid(id));
-            }
+                WfInstance instance = tasker.GetInstanceByTask(new Guid(id));
+                ViewBag.Step = tasker.GetTaskForm(new Guid(id));
+                ViewBag.InstanceGuid = instance.InstanceGuid;
+                ViewBag.TaskGuid = new Guid(id);
+            }           
+            
             return View();
         }
 
@@ -86,17 +95,14 @@ namespace WebApp.Controllers
         [HttpPost]
         public ActionResult Handle(FormCollection form)
         {
-            //RuntimeService runtime = ant.RuntimeService();
+            FormService former = AntApi.Former;
+            former.SaveData(form["step"], form[form["step"]]);
 
-            ////发起流程
-            //runtime.Start(form["InstanceId"]);
+            RuntimeService run = AntApi.Runtime;
+            run.Next(new Guid(form["InstanceGuid"]), new Guid(form["TaskGuid"]));
 
-            ////正常转交下一步
-            //runtime.GoNext();
-
-            ////回退上一步
-            //runtime.GoBack();
-            return new JsonResult();
+            Response.Redirect("/Home/List");
+            return View();
         }
     }
 }

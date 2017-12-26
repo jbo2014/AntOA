@@ -7,24 +7,24 @@ namespace Model
     /// <summary>
     /// 模块名称: Oracle连接文件
     /// 作    者: WJB
-    /// 生成日期: 2017年12月18日
+    /// 生成日期: 2017年12月26日
     /// 生成模板: CTSR.Template.OracleDAL.SQLDBConnect_01 版
     ///           MVC模式
     /// 特别说明: 本文件由代码生成工具自动生成，请勿轻易修改！
     /// </summary>
     public class SQLDB : DbContext
     {
-       //static SQLDB()
-       //{
-       //    Database.SetInitializer<SQLDB>(null);
-       //}
+       static SQLDB()
+       {
+           Database.SetInitializer<SQLDB>(null);
+       }
 
        public SQLDB()
            : base("Name=SQLDB")
        {
-           Database.SetInitializer<SQLDB>(new CustomInitializer());
        }
        
+       public DbSet<FmData> FmDatas { get; set; }
        public DbSet<SysDepartment> SysDepartments { get; set; }
        public DbSet<SysDeptUser> SysDeptUsers { get; set; }
        public DbSet<SysRole> SysRoles { get; set; }
@@ -37,11 +37,13 @@ namespace Model
        public DbSet<WfRepository> WfRepositorys { get; set; }
        public DbSet<WfSerialNum> WfSerialNums { get; set; }
        public DbSet<WfTask> WfTasks { get; set; }
+       public DbSet<WfToken> WfTokens { get; set; }
        public DbSet<WfTransition> WfTransitions { get; set; }
        public DbSet<WfVar> WfVars { get; set; }
        
        protected override void OnModelCreating(DbModelBuilder modelBuilder)
        {
+           modelBuilder.Configurations.Add(new FmDataMap());
            modelBuilder.Configurations.Add(new SysDepartmentMap());
            modelBuilder.Configurations.Add(new SysDeptUserMap());
            modelBuilder.Configurations.Add(new SysRoleMap());
@@ -54,6 +56,7 @@ namespace Model
            modelBuilder.Configurations.Add(new WfRepositoryMap());
            modelBuilder.Configurations.Add(new WfSerialNumMap());
            modelBuilder.Configurations.Add(new WfTaskMap());
+           modelBuilder.Configurations.Add(new WfTokenMap());
            modelBuilder.Configurations.Add(new WfTransitionMap());
            modelBuilder.Configurations.Add(new WfVarMap());
        }

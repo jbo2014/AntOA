@@ -7,6 +7,7 @@ using Ant.Entity.Bpmx;
 using Ant.Entity.Esse;
 using Ant.Parse;
 using NLog;
+using Ant.Common;
 
 namespace Ant.Enact
 {
@@ -39,13 +40,32 @@ namespace Ant.Enact
         #endregion
 
         #region 中间状态转变
-        /// <summary>
-        /// 等待处理：例如，流转到用户任务，流程需要等待用户办理。
-        ///          流程不能停止，需要特别处理
-        /// </summary>
-        public virtual void WaiteHandle(BpmContext context) 
-        {
 
+        /// <summary>
+        /// 节点寻找右端所有连接线,重新赋值Context
+        /// </summary>
+        /// <param name="iContext"></param>
+        /// <param name="exeExpress"></param>
+        public void FindNextLines(BpmContext context, bool exeExpress = false)
+        {
+            List<ZSequence> lines = fParser.FindRightLines(context.ProcessXml, context.Element.ID) as List<ZSequence>;
+            Token token = null;
+            foreach (ZSequence line in lines)
+            {
+                Exchange exchange = line.Exchange;
+                BpmContext iContext = new BpmContext();
+
+                token = new Token();
+                token.InstanceID = context.InstanceID;
+                token.TokenID = Guid.NewGuid();
+                token.ElementID = context.Element.ID;
+                token.Status = TokenStatus.Waiting;
+
+                iContext.Element = line;
+                iContext.Token = token;
+                iContext.ProcessXml = context.ProcessXml;
+                exchange.Enter(iContext);
+            }
         }
         #endregion
     }

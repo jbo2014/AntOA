@@ -15,5 +15,10 @@ namespace Ant.Service
         /// </summary>
         public BpmContext Context { get; set; }
 
+        public BaseService() 
+        {
+            this.Context = new BpmContext();
+        }
+
     }
 }

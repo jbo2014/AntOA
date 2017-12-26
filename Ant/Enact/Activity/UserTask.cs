@@ -29,6 +29,7 @@ namespace Ant.Enact.Activity
             task.NodeID = context.Element.ID;
             task.TaskTitle = userTask.TaskTitle;
             AntApi.DB.WfTasks.Add(task);
+            AntApi.DB.SaveChanges();
         }
 
         /// <summary>

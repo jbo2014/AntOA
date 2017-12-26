@@ -15,7 +15,7 @@ namespace Ant.Enact.Event
         /// <summary>
         /// 重写接收事件
         /// </summary>
-        public override void TakeToken(BpmContext context)
+        public override void Enter(BpmContext context)
         {
             Context = context;
             Execute(Context);

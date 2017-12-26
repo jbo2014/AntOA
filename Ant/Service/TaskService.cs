@@ -19,11 +19,36 @@ namespace Ant.Service
         #endregion
 
         #region 用户操作
+        public WfInstance GetInstanceByTask(Guid TaskGuid) 
+        {
+            WfTask task = AntApi.DB.WfTasks.First<WfTask>(o => o.TaskGuid == TaskGuid);
+            WfInstance instance = AntApi.DB.WfInstances.First<WfInstance>(o => o.InstanceGuid == task.InstanceGuid);
+            return instance;
+        }
+        public WfTask GetTaskByInstance(Guid InstanceGuid)
+        {
+            WfInstance instance = AntApi.DB.WfInstances.First<WfInstance>(o => o.InstanceGuid == InstanceGuid);
+            WfTask task = AntApi.DB.WfTasks.First<WfTask>(o => o.InstanceGuid == instance.InstanceGuid);
+            return task;
+        }
+
         /// <summary>
-        /// 打开任务表单
+        /// 获取用户对应的任务列表
         /// </summary>
         /// <param name="taskGuid"></param>
-        public void OpenTaskForm(Guid taskGuid) { }
+        public List<WfTask> GetTaskListByUser(string UserID) 
+        {
+            List<WfTask> tasks = AntApi.DB.WfTasks.Where(o=>(o.Executor==UserID)||(o.Owner==UserID && string.IsNullOrEmpty(o.Executor))).ToList<WfTask>();
+            if (tasks.Count() > 0)
+                return tasks;
+            return null;
+        }
+
+        /// <summary>
+        /// 获取角色对应的任务列表
+        /// </summary>
+        /// <param name="taskGuid"></param>
+        public void GetTaskListByRole(Guid taskGuid) { }
 
         /// <summary>
         /// 认领任务
@@ -42,9 +67,12 @@ namespace Ant.Service
         /// <summary>
         /// 获取任务表单
         /// </summary>
-        public void GetTaskForm(Guid taskGuid)
+        public string GetTaskForm(Guid taskGuid)
         {
-
+            WfTask task = AntApi.DB.WfTasks.First<WfTask>(o => o.TaskGuid == taskGuid);
+            if (task != null)
+                return task.NodeID;
+            return null;
         }
 
         public void Complete(Guid taskGuid) 
