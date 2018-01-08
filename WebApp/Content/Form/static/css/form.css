@@ -1,0 +1,126 @@
+/*
+    Document   : form
+    Created on : 2013-12-15, 11:43:04
+    Author     : hf
+    Description:
+        Purpose of the stylesheet follows.
+*/
+#collapsing {
+    top:10px;
+    position:fixed;
+    cursor: pointer;
+}
+#right_bar{
+    border: 1px solid #dddddd;
+    border-collapse: separate;
+    border-left: 1;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    width:140px;
+    float:left;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+#right_bar h4 span{
+    margin-left: 25px;
+}
+widget-container {
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.widget-group-items-list{
+    margin-left: 0px;
+}
+.widget-group-items-list li i{
+    display: inline-block;
+    *zoom: 1;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin: -3px 6px 0 0;
+}
+.widget-container ul{
+    margin-bottom: 0px;
+}
+.widget-container ul li{
+    height: 35px;
+    line-height: 35px;
+    padding-left: 20px;
+}
+.widget-container li:hover{
+    background: #dddddd;
+}
+.widget-container li,
+.widget-container ul span{
+    cursor: pointer;
+}
+.cdxdtpicker i
+{
+    background-image:url(../images/form/cdxdtpicker.png);
+}
+.countersign i
+{
+    background-image:url(../images/form/countersign.png);
+}
+.dimensionalcode i
+{
+    background-image:url(../images/form/dimensionalcode.png);
+}
+.listview i
+{
+    background-image:url(../images/form/listview.png);
+}
+.macro i
+{
+    background-image:url(../images/form/macro.png);
+}
+.signature i
+{
+    background-image:url(../images/form/signature.png);
+}
+.suseranddept i
+{
+    background-image:url(../images/form/suseranddept.png);
+}
+.tcount i
+{
+    background-image:url(../images/form/tcount.png);
+}
+.tdcheckbox i
+{
+    background-image:url(../images/form/tdcheckbox.png);
+}
+.tdradio i
+{
+    background-image:url(../images/form/tdradio.png);
+}
+.tdselect i
+{
+    background-image:url(../images/form/tdselect.png);
+}
+.tdtextfield i
+{
+    background-image:url(../images/form/tdtextfield.png);
+}
+.tdtextarea i
+{
+    background-image:url(../images/form/tdtextarea.png);
+}
+.writesign i
+{
+    background-image:url(../images/form/writesign.png);
+}
+.fileupload i
+{
+    background-image:url(../images/form/fileupload.png);
+}
+.syscode i
+{
+    background-image:url(../images/form/syscode.png);
+}
+.flowcomment i
+{
+    background-image:url(../images/form/flowcomment.png);
+}

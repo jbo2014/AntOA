@@ -51,72 +51,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeTable.cs" />
     <Compile Include="CustomInitializer.cs" />
-    <Compile Include="FmData.cs" />
-    <Compile Include="Mapping\FmDataMap.cs" />
-    <Compile Include="Mapping\SysDepartmentMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Mapping\SysDeptUserMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Mapping\SysRoleMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Mapping\SysRoleUserMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Mapping\SysUserMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Mapping\WfDelegateMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Mapping\WfInstanceMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Mapping\WfNodeMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Mapping\WfProcessMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Mapping\WfRepositoryMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Mapping\WfSerialNumMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Mapping\WfTaskMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Mapping\WfTokenMap.cs" />
-    <Compile Include="Mapping\WfTransitionMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Mapping\WfVarMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Mapping\CodeTableMap.cs" />
+    <Compile Include="Mapping\WfFormMap.cs" />
+    <Compile Include="Mapping\RtDelegateMap.cs" />
+    <Compile Include="Mapping\RtFormMap.cs" />
+    <Compile Include="Mapping\RtInstanceMap.cs" />
+    <Compile Include="Mapping\RtActivityMap.cs" />
+    <Compile Include="Mapping\RtTaskMap.cs" />
+    <Compile Include="Mapping\RtTokenMap.cs" />
+    <Compile Include="Mapping\RtTransitionMap.cs" />
+    <Compile Include="Mapping\SysDepartmentMap.cs" />
+    <Compile Include="Mapping\SysDeptUserMap.cs" />
+    <Compile Include="Mapping\SysRoleMap.cs" />
+    <Compile Include="Mapping\SysRoleUserMap.cs" />
+    <Compile Include="Mapping\SysUserMap.cs" />
+    <Compile Include="Mapping\WfFieldMap.cs" />
+    <Compile Include="Mapping\WfProcessMap.cs" />
+    <Compile Include="Mapping\WfRepositoryMap.cs" />
+    <Compile Include="Mapping\RtFieldMap.cs" />
+    <Compile Include="RtField.cs" />
+    <Compile Include="ViewModel\TaskVM.cs" />
+    <Compile Include="WfForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RtDelegate.cs" />
+    <Compile Include="RtForm.cs" />
+    <Compile Include="RtInstance.cs" />
+    <Compile Include="RtActivity.cs" />
+    <Compile Include="RtTask.cs" />
+    <Compile Include="RtToken.cs" />
+    <Compile Include="RtTransition.cs" />
     <Compile Include="SQLDB.cs" />
     <Compile Include="SysDepartment.cs" />
     <Compile Include="SysDeptUser.cs" />
     <Compile Include="SysRole.cs" />
     <Compile Include="SysRoleUser.cs" />
     <Compile Include="SysUser.cs" />
-    <Compile Include="WfDelegate.cs" />
-    <Compile Include="WfInstance.cs" />
-    <Compile Include="WfNode.cs" />
+    <Compile Include="WfField.cs" />
     <Compile Include="WfProcess.cs" />
     <Compile Include="WfRepository.cs" />
-    <Compile Include="WfSerialNum.cs" />
-    <Compile Include="WfTask.cs" />
-    <Compile Include="WfToken.cs" />
-    <Compile Include="WfTransition.cs" />
-    <Compile Include="WfVar.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

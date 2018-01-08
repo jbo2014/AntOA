@@ -56,13 +56,13 @@ namespace Ant.Parse
                 {                    
                     if (reader.MoveToContent() == XmlNodeType.Element)
                     {
-                        if (reader.Name.ToUpper() == "SEQUENCE")
+                        if (String.Equals(reader.Name,"SEQUENCE",StringComparison.CurrentCultureIgnoreCase))
                         {
                             if (reader.GetAttribute("ID") == sequenceID)
                             {
                                 while (reader.Read())
                                 {
-                                    if (reader.Name.ToUpper() == "TARGET")
+                                    if (String.Equals(reader.Name,"TARGET",StringComparison.CurrentCultureIgnoreCase))
                                     {
                                         nextStepID = reader.ReadElementContentAsString();
                                         break;
@@ -71,12 +71,12 @@ namespace Ant.Parse
                             }
                             reader.Skip();
                         }
-                        else if (reader.Name.ToUpper() == "STEP")
+                        else if (String.Equals(reader.Name,"STEP",StringComparison.CurrentCultureIgnoreCase))
                         {
                             if(reader.GetAttribute("ID") == nextStepID){
                                 while (reader.Read())
                                 {
-                                    if(reader.Name.ToUpper() == "BLOCK")
+                                    if(String.Equals(reader.Name,"Block",StringComparison.CurrentCultureIgnoreCase))
                                     {
                                         nextBlockID = reader.ReadElementContentAsString();
                                         skip = true;
@@ -133,7 +133,7 @@ namespace Ant.Parse
                 {
                     if (reader.MoveToContent() == XmlNodeType.Element)
                     {
-                        if (reader.Name.ToUpper() == "SEQUENCE")
+                        if (String.Equals(reader.Name,"SEQUENCE",StringComparison.CurrentCultureIgnoreCase))
                         {
                             if (reader.GetAttribute("Source") == stepID)
                             {
@@ -175,7 +175,7 @@ namespace Ant.Parse
                 {
                     if (reader.MoveToContent() == XmlNodeType.Element)
                     {
-                        if (reader.Name.ToUpper() == "SEQUENCE")
+                        if (String.Equals(reader.Name,"SEQUENCE",StringComparison.CurrentCultureIgnoreCase))
                         {
                             if (reader.GetAttribute(known) == stepID)
                             {
@@ -212,7 +212,7 @@ namespace Ant.Parse
                 {
                     if (reader.MoveToContent() == XmlNodeType.Element)
                     {
-                        if (reader.Name.ToUpper() == "SEQUENCE")
+                        if (String.Equals(reader.Name,"SEQUENCE",StringComparison.CurrentCultureIgnoreCase))
                         {
                             if (reader.GetAttribute("Source") == stepID || reader.GetAttribute("Target") == stepID)
                             {
@@ -248,7 +248,7 @@ namespace Ant.Parse
                 {
                     if (reader.MoveToContent() == XmlNodeType.Element)
                     {
-                        if (reader.Name.ToUpper() == "SEQUENCE")
+                        if (String.Equals(reader.Name,"SEQUENCE",StringComparison.CurrentCultureIgnoreCase))
                         {
                             if (reader.GetAttribute("ID") == sequenceID)
                             {
@@ -290,7 +290,7 @@ namespace Ant.Parse
                 reader.ReadToFollowing("Steps");
                 while (reader.Read())
                 {
-                    if (reader.MoveToContent() == XmlNodeType.Element && reader.Name.ToUpper() == "STARTEVENT")
+                    if (reader.MoveToContent() == XmlNodeType.Element && String.Equals(reader.Name,"STARTEVENT",StringComparison.CurrentCultureIgnoreCase))
                     {
                         starters.Add(XmlUtil.Deserialize(typeof(ZStartEvent), reader.ReadOuterXml()) as ZStartEvent);
                     }
@@ -301,6 +301,81 @@ namespace Ant.Parse
                 }
             }
             return starters;
+        }
+
+        public List<ZParam> FindAllParams(Stream processXml) 
+        {
+            List<ZParam> paramList = new List<ZParam>();
+            StreamUtil.Restore(ref processXml);
+            using (XmlReader reader = XmlReader.Create(processXml))
+            {
+                reader.ReadToFollowing("Params");
+                while (reader.Read())
+                {
+                    if (reader.MoveToContent() == XmlNodeType.Element)
+                    {
+                        if (String.Equals(reader.Name,"PARAM",StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            paramList.Add(XmlUtil.Deserialize(typeof(ZParam), reader.ReadOuterXml()) as ZParam);
+                        }
+                    }
+                }
+            }
+            return paramList;
+        }
+
+        /// <summary>
+        /// 寻找节点
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="processXml"></typeparam>
+        /// <param name="tag">节点Tag名称</param>
+        /// <param name="id">节点ID</param>
+        /// <returns></returns>
+        public T FindNode<T>(Stream processXml, string tag, string id)
+        {
+            object o = null;
+            using (XmlReader reader = XmlReader.Create(processXml))
+            {
+                do
+                {
+                    reader.ReadToFollowing(tag);
+                    if (reader.MoveToContent() == XmlNodeType.Element)
+                    {
+                        if (String.Equals(reader.Name, tag, StringComparison.CurrentCultureIgnoreCase) && String.Equals(reader.GetAttribute("ID"), id, StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            o = XmlUtil.Deserialize<T>(reader.ReadOuterXml());
+                        }
+                    }
+                } while (reader.Read());
+            }
+            return (T)o;
+        }
+        #endregion
+
+        #region 寻找节点List
+        public List<T> GetElementList<T>(Stream processXml, string xmlTag)
+        {
+            List<T> elements = new List<T>();
+            bool skip = false;
+            StreamUtil.Restore(ref processXml);
+            using (XmlReader reader = XmlReader.Create(processXml))
+            {
+                reader.ReadToFollowing(xmlTag + "s");
+                while (reader.Read() && !skip)
+                {
+                    if (reader.MoveToContent() == XmlNodeType.Element)
+                    {
+                        if (String.Equals(reader.Name,xmlTag,StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            elements.Add(XmlUtil.Deserialize<T>(reader.ReadOuterXml()));
+                        }
+                        else
+                            break;
+                    }
+                }
+            }
+            return elements;
         }
         #endregion
     }

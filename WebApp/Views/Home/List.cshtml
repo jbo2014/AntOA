@@ -1,5 +1,6 @@
 ﻿
 @{
+    Layout = null;
     ViewBag.Title = "List";
 }
 
@@ -8,13 +9,16 @@
 
 流程列表：
 @{ List<Model.WfProcess> processes = ViewBag.Processes; }
-@foreach (Model.WfProcess p in processes)
+@if (processes != null && processes.Count() > 0)
 {
-    <li>
-        @*<input type="hidden" value="1" class="IsNew"/>
-        <input type="hidden" value="@p.ProcessGuid" class="ID"/>*@
-        <a href="/Home/Handle?isNew=true&id=@p.ProcessGuid" class="create">@p.ProcessName</a>
-    </li>
+    foreach (Model.WfProcess p in processes)
+    {
+        <li>
+            @*<input type="hidden" value="1" class="IsNew"/>
+            <input type="hidden" value="@p.ProcessGuid" class="ID"/>*@
+            <a href="/Home/Handle?isNew=true&id=@p.ProcessGuid" class="create">@p.ProcessName</a>
+        </li>
+    }
 }
 
 <br/><br/>
@@ -24,17 +28,24 @@
 {
     <li>@t</li>
 }*@
-@{ List<Model.WfTask> tasks = ViewBag.Tasks; }
+@{ List<Model.ViewModel.TaskVM> tasks = ViewBag.Tasks; }
 @if (tasks!=null && tasks.Count() > 0)
 {
-    foreach (Model.WfTask t in tasks)
-    {
-        <li>
-            @*<input type="hidden" value="1" class="IsNew"/>
-            <input type="hidden" value="@p.ProcessGuid" class="ID"/>*@
-            <a href="/Home/Handle?isNew=false&id=@t.TaskGuid" class="open">@t.TaskTitle</a>
-        </li>
-    }
+    <table>
+        <thead><tr><td>实例标题</td><td>实例开始时间</td><td>任务标题</td><td>任务创建时间</td><td>操作</td></tr></thead>
+        <tbody>
+        @foreach (Model.ViewModel.TaskVM t in tasks)
+        {
+            <tr>
+                <td>@t.InstanceTitle</td>
+                <td>@t.StartTime</td>
+                <td>@t.TaskTitle</td>
+                <td>@t.CreateTime</td>
+                <td><a href="/Home/Handle?isNew=false&id=@t.TaskGuid" class="open">办理</a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
 }
 
 

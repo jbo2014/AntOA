@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<configuration>
+  <ModelItem Key="1" Path="Template\TemplateModel.dll" 	        ClassName="Esint.Template.Model.MVC_Model_01"	            Title="Model层" 	          FileName="{0}" 		FilePath="C:\Code\Model\"  		NameSpace="Model"		CodeType="C#" 	IsMBuilder="True"/>
+  <ModelItem Key="6" Path="Template\TemplateWeb.dll"            ClassName="Esint.Template.TemplateWeb.MVCWebList"	    Title="前台视图、控制器、BLL" 	  FileName="{0}List" 	FilePath="C:\Code\Web\" 		NameSpace="{0}.Web.Areas.Reservation.Controllers"	CodeType="HTML" IsMBuilder="False"  IsMVCWeb="True"/>  
+</configuration>

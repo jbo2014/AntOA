@@ -5,8 +5,8 @@ namespace Model.Mapping
 {
     /// <summary>
     /// 文件说明: 信息实体映射
-    /// 作    者: WJB
-    /// 生成日期: 2017年12月26日
+    /// 作    者: JBO
+    /// 生成日期: 2017年12月30日
     /// 生成模板: CTSR.Template.Model.MVC_Model_01 版
     /// 修改说明：
     /// </summary>

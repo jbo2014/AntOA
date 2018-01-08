@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<configuration>
+  <ModelItem Key="1" Path="Template\TemplateModel.dll" 	        ClassName="Esint.Template.Model.MVC_Model_01"	            Title="Model层" 	          FileName="{0}" 		FilePath="C:\Code\Model\"  		NameSpace="Model"		CodeType="C#" 	IsMBuilder="True"/>
+  <ModelItem Key="9" Path="Template\TemplateOracleDAL.dll" 	ClassName="Esint.Template.OracleDAL.OracleDBConnect_01"  Title="MVC-Oracle连接文件" 	  FileName="SQLDB" 		FilePath="C:\Code\Model\"  	        NameSpace="Model"		CodeType="C#" 	IsMBuilder="True" SignFile="True"/>
+</configuration>

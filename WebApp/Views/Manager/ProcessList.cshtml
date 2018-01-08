@@ -1,0 +1,29 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>ProcessList</title>
+</head>
+<body>
+    <div>
+        <table>
+            <thead><td>名称</td><td>创建时间</td><td>当前版本</td><td>操作</td></thead>
+            <tbody>
+            @foreach (Model.WfProcess process in ViewBag.ProcessList) 
+            {
+                <tr>
+                <td>@process.ProcessName</td>
+                <td>@process.CreateTime</td>
+                <td>@process.MasterVer</td>
+                <td><a href="#">流程定义</a><a href="/Manager/FormList?isCase=0&id=@process.ProcessGuid">表单定义</a><a href="#">变量设置</a></td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -61,6 +61,7 @@ namespace Ant.Enact
                 token.ElementID = context.Element.ID;
                 token.Status = TokenStatus.Waiting;
 
+                iContext.InstanceID = context.InstanceID;
                 iContext.Element = line;
                 iContext.Token = token;
                 iContext.ProcessXml = context.ProcessXml;

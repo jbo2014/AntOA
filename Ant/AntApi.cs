@@ -5,6 +5,7 @@ using System.Text;
 using Model;
 using Ant.Enact;
 using Ant.Service;
+using Ant.Entity.Esse;
 
 namespace Ant
 {
@@ -13,7 +14,6 @@ namespace Ant
     /// </summary>
     public class AntApi
     {
-
         #region 属性
         private static EnactService _enactor;
         private static RuntimeService _runtimeService;
@@ -21,85 +21,27 @@ namespace Ant
         private static TaskService _taskService;
         private static AuthService _authService;
         private static FormService _formService;
-        private static SQLDB _db;
+        private static ManageService _manageService;
+        //private static DbService _db;
+        private static SQLDB _db = new SQLDB();
         private static readonly object syn = new object();
-
-
-        //public static IEnactService GetEnactor()
-        //{
-        //    if (_enactor == null)
-        //    {
-        //        lock (syn)
-        //        {
-        //            if (_enactor == null)
-        //            {
-        //                _enactor = new EnactService();
-        //            }
-        //        }
-        //    }
-        //    return _enactor;
-        //}
-
-        //public static RuntimeService GetRuntimeService()
-        //{
-        //    if (_runtimeService == null)
-        //    {
-        //        lock (syn)
-        //        {
-        //            if (_runtimeService == null)
-        //            {
-        //                _runtimeService = new RuntimeService();
-        //            }
-        //        }
-        //    }
-        //    return _runtimeService;
-        //}
-
-        //public static ProcessService GetProcessService()
-        //{
-        //    if (_processService == null)
-        //    {
-        //        lock (syn)
-        //        {
-        //            if (_processService == null)
-        //            {
-        //                _processService = new ProcessService();
-        //            }
-        //        }
-        //    }
-        //    return _processService;
-        //}
-
-        //public static TaskService GetTaskService()
-        //{
-        //    if (_taskService == null)
-        //    {
-        //        lock (syn)
-        //        {
-        //            if (_taskService == null)
-        //            {
-        //                _taskService = new TaskService();
-        //            }
-        //        }
-        //    }
-        //    return _taskService;
-        //}
 
         public static EnactService Enactor
         {
             get
             {
-                if (_enactor == null)
-                {
-                    lock (syn)
-                    {
-                        if (_enactor == null)
-                        {
-                            _enactor = new EnactService();
-                        }
-                    }
-                }
-                return _enactor;
+                //if (_enactor == null)
+                //{
+                //    lock (syn)
+                //    {
+                //        if (_enactor == null)
+                //        {
+                //            _enactor = new EnactService();
+                //        }
+                //    }
+                //}
+                //return _enactor;
+                return new EnactService();
             }
         }
 
@@ -107,17 +49,18 @@ namespace Ant
         {
             get
             {
-                if (_runtimeService == null)
-                {
-                    lock (syn)
-                    {
-                        if (_runtimeService == null)
-                        {
-                            _runtimeService = new RuntimeService();
-                        }
-                    }
-                }
-                return _runtimeService;
+                //if (_runtimeService == null)
+                //{
+                //    lock (syn)
+                //    {
+                //        if (_runtimeService == null)
+                //        {
+                //            _runtimeService = new RuntimeService();
+                //        }
+                //    }
+                //}
+                //return _runtimeService;
+                return new RuntimeService();
             }
         }
 
@@ -125,17 +68,18 @@ namespace Ant
         {
             get
             {
-                if (_processService == null)
-                {
-                    lock (syn)
-                    {
-                        if (_processService == null)
-                        {
-                            _processService = new ProcessService();
-                        }
-                    }
-                }
-                return _processService;
+                //if (_processService == null)
+                //{
+                //    lock (syn)
+                //    {
+                //        if (_processService == null)
+                //        {
+                //            _processService = new ProcessService();
+                //        }
+                //    }
+                //}
+                //return _processService;
+                return new ProcessService();
             }
         }
 
@@ -143,17 +87,18 @@ namespace Ant
         {
             get
             {
-                if (_taskService == null)
-                {
-                    lock (syn)
-                    {
-                        if (_taskService == null)
-                        {
-                            _taskService = new TaskService();
-                        }
-                    }
-                }
-                return _taskService;
+                //if (_taskService == null)
+                //{
+                //    lock (syn)
+                //    {
+                //        if (_taskService == null)
+                //        {
+                //            _taskService = new TaskService();
+                //        }
+                //    }
+                //}
+                //return _taskService;
+                return new TaskService();
             }
         }
 
@@ -179,17 +124,37 @@ namespace Ant
         {
             get
             {
-                if (_formService == null)
-                {
-                    lock (syn)
-                    {
-                        if (_formService == null)
-                        {
-                            _formService = new FormService();
-                        }
-                    }
-                }
-                return _formService;
+                //if (_formService == null)
+                //{
+                //    lock (syn)
+                //    {
+                //        if (_formService == null)
+                //        {
+                //            _formService = new FormService();
+                //        }
+                //    }
+                //}
+                //return _formService;
+                return new FormService();
+            }
+        }
+
+        public static ManageService Manager
+        {
+            get
+            {
+            //    if (_manageService == null)
+            //    {
+            //        lock (syn)
+            //        {
+            //            if (_manageService == null)
+            //            {
+            //                _manageService = new ManageService();
+            //            }
+            //        }
+            //    }
+            //    return _manageService;                
+                return new ManageService();
             }
         }
 
@@ -197,47 +162,29 @@ namespace Ant
         {
             get
             {
-                if (_db == null)
-                {
-                    lock (syn)
-                    {
-                        if (_db == null)
-                        {
-                            _db = new SQLDB();
-                        }
-                    }
-                }
+                //if (_db == null)
+                //{
+                //    lock (syn)
+                //    {
+                //        if (_db == null)
+                //        {
+                //            _db = new SQLDB();
+                //        }
+                //    }
+                //}
+                //return _db;
                 return _db;
             }
         }
+
+        public static BpmContext Context { get; set; }
         #endregion
 
-        //#region 1.定义转换
-        //#endregion
+        #region 方法
 
-        //#region 2.客户端/用户操作
-        ///// <summary>
-        ///// 发起/初始化流程，用户打开新流程，点击 保存/取消/转交 等按钮前的处理
-        ///// </summary>
-        ////public IEnactService Launch()
-        ////{}
-        ///// <summary>
-        ///// 新建流程，第一步点击转交按钮的处理
-        ///// </summary>
-        ////public IEnactService NewProcess()
-        ////{
+        #region 字段处理
+        #endregion
 
-        ////}
-        //public IEnactService 
-        //#endregion
-
-        //#region 3.应用调用
-        //#endregion
-
-        //#region 4.协调功能
-        //#endregion
-
-        //#region 5.管理
-        //#endregion
+        #endregion
     }
 }

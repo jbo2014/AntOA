@@ -9,14 +9,22 @@ namespace Ant.Utility
     public class StreamUtil
     {
         /// <summary>
-        /// 字符串转内存流
+        /// 字符串转流
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
         public static Stream StreamFromString(string str)
         {
-            byte[] array = Encoding.ASCII.GetBytes(str);
-            MemoryStream stream = new MemoryStream(array);  
+            MemoryStream stream = null;
+            if (string.IsNullOrEmpty(str))
+            {
+                return null;
+            }
+            else
+            {
+                byte[] array = Encoding.ASCII.GetBytes(str);
+                stream = new MemoryStream(array);
+            }
             return stream;
         }
 
@@ -25,10 +33,18 @@ namespace Ant.Utility
         /// </summary>
         /// <param name="stream"></param>
         /// <returns></returns>
-        public static string Stream(Stream stream)
+        public static string StringFromStream(Stream stream)
         {
-            StreamReader reader = new StreamReader(stream);
-            string content = reader.ReadToEnd();
+            string content = string.Empty;
+            if (stream==null)
+            {
+                return null;
+            }
+            else
+            {
+                StreamReader reader = new StreamReader(stream);
+                content = reader.ReadToEnd();
+            }
             return content;
         }
 
@@ -39,7 +55,10 @@ namespace Ant.Utility
         /// <returns></returns>
         public static Stream Restore(ref Stream stream)
         {
-            stream.Position = 0;
+            if (stream != null)
+                stream.Position = 0;
+            else
+                return null;
             return stream;
         }
     }

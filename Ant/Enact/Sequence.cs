@@ -8,6 +8,7 @@ using Ant.Entity.Bpmx;
 using Ant.Entity.Esse;
 using Ant.Parse;
 using Ant.Common;
+using Ant.Enact.Pattern;
 
 namespace Ant.Enact
 {
@@ -35,7 +36,7 @@ namespace Ant.Enact
         /// 执行条件表达式
         /// </summary>
         /// <param name="args"></param>
-        public override bool Execute(BpmContext context) 
+        public new bool Execute(BpmContext context) 
         {
             ZSequence sequence = context.Element as ZSequence;
 

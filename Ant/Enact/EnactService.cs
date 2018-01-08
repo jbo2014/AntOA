@@ -9,6 +9,7 @@ using Ant.Enact;
 using Ant.Service;
 using Ant.Parse;
 using Ant.Entity.Esse;
+using Ant.Entity.Bpmx;
 using Ant.Enact.Operate;
 using Ant.Utility;
 using Ant.Enact.Activity;
@@ -17,6 +18,11 @@ namespace Ant.Enact
 {
     /// <summary>
     /// 工作机
+    /// 文件夹结构：
+    ///     Impl，各类具体元素执行
+    ///     Operate，人为控制流程
+    ///     Pattern，流转模式，顺序、并发、排他、包含等
+    ///     State，状态改变事件，关联改变过程、活动、任务的状态
     /// </summary>
     public class EnactService
     {
@@ -41,15 +47,22 @@ namespace Ant.Enact
 
         public void Next(Guid InstanceGuid, Guid TaskGuid) 
         {
-            WfInstance instance = AntApi.DB.WfInstances.Where(o => o.InstanceGuid == InstanceGuid).FirstOrDefault();
-            WfRepository repo = AntApi.DB.WfRepositorys.Where(o => o.RepoGuid == instance.RepoGuid).FirstOrDefault();
+            RtInstance instance = AntApi.DB.RtInstances.First(o => o.InstanceGuid == InstanceGuid);
+            RtTask task = AntApi.DB.RtTasks.First(o => o.TaskGuid == TaskGuid);
+            string ActivityID = AntApi.DB.RtActivitys.First(o => o.ActivityGuid == task.ActivityGuid).ActivityID;
+            Stream xml = StreamUtil.StreamFromString(instance.ProcessXml);
 
+            FlowObjParser fParser = new FlowObjParser();
+
+            ZUserTask zUserTask = fParser.FindNode<ZUserTask>(xml, "UserTask", ActivityID);
+            
             BpmContext context = new BpmContext();
             context.InstanceID = InstanceGuid;
-            context.ProcessXml = StreamUtil.StreamFromString(repo.BpmContent);
+            context.ProcessXml = xml;
+            context.Element = zUserTask;
 
-            UserTask task = new UserTask();
-            task.Leave(context);
+            Exchange userTask = zUserTask.Exchange;
+            userTask.Leave(context);
         }
 
         ///// <summary>

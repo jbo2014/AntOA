@@ -10,7 +10,7 @@ namespace Ant.Entity.Bpmx
     [XmlRoot("Param")]
     public class ZParam
     {
-        [XmlElement("Name")]
+        [XmlAttribute("Name")]
         public string Name { get; set; }
 
         [XmlElement("Type")]

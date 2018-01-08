@@ -9,6 +9,7 @@ namespace Ant.Entity.Bpmx
     public interface ZElement
     {
         string ID { get; set; }
+        //string Type { get; set; }
         Exchange Exchange { get; set; }
     }
 }

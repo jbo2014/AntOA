@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Model;
 
 namespace WebApp
 {
@@ -31,6 +32,11 @@ namespace WebApp
 
         protected void Application_Start()
         {
+            using (SQLDB db = new SQLDB())
+            {
+                db.Database.Initialize(true);
+            }
+         
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);

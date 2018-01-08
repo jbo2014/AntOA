@@ -5,6 +5,7 @@ using System.Text;
 using Ant.Entity.Bpmx;
 using Ant.Entity.Esse;
 using Ant.Common;
+using Ant.Parse;
 
 namespace Ant.Enact.Pattern
 {
@@ -13,6 +14,9 @@ namespace Ant.Enact.Pattern
     /// </summary>
     public class Split
     {
+
+        public FlowObjParser fParser = new FlowObjParser();
+
         /// <summary>
         /// 节点寻找右端所有连接线,重新赋值Context
         /// </summary>

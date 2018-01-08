@@ -1,0 +1,277 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="/Content/Form/static/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/Form/extra/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/Form/extra/css/bootstrap-yii.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/Form/extra/css/bootstrap-notify.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/Form/extra/css/bootstrap-modal.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/Form/extra/css/icomoon.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/Form/static/css/form.css" />
+    <script type="text/javascript" src="/Content/Form/extra/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/Content/Form/extra/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/Content/Form/extra/js/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="/Content/Form/extra/js/bootstrap.bootbox.min.js"></script>
+    <script type="text/javascript" src="/Content/Form/extra/js/bootstrap.notify.js"></script>
+    <script type="text/javascript" src="/Content/Form/extra/js/bootstrap-prompts.js"></script>
+    <script type="text/javascript" src="/Content/Form/extra/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Content/Form/extra/js/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="/Content/Form/extra/js/bootstrap-modalmanager.js"></script>
+    <title>Ant表单设计器</title>
+    <link rel="stylesheet" type="text/css" href="/Content/Form/static/css/td-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Form/static/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Form/static/css/global.css">
+    <link rel="shortcut icon" href="/Content/Form/static/favicon.ico">
+    <script src="/Content/Form/extra/js/modernizr-2.6.1.min.js"></script>
+    <script src="/Content/Form/static/js/util.js"></script>
+    <script type="text/javascript" src="/Content/Form/extra/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="/Content/Form/extra/js/jquery.nicescroll.js"></script>
+    
+    <script src="/Content/Form/static/js/toolbar.js"></script>
+</head>
+<body style="overflow: hidden;">
+    <a id="scrollTop"></a>
+    <!--Loading-->
+    <div id="loading_layer">
+        <img src="/Content/Form/static/images/js_loader.gif" alt="" />
+    </div>
+    <!--导航栏-->
+    <div id="page-navbar">
+        <div id="yw0" class="td-nav">
+            <table class="td-nav-table">
+                <tr>
+                    <td>
+                        <span class="td-nav-title">表单设计器--工作交办单</span>
+                    </td>
+                    <td>
+                        <div class="pull-right">
+                            <button onclick="preSubmit();editor.formSave()" class="btn btn-danger" id="yw1" name="yt0" type="button">
+                                保存表单</button>
+                            <a style="margin-left: 3px;" target="_blank" class="btn btn-success" id="yw2" href="/form/html/view/formID/7bae1098-fcb2-bfb2-c9ea-319e28d32676">
+                                预览表单</a> <a style="margin-left: 3px" onclick="editor.close()" class="btn" id="yw3">关闭</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="container-scroller">
+        <div>
+            <script>
+                var g_form_id = '@(ViewBag.Form!=null?ViewBag.Form.FormGuid:null)';
+                var g_requestURL = '/FormBuilder/Insert';
+                var g_removeURL = '/form/htmlField/delete';
+                var g_loadFormFieldURL = '/form/html/loadActive/id/_id/formID/_formID/randomNum/_randomNum';
+                var g_loadFieldURL = '/form/html/getFields/formID/7bae1098-fcb2-bfb2-c9ea-319e28d32676';
+                var g_loadRuleURL = '/sys/rule/getRules';
+                var g_loadCodeURL = '/sys/code/type';
+                var g_loadExpressionURL = '/sys/rule/getExpression/id/_ruleID';
+                var g_loadListViewURL = '/form/htmlField/listView/id/_id/randomNum/_randomNum';
+                var g_loadSignURL = '/form/htmlField/sign/id/_id/randomNum/_randomNum';
+                var g_loadWebSignURL = '/form/htmlField/webSign/id/_id/formID/_formID/randomNum/_randomNum';
+                var baseUrl = '/extra';
+
+                var g_instanceGuid = '';
+                var g_repoGuid = 'A40797C6-0DDA-4A23-B104-43607D6A69B9';
+                var g_getFieldsURL = '/FormBuilder/GetFields';
+                var isInstance = 0; //0是流程定义，1是实例
+                var mainID = g_repoGuid;
+                if (g_instanceGuid != null && g_instanceGuid != undefined && g_instanceGuid != '') {
+                    isInstance = 1;
+                    mainID = g_instanceGuid;
+                }
+            </script>
+            <div id="collapsing">
+                <i></i>
+            </div>
+            <div id="left_bar" style="float: left; width: 250px;">
+                <div style="width: 240px; padding-left: 1px; padding-top: 4px;" id="form-html-field-grid"
+                    class="grid-view">
+                    <table class="items table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width: 80px;" id="form-html-field-grid_c0">
+                                    名称
+                                </th>
+                                <th style="width: 24px;" id="form-html-field-grid_c1">
+                                    类型
+                                </th>
+                                <th style="width: 30px; text-align: center;" id="form-html-field-grid_c2">
+                                    操作
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <div class="keys" style="display: none" title="/form/html/designer/formID/7bae1098-fcb2-bfb2-c9ea-319e28d32676">
+                    </div>
+                </div>
+            </div>
+            <form style="float: left; margin-bottom: 0px;" class="form-vertical" id="form-html-form"
+            action="/FormBuilder/FormSave" method="post">
+            <input type="hidden" name="MasterGuid" id="MasterGuid" value="@ViewBag.MasterGuid" />
+            <input type="hidden" name="FormGuid" id="FormGuid" value="@(ViewBag.Form!=null?ViewBag.Form.FormGuid:null)" />
+            <input type="hidden" name="IsCase" id="IsCase" value="@ViewBag.IsCase" />
+            <label for="FormHtml_print_model">
+            </label>
+            <textarea id="FormHtml_print_model" name="FormHtml">@Html.Raw(ViewBag.Form!=null?ViewBag.Form.Html:null)</textarea>
+            </form>
+            <div id="right_bar" class="widget-container">
+                <h4>
+                    <span>设计器控件</span>
+                </h4>
+                <ul class="widget-group-items-list">
+                    <li class="tdtextfield" onclick="editor.editorObj.openDialog(&quot;tdtextfield&quot;)">
+                        <i></i><span>单行输入框</span> </li>
+                    <li class="tdtextarea" onclick="editor.editorObj.openDialog(&quot;tdtextarea&quot;)">
+                        <i></i><span>多行输入框</span> </li>
+                    <li class="tdselect" onclick="editor.editorObj.openDialog(&quot;tdselect&quot;)"><i>
+                    </i><span>下拉菜单</span> </li>
+                    <li class="tdradio" onclick="editor.editorObj.openDialog(&quot;tdradio&quot;)"><i></i>
+                        <span>单选框</span> </li>
+                    <li class="tdcheckbox" onclick="editor.editorObj.openDialog(&quot;tdcheckbox&quot;)">
+                        <i></i><span>复选框</span> </li>
+                    <li class="cdxdtpicker" onclick="editor.editorObj.openDialog(&quot;cdxdtpicker&quot;)">
+                        <i></i><span>日历控件</span> </li>
+                    <li class="suseranddept" onclick="editor.editorObj.openDialog(&quot;suseranddept&quot;)">
+                        <i></i><span>部门人员控件</span> </li>
+                    @*<li class="listview" onclick="editor.editorObj.openDialog(&quot;listview&quot;)">
+                        <i></i>
+                        <span>列表控件</span>
+                    </li>
+                    <li class="countersign" onclick="editor.editorObj.openDialog(&quot;countersign&quot;)">
+                        <i></i>
+                        <span>会签控件</span>
+                    </li>
+                    <li class="signature" onclick="editor.editorObj.openDialog(&quot;signature&quot;)">
+                        <i></i>
+                        <span>移动签章控件</span>
+                    </li>
+                    <li class="writesign" onclick="editor.editorObj.openDialog(&quot;writesign&quot;)">
+                        <i></i>
+                        <span>签章控件</span>
+                    </li>
+                    <li class="dimensionalcode" onclick="editor.editorObj.openDialog(&quot;dimensionalcode&quot;)">
+                        <i></i>
+                        <span>二维码控件</span>
+                    </li>
+                    <li class="fileupload" onclick="editor.editorObj.openDialog(&quot;fileupload&quot;)">
+                        <i></i>
+                        <span>附件上传控件</span>
+                    </li>
+                    <li class="macro" onclick="editor.editorObj.openDialog(&quot;macro&quot;)">
+                        <i></i>
+                        <span>宏控件</span>
+                    </li>
+                    <li class="tcount" onclick="editor.editorObj.openDialog(&quot;tcount&quot;)">
+                        <i></i>
+                        <span>编号控件</span>
+                    </li>
+                    <li class="syscode" onclick="editor.editorObj.openDialog(&quot;syscode&quot;)">
+                        <i></i>
+                        <span>系统代码控件</span>
+                    </li>
+                    <li class="flowcomment" onclick="editor.editorObj.openDialog(&quot;flowcomment&quot;)">
+                        <i></i>
+                        <span>回退意见</span>
+                    </li>*@
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>setTimeout('$("#loading_layer").remove();$("body").show();$(window).trigger("resize");', 100)</script>
+    <div id="container-absolute">
+    </div>
+
+    <script type="text/javascript" src="/Content/Form/extra/js/jquery.yiigridview.js"></script>
+    <script type="text/javascript" src="/Content/Form/extra/js/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/Content/Form/static/js/editor.js"></script>
+    <script type="text/javascript">
+        jQuery(function($) {
+            jQuery('[rel=tooltip]').tooltip({'container':'body','template':'<div class=\"tooltip\"><div class=\"tooltip-shadow\"><div class=\"tooltip-container\"><div class=\"tooltip-arrow\"><em><\/em><span><\/span><\/div><div class=\"tooltip-inner\"><\/div><\/div><\/div><\/div>','animation':false});
+            jQuery('#form-html-field-grid').yiiGridView({'ajaxUpdate':['form-html-field-grid'],'ajaxVar':'ajax','pagerClass':'pagination','loadingClass':'grid-view-loading','filterClass':'filters','tableClass':'items table table-bordered','selectableRows':1,'enableHistory':false,'updateSelector':'{page}, {sort}','filterSelector':'{filter}','pageVar':'FormHtmlField_page','afterAjaxUpdate':function() {
+                jQuery('.popover').remove();
+                jQuery('[rel=popover]').popover({'container':'body','animation':false});
+                jQuery('.tooltip').remove();
+                jQuery('[rel=tooltip]').tooltip({'container':'body', 'animation':false, 'template':'<div class="tooltip"><div class="tooltip-shadow"><div class="tooltip-container"><div class="tooltip-arrow"><em></em><span></span></div><div class="tooltip-inner"></div></div></div></div>'});
+                           
+            }});
+            CKEDITOR.replace('FormHtml_print_model', { 'toolbar': 'Form' });
+            CKEDITOR.on('instanceReady', function (ck) {
+                var leftBarWidth = $.cookie('leftBar') == 'hide' ? 0 :$('#left_bar').outerWidth();
+                
+                ck.editor.resize( $(window).width()- leftBarWidth - $('#right_bar').outerWidth() - 8, $(window).height() - $('#page-navbar').height() - $('.cke_top').height() - $('.cke_bottom').height() - 25,true );
+                //ck.editor.resize( $(window).width()- leftBarWidth - 8, $(window).height() - $('#page-navbar').height() - $('.cke_top').height() - $('.cke_bottom').height() - 25,true );
+            });
+            editor.init();
+        
+        });
+        jQuery(window).on('load',function() {
+
+            if($.browser.msie){
+                $("a[href=\"javascript:void(0)\"]").live("click",function (e){
+                    e.preventDefault();
+                });
+            }
+            $(".td-nav-table").css({"margin-left":"6px"});
+            $(window).resize(function(){
+                var status = $.cookie("leftBar");
+                var leftBarWidth = "";
+                if(status == "hide") {
+                    $("#left_bar").hide();
+                    leftBarWidth = 0;
+                } else {
+                    leftBarWidth = 250;
+                }
+                var height = $(window).height();
+                var width = $(window).width();
+                var navbar = $("#page-navbar").height();
+                $("#left_bar,#right_bar").height(height - navbar - 8);
+                if(typeof($.browser.msie) == "undefined" || ($.browser.msie && $.browser.version != "8.0")) {
+                    $("#left_bar").height(height - navbar * 1.3);
+                }
+                $(".content").height(height-navbar);
+                $(".cke_contents").height(height-navbar - $(".cke_top").height() - $(".cke_bottom").height() - 25);
+                $(".cke_contents iframe").width(width - leftBarWidth - $("#right_bar").width() - 10);
+                //$(".cke_contents iframe").width(width - leftBarWidth - 10);
+                $(".cke_contents iframe").height(height-navbar - $(".cke_top").height() - $(".cke_bottom").height() - 25);
+                $("#cke_FormHtml_print_model,#form-html-form").width(width - leftBarWidth - $("#right_bar").width() - 10);
+                //$("#cke_FormHtml_print_model,#form-html-form").width(width - leftBarWidth - 10);
+            });
+            $(window).trigger("resize");
+            $("#left_bar,#right_bar").niceScroll({cursorcolor:"#ccc"});
+
+        
+            //ReLayoutToolbar();
+        });
+        /*]]>*/
+
+        //提交表单前处理提交数据
+        function preSubmit(){
+            $('#form-html-form').submit(function () {
+                for (instance in CKEDITOR.instances) {
+                    CKEDITOR.instances[instance].updateElement();
+                }
+                $.ajax({
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    url: this.action,
+                    success: function (xhr) {
+                        alert(xhr.Message);
+                    },
+                    error: function (xhr) {
+                        alert("有问题！");
+                    }
+                });
+                return false;
+            });
+        }
+    </script>
+</body>
+</html>

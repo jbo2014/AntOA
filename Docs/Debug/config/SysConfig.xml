@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <DataBaseType>SqlServer</DataBaseType>
+ <!--  <ConnectString>server=.;User ID=sa;Password=password01!;database=TPM;Connection Reset=true;Max Pool Size=512</ConnectString> -->
+ <ConnectString>Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=AntOA;Integrated Security=True;Pooling=False</ConnectString>
+  <TableHeaderString>T_</TableHeaderString>
+  <DBUserID>sa</DBUserID>
+  <DataBaseName>AntOA</DataBaseName>
+  <CodeSelectSQL>select  FLAG, MEANING as meaning from T_Sys_CODEMAP  </CodeSelectSQL>
+  <CodeSQL>select meaning from t_Sys_code where flag='{0}'  and code={1}</CodeSQL>
+  <AppName>AntOA</AppName>
+  <OperName>JBO</OperName>
+  <IsOpenFolder>1</IsOpenFolder>
+  <RegCode>
+  </RegCode>
+  <WebServer2>http://localhost/webservice/</WebServer2>
+  <WebServer>
+  </WebServer>
+</configuration>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+using Model.ViewModel;
 
 namespace Ant.Service
 {
@@ -19,16 +20,16 @@ namespace Ant.Service
         #endregion
 
         #region 用户操作
-        public WfInstance GetInstanceByTask(Guid TaskGuid) 
+        public RtInstance GetInstanceByTask(Guid TaskGuid) 
         {
-            WfTask task = AntApi.DB.WfTasks.First<WfTask>(o => o.TaskGuid == TaskGuid);
-            WfInstance instance = AntApi.DB.WfInstances.First<WfInstance>(o => o.InstanceGuid == task.InstanceGuid);
+            RtTask task = AntApi.DB.RtTasks.First<RtTask>(o => o.TaskGuid == TaskGuid);
+            RtInstance instance = AntApi.DB.RtInstances.First<RtInstance>(o => o.InstanceGuid == task.InstanceGuid);
             return instance;
         }
-        public WfTask GetTaskByInstance(Guid InstanceGuid)
+        public RtTask GetFirstTaskByInstance(Guid InstanceGuid)
         {
-            WfInstance instance = AntApi.DB.WfInstances.First<WfInstance>(o => o.InstanceGuid == InstanceGuid);
-            WfTask task = AntApi.DB.WfTasks.First<WfTask>(o => o.InstanceGuid == instance.InstanceGuid);
+            RtInstance instance = AntApi.DB.RtInstances.First<RtInstance>(o => o.InstanceGuid == InstanceGuid);
+            RtTask task = AntApi.DB.RtTasks.First<RtTask>(o => o.InstanceGuid == instance.InstanceGuid);
             return task;
         }
 
@@ -36,12 +37,52 @@ namespace Ant.Service
         /// 获取用户对应的任务列表
         /// </summary>
         /// <param name="taskGuid"></param>
-        public List<WfTask> GetTaskListByUser(string UserID) 
+        public List<TaskVM> GetTaskListByUser(string UserID) 
         {
-            List<WfTask> tasks = AntApi.DB.WfTasks.Where(o=>(o.Executor==UserID)||(o.Owner==UserID && string.IsNullOrEmpty(o.Executor))).ToList<WfTask>();
+            List<TaskVM> taskList = new List<TaskVM>();
+            TaskVM taskVM = null;
+            List<RtTask> tasks = AntApi.DB.RtTasks.Where(o=>(o.Executor==UserID)||(o.Owner==UserID && string.IsNullOrEmpty(o.Executor))).ToList<RtTask>();
             if (tasks.Count() > 0)
-                return tasks;
+            {
+                foreach (RtTask task in tasks) 
+                {
+                    taskVM = new TaskVM();
+                    taskVM.TaskGuid = task.TaskGuid;
+                    taskVM.InstanceGuid = task.InstanceGuid;
+                    taskVM.TaskTitle = task.TaskTitle;
+                    if (task.InstanceGuid_FK != null)
+                    {
+                        taskVM.InstanceTitle = task.InstanceGuid_FK.InstanceTitle;
+                        taskVM.StartTime = task.InstanceGuid_FK.StartTime;
+                    }
+                    taskVM.CreateTime = task.CreateTime;
+                    taskList.Add(taskVM);
+                }
+                return taskList.OrderByDescending(o=>o.CreateTime.Value).ToList();
+            }
             return null;
+        }
+
+        /// <summary>
+        /// 获取Task
+        /// </summary>
+        /// <param name="taskGuid"></param>
+        /// <returns></returns>
+        public RtTask GetTaskByTaskGuid(Guid taskGuid) 
+        {
+            RtTask task = AntApi.DB.RtTasks.First(o => o.TaskGuid == taskGuid);
+            return task;
+        }
+
+        /// <summary>
+        /// 获取活动实例
+        /// </summary>
+        /// <returns></returns>
+        public RtActivity GetActivityByTaskGuid(Guid taskGuid) 
+        {
+            RtTask task = AntApi.DB.RtTasks.First(o => o.TaskGuid == taskGuid);
+            RtActivity activity = AntApi.DB.RtActivitys.First(o=>o.ActivityGuid == task.ActivityGuid);
+            return activity;
         }
 
         /// <summary>
@@ -63,17 +104,6 @@ namespace Ant.Service
         /// </summary>
         public void AddSign() 
         { }
-
-        /// <summary>
-        /// 获取任务表单
-        /// </summary>
-        public string GetTaskForm(Guid taskGuid)
-        {
-            WfTask task = AntApi.DB.WfTasks.First<WfTask>(o => o.TaskGuid == taskGuid);
-            if (task != null)
-                return task.NodeID;
-            return null;
-        }
 
         public void Complete(Guid taskGuid) 
         { }

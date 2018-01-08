@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<configuration>
+   <DisplayName>[DisplayName("{0}")]</DisplayName>
+  <Key>[Key]</Key>
+  <Required>[Required]</Required>
+  <Range>[Range({0}, int.MaxValue, ErrorMessage = "{1}")]</Range>
+</configuration>

@@ -37,7 +37,7 @@ namespace Ant.Entity.Bpmx
         [XmlElement("TaskPage")]
         public string TaskPage { get; set; }
 
-        [XmlElement("Candidate")]
-        public string Candidate { get; set; }
+        [XmlElement("Candidates")]
+        public string Candidates { get; set; }
     }
 }

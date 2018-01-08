@@ -8,6 +8,7 @@ namespace Ant.Service
 {
     public abstract class BaseService
     {
+        //public SQLDB db { get { return new SQLDB(); } }
         public SQLDB db = new SQLDB();
 
         /// <summary>

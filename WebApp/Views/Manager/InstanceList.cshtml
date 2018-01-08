@@ -1,0 +1,30 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>InstanceList</title>
+</head>
+<body>
+    <div>
+        <table>
+            <thead><td>名称</td><td>发起人</td><td>创建时间</td><td>状态</td><td>操作</td></thead>
+            <tbody>
+            @foreach (Model.RtInstance instance in ViewBag.InstanceList) 
+            {
+                <tr>
+                    <td>@instance.InstanceTitle</td>
+                    <td>@instance.Originator</td>
+                    <td>@instance.StartTime</td>
+                    <td>@instance.InstanceStatus</td>
+                    <td><a href="#">流程定义</a> | <a href="/Manager/FormList?isCase=1&id=@instance.InstanceGuid">表单定义</a> | <a href="#">变量设置</a></td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

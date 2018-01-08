@@ -15,6 +15,11 @@ namespace Ant.Entity.Esse
         public Guid InstanceID;
 
         /// <summary>
+        /// 当前流程实例对应Repository的GuID
+        /// </summary>
+        public Guid RepoID;
+
+        /// <summary>
         /// 当前流程定义文件的流
         /// </summary>
         public Stream ProcessXml;
