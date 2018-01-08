@@ -46,7 +46,11 @@ namespace Ant.Utility
         /// <param name="column"></param>
         /// <param name="value"></param>
         /// <returns></returns>
+<<<<<<< HEAD
         public static Expression<Func<T, bool>> CreateEqual<T>(string propertyName, string propertyValue)
+=======
+        public static Expression<Func<T, bool>> Equal<T>(string propertyName, string propertyValue)
+>>>>>>> d20cbeb43484657510fd80d9fb1359c148f31648
         {
             ParameterExpression parameter = Expression.Parameter(typeof(T), "p");//创建参数p
             MemberExpression member = Expression.PropertyOrField(parameter, propertyName);
@@ -61,7 +65,11 @@ namespace Ant.Utility
         /// <param name="propertyName"></param>
         /// <param name="propertyValue"></param>
         /// <returns></returns>
+<<<<<<< HEAD
         public static Expression<Func<T, bool>> CreateNotEqual<T>(string propertyName, string propertyValue)
+=======
+        public static Expression<Func<T, bool>> NotEqual<T>(string propertyName, string propertyValue)
+>>>>>>> d20cbeb43484657510fd80d9fb1359c148f31648
         {
             ParameterExpression parameter = Expression.Parameter(typeof(T), "p");//创建参数p
             MemberExpression member = Expression.PropertyOrField(parameter, propertyName);
@@ -76,7 +84,11 @@ namespace Ant.Utility
         /// <param name="column"></param>
         /// <param name="value"></param>
         /// <returns></returns>
+<<<<<<< HEAD
         public static Expression<Func<T, bool>> CreateGreaterThan<T>(string propertyName, string propertyValue)
+=======
+        public static Expression<Func<T, bool>> GreaterThan<T>(string propertyName, string propertyValue)
+>>>>>>> d20cbeb43484657510fd80d9fb1359c148f31648
         {
             ParameterExpression parameter = Expression.Parameter(typeof(T), "p");//创建参数p
             MemberExpression member = Expression.PropertyOrField(parameter, propertyName);
@@ -91,7 +103,11 @@ namespace Ant.Utility
         /// <param name="column"></param>
         /// <param name="value"></param>
         /// <returns></returns>
+<<<<<<< HEAD
         public static Expression<Func<T, bool>> CreateLessThan<T>(string propertyName, string propertyValue)
+=======
+        public static Expression<Func<T, bool>> LessThan<T>(string propertyName, string propertyValue)
+>>>>>>> d20cbeb43484657510fd80d9fb1359c148f31648
         {
             ParameterExpression parameter = Expression.Parameter(typeof(T), "p");//创建参数p
             MemberExpression member = Expression.PropertyOrField(parameter, propertyName);
@@ -106,7 +122,11 @@ namespace Ant.Utility
         /// <param name="column"></param>
         /// <param name="value"></param>
         /// <returns></returns>
+<<<<<<< HEAD
         public static Expression<Func<T, bool>> CreateGreaterThanOrEqual<T>(string propertyName, string propertyValue)
+=======
+        public static Expression<Func<T, bool>> GreaterThanOrEqual<T>(string propertyName, string propertyValue)
+>>>>>>> d20cbeb43484657510fd80d9fb1359c148f31648
         {
             ParameterExpression parameter = Expression.Parameter(typeof(T), "p");//创建参数p
             MemberExpression member = Expression.PropertyOrField(parameter, propertyName);
@@ -121,7 +141,11 @@ namespace Ant.Utility
         /// <param name="column"></param>
         /// <param name="value"></param>
         /// <returns></returns>
+<<<<<<< HEAD
         public static Expression<Func<T, bool>> CreateLessThanOrEqual<T>(string propertyName, string propertyValue)
+=======
+        public static Expression<Func<T, bool>> LessThanOrEqual<T>(string propertyName, string propertyValue)
+>>>>>>> d20cbeb43484657510fd80d9fb1359c148f31648
         {
             ParameterExpression parameter = Expression.Parameter(typeof(T), "p");//创建参数p
             MemberExpression member = Expression.PropertyOrField(parameter, propertyName);
@@ -136,7 +160,11 @@ namespace Ant.Utility
         /// <param name="column"></param>
         /// <param name="value"></param>
         /// <returns></returns>
+<<<<<<< HEAD
         private static Expression<Func<T, bool>> GetContains<T>(string propertyName, string propertyValue)
+=======
+        private static Expression<Func<T, bool>> Contains<T>(string propertyName, string propertyValue)
+>>>>>>> d20cbeb43484657510fd80d9fb1359c148f31648
         {
             ParameterExpression parameter = Expression.Parameter(typeof(T), "p");
             MemberExpression member = Expression.PropertyOrField(parameter, propertyName);
@@ -152,7 +180,11 @@ namespace Ant.Utility
         /// <param name="column"></param>
         /// <param name="value"></param>
         /// <returns></returns>
+<<<<<<< HEAD
         private static Expression<Func<T, bool>> GetNotContains<T>(string propertyName, string propertyValue)
+=======
+        private static Expression<Func<T, bool>> NotContains<T>(string propertyName, string propertyValue)
+>>>>>>> d20cbeb43484657510fd80d9fb1359c148f31648
         {
             ParameterExpression parameter = Expression.Parameter(typeof(T), "p");
             MemberExpression member = Expression.PropertyOrField(parameter, propertyName);
